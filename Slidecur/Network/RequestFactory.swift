@@ -6,6 +6,8 @@
 //  Copyright © 2019 Oleg Samoylov. All rights reserved.
 //
 
+import Toolkit
+
 struct RequestFactory {
     
     static let endpointRoot = "http://dima.pythonanywhere.com/"

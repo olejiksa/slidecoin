@@ -6,6 +6,8 @@
 //  Copyright © 2019 Oleg Samoylov. All rights reserved.
 //
 
+import Toolkit
+
 final class LoginRequest: BasePostRequest {
     
     init(username: String, password: String) {

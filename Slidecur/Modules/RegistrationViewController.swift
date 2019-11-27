@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toolkit
 
 final class RegistrationViewController: UIViewController {
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Toolkit
 
 final class LoginParser: ParserProtocol {
     

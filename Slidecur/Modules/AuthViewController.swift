@@ -6,6 +6,7 @@
 //  Copyright © 2019 Oleg Samoylov. All rights reserved.
 //
 
+import Toolkit
 import UIKit
 
 final class AuthViewController: UIViewController {
