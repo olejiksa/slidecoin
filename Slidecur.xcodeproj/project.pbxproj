@@ -31,6 +31,7 @@
 		EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */; };
 		EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35051238DC317008AACA2 /* RegistrationRequest.swift */; };
 		EBD35055238DC422008AACA2 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35054238DC422008AACA2 /* Login.swift */; };
+		EBEF6A56238EEA63008FD4F6 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEF6A55238EEA63008FD4F6 /* KeyboardService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		EBD35051238DC317008AACA2 /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		EBD35054238DC422008AACA2 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		EBEF6A55238EEA63008FD4F6 /* KeyboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				EBD35058238DC72B008AACA2 /* Modules */,
 				EBD35053238DC419008AACA2 /* Models */,
 				EBD35036238DBF6D008AACA2 /* Network */,
+				EBEF6A54238EEA54008FD4F6 /* Services */,
 				EBD3501E238DB91B008AACA2 /* AppDelegate.swift */,
 				EB3D037E238E9A6B00E5BAE9 /* BigButton.swift */,
 				EB3D0380238EA62200E5BAE9 /* ButtonValidationHelper.swift */,
@@ -170,6 +173,14 @@
 				EB3D0383238EAD4400E5BAE9 /* MainView.xib */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		EBEF6A54238EEA54008FD4F6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EBEF6A55238EEA63008FD4F6 /* KeyboardService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBEF6A56238EEA63008FD4F6 /* KeyboardService.swift in Sources */,
 				EB21994E238DD16B008A8772 /* MessageParser.swift in Sources */,
 				EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */,
 				EB3D0381238EA62200E5BAE9 /* ButtonValidationHelper.swift in Sources */,

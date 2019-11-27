@@ -13,6 +13,7 @@ final class AuthViewController: UIViewController {
     // MARK: Private Properties
     
     private let requestSender: RequestSenderProtocol = RequestSender()
+    private let keyboardService: KeyboardServiceProtocol = KeyboardService()
     private var buttonValidationHelper: ButtonValidationHelper?
     private var activeField: UITextField?
     
@@ -30,22 +31,18 @@ final class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        keyboardService.view = view
+        keyboardService.scrollView = scrollView
+        usernameField.delegate = keyboardService
+        passwordField.delegate = keyboardService
+        
         navigationItem.title = "Авторизация"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let textFields: [UITextField] = [usernameField!, passwordField!]
         buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
         
-        let defaults = UserDefaults.standard
-        let message = defaults.string(forKey: "message")
-        let accessToken = defaults.string(forKey: "access_token")
-        let refreshToken = defaults.string(forKey: "refresh_token")
-        
-        if let message = message, let accessToken = accessToken, let refreshToken = refreshToken {
-            let login = Login(refreshToken: refreshToken, accessToken: accessToken, message: message)
-            let vc = MainViewController(login: login)
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        skipIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,56 +103,31 @@ final class AuthViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc private func keyboardWillBeHidden() {
-        let contentInsets: UIEdgeInsets = .zero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc private func keyboardWillShow(notification: Notification) {
-        guard let activeField = activeField else { return }
-        
-        let value = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue
-        let kbSize = (value?.cgRectValue.size)!
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.height, right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-        var aRect = view.frame
-        aRect.size.height -= kbSize.height
-        if !aRect.contains(activeField.frame.origin) {
-            scrollView.scrollRectToVisible(activeField.frame, animated: true)
-        }
-    }
-    
     private func alert(title: String, _ message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true)
     }
-}
-
-
-// MARK: - UITextFieldDelegate
-
-extension AuthViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    private func skipIfNeeded() {
+        let defaults = UserDefaults.standard
+        let message = defaults.string(forKey: "message")
+        let accessToken = defaults.string(forKey: "access_token")
+        let refreshToken = defaults.string(forKey: "refresh_token")
+        
+        if let message = message, let accessToken = accessToken, let refreshToken = refreshToken {
+            let login = Login(refreshToken: refreshToken, accessToken: accessToken, message: message)
+            let vc = MainViewController(login: login)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeField = textField
+    @objc private func keyboardWillBeHidden() {
+        keyboardService.keyboardWillBeHidden()
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeField = nil
-    }
-    
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        return true
+    @objc private func keyboardWillShow(notification: Notification) {
+        keyboardService.keyboardWillShow(notification: notification)
     }
 }

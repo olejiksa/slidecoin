@@ -29,18 +29,22 @@ final class MainViewController: UIViewController {
 
         navigationItem.title = "Главная"
         messageLabel.text = login.message
-        let defaults = UserDefaults.standard
-        defaults.set(login.message, forKey: "message")
-        defaults.set(login.accessToken!, forKey: "access_token")
-        defaults.set(login.refreshToken!, forKey: "refresh_token")
+        save()
     }
     
-    @IBAction func logoutDidTap() {
+    @IBAction private func logoutDidTap() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "message")
         defaults.removeObject(forKey: "access_token")
         defaults.removeObject(forKey: "refresh_token")
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func save() {
+        let defaults = UserDefaults.standard
+        defaults.set(login.message, forKey: "message")
+        defaults.set(login.accessToken!, forKey: "access_token")
+        defaults.set(login.refreshToken!, forKey: "refresh_token")
     }
 }

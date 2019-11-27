@@ -13,8 +13,8 @@ final class RegistrationViewController: UIViewController {
     // MARK: Private Propterties
     
     private let requestSender: RequestSenderProtocol = RequestSender()
+    private let keyboardService: KeyboardServiceProtocol = KeyboardService()
     private var buttonValidationHelper: ButtonValidationHelper?
-    private var activeField: UITextField?
     
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
@@ -28,6 +28,12 @@ final class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        keyboardService.view = view
+        keyboardService.scrollView = scrollView
+        usernameField.delegate = keyboardService
+        passwordField.delegate = keyboardService
+        repeatPasswordField.delegate = keyboardService
+        
         navigationItem.title = "Регистрация"
         
         let textFields: [UITextField] = [usernameField!, passwordField!, repeatPasswordField!]
@@ -90,27 +96,6 @@ final class RegistrationViewController: UIViewController {
         }
     }
     
-    @objc private func keyboardWillBeHidden() {
-        let contentInsets: UIEdgeInsets = .zero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc private func keyboardWillShow(notification: Notification) {
-        guard let activeField = activeField else { return }
-        
-        let value = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue
-        let kbSize = (value?.cgRectValue.size)!
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.height, right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-        var aRect = view.frame
-        aRect.size.height -= kbSize.height
-        if !aRect.contains(activeField.frame.origin) {
-            scrollView.scrollRectToVisible(activeField.frame, animated: true)
-        }
-    }
-    
     private func alert(title: String, _ message: String, okAction: (() -> ())? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { _ in
@@ -119,29 +104,12 @@ final class RegistrationViewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true)
     }
-}
-
-
-// MARK: - UITextFieldDelegate
-
-extension RegistrationViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    @objc private func keyboardWillBeHidden() {
+        keyboardService.keyboardWillBeHidden()
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeField = textField
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeField = nil
-    }
-    
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        return true
+    @objc private func keyboardWillShow(notification: Notification) {
+        keyboardService.keyboardWillShow(notification: notification)
     }
 }
