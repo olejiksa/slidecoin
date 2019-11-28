@@ -19,6 +19,9 @@ final class AuthViewController: UIViewController {
     private var buttonValidationHelper: ButtonValidationHelper?
     private var activeField: UITextField?
     
+    
+    // MARK: Outlets
+    
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
     
@@ -77,7 +80,7 @@ final class AuthViewController: UIViewController {
     }
     
     
-    // MARK: Private
+    // MARK: Actions
     
     @IBAction private func loginDidTap() {
         guard
@@ -99,11 +102,11 @@ final class AuthViewController: UIViewController {
                             mySceneDelegate.window?.rootViewController = nvc
                         }
                     } else {
-                        self?.alert(title: "Сообщение", login.message)
+                        self?.alert(login.message)
                     }
                     
                 case .failure(let error):
-                    self?.alert(title: "Сообщение", error.localizedDescription)
+                    self?.alert(error.localizedDescription)
                 }
             }
         }
@@ -114,8 +117,11 @@ final class AuthViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    private func alert(title: String, _ message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    
+    // MARK: Private
+    
+    private func alert(_ message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true)
@@ -157,7 +163,9 @@ final class AuthViewController: UIViewController {
 }
 
 
+// MARK: - ASAuthorizationControllerDelegate
+
 extension AuthViewController: ASAuthorizationControllerDelegate {
     
-    
+    // unused
 }

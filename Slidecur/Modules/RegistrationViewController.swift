@@ -17,6 +17,9 @@ final class RegistrationViewController: UIViewController {
     private let keyboardService: KeyboardServiceProtocol = KeyboardService()
     private var buttonValidationHelper: ButtonValidationHelper?
     
+    
+    // MARK: Outlets
+    
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var repeatPasswordField: UITextField!
@@ -76,7 +79,7 @@ final class RegistrationViewController: UIViewController {
         else { return }
         
         guard password == repeatPassword else {
-            alert(title: "Сообщение", "Введенные пароли не совпадают")
+            alert("Введенные пароли не совпадают")
             return
         }
             
@@ -86,29 +89,27 @@ final class RegistrationViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let login):
-                    self?.alert(title: "Сообщение", login.message) {
-                        if login.accessToken != nil, login.refreshToken != nil {
-                            let scene = UIApplication.shared.connectedScenes.first
-                            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                                let vc = MainViewController(login: login)
-                                let nvc = UINavigationController(rootViewController: vc)
-                                mySceneDelegate.window?.rootViewController = nvc
-                            }
+                    if login.accessToken != nil, login.refreshToken != nil {
+                        let scene = UIApplication.shared.connectedScenes.first
+                        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                            let vc = MainViewController(login: login)
+                            let nvc = UINavigationController(rootViewController: vc)
+                            mySceneDelegate.window?.rootViewController = nvc
                         }
+                    } else {
+                        self?.alert(login.message)
                     }
                     
                 case .failure(let error):
-                    self?.alert(title: "Сообщение", error.localizedDescription)
+                    self?.alert(error.localizedDescription)
                 }
             }
         }
     }
     
-    private func alert(title: String, _ message: String, okAction: (() -> ())? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default) { _ in
-            okAction?()
-        }
+    private func alert(_ message: String, okAction: (() -> ())? = nil) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { _ in okAction?() }
         alert.addAction(action)
         present(alert, animated: true)
     }

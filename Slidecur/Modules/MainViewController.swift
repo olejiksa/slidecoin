@@ -10,9 +10,14 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
+    // MARK: Private Properties
+    
     private let login: Login
     
     @IBOutlet private weak var messageLabel: UILabel!
+    
+    
+    // MARK: Lifecycle
     
     init(login: Login) {
         self.login = login
@@ -33,6 +38,9 @@ final class MainViewController: UIViewController {
         messageLabel.text = login.message
         save()
     }
+    
+    
+    // MARK: Private
     
     @IBAction private func logoutDidTap() {
         let defaults = UserDefaults.standard
