@@ -6,6 +6,7 @@
 //  Copyright © 2019 Oleg Samoylov. All rights reserved.
 //
 
+import AuthenticationServices
 import Toolkit
 import UIKit
 
@@ -24,6 +25,7 @@ final class AuthViewController: UIViewController {
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var registrationButton: UIButton!
     
+    @IBOutlet private weak var containerView: UIStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
     
     
@@ -39,6 +41,10 @@ final class AuthViewController: UIViewController {
         
         navigationItem.title = "Авторизация"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
+        containerView.addArrangedSubview(button)
         
         let textFields: [UITextField] = [usernameField!, passwordField!]
         buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
@@ -86,8 +92,12 @@ final class AuthViewController: UIViewController {
                 switch result {
                 case .success(let login):
                     if login.accessToken != nil, login.refreshToken != nil {
-                        let vc = MainViewController(login: login)
-                        self?.navigationController?.pushViewController(vc, animated: true)
+                        let scene = UIApplication.shared.connectedScenes.first
+                        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                            let vc = MainViewController(login: login)
+                            let nvc = UINavigationController(rootViewController: vc)
+                            mySceneDelegate.window?.rootViewController = nvc
+                        }
                     } else {
                         self?.alert(title: "Сообщение", login.message)
                     }
@@ -118,9 +128,13 @@ final class AuthViewController: UIViewController {
         let refreshToken = defaults.string(forKey: "refresh_token")
         
         if let message = message, let accessToken = accessToken, let refreshToken = refreshToken {
-            let login = Login(refreshToken: refreshToken, accessToken: accessToken, message: message)
-            let vc = MainViewController(login: login)
-            navigationController?.pushViewController(vc, animated: true)
+            let scene = UIApplication.shared.connectedScenes.first
+            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                let login = Login(refreshToken: refreshToken, accessToken: accessToken, message: message)
+                let vc = MainViewController(login: login)
+                let nvc = UINavigationController(rootViewController: vc)
+                mySceneDelegate.window?.rootViewController = nvc
+            }
         }
     }
     
@@ -131,4 +145,19 @@ final class AuthViewController: UIViewController {
     @objc private func keyboardWillShow(notification: Notification) {
         keyboardService.keyboardWillShow(notification: notification)
     }
+    
+    @objc private func appleButtonDidTap() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.performRequests()
+    }
+}
+
+
+extension AuthViewController: ASAuthorizationControllerDelegate {
+    
+    
 }

@@ -28,6 +28,8 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Главная"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         messageLabel.text = login.message
         save()
     }
@@ -38,7 +40,12 @@ final class MainViewController: UIViewController {
         defaults.removeObject(forKey: "access_token")
         defaults.removeObject(forKey: "refresh_token")
         
-        navigationController?.popViewController(animated: true)
+        let scene = UIApplication.shared.connectedScenes.first
+        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+            let vc = AuthViewController()
+            let nvc = UINavigationController(rootViewController: vc)
+            mySceneDelegate.window?.rootViewController = nvc
+        }
     }
     
     private func save() {

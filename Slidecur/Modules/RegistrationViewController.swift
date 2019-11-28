@@ -87,7 +87,14 @@ final class RegistrationViewController: UIViewController {
                 switch result {
                 case .success(let login):
                     self?.alert(title: "Сообщение", login.message) {
-                        self?.navigationController?.popViewController(animated: true)
+                        if login.accessToken != nil, login.refreshToken != nil {
+                            let scene = UIApplication.shared.connectedScenes.first
+                            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                                let vc = MainViewController(login: login)
+                                let nvc = UINavigationController(rootViewController: vc)
+                                mySceneDelegate.window?.rootViewController = nvc
+                            }
+                        }
                     }
                     
                 case .failure(let error):

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EB21994A238DC9C7008A8772 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB219949238DC9C7008A8772 /* Message.swift */; };
 		EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */; };
 		EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB219950238DD2E1008A8772 /* RegistrationView.xib */; };
 		EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */; };
@@ -29,7 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EB219949238DC9C7008A8772 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EB219950238DD2E1008A8772 /* RegistrationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationView.xib; sourceTree = "<group>"; };
 		EB3D037A238E956000E5BAE9 /* Slidecur.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slidecur.entitlements; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 		EBD35053238DC419008AACA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EB219949238DC9C7008A8772 /* Message.swift */,
 				EBD35054238DC422008AACA2 /* Login.swift */,
 			);
 			path = Models;
@@ -243,7 +240,6 @@
 				EB3D037F238E9A6B00E5BAE9 /* BigButton.swift in Sources */,
 				EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */,
 				EBD3504C238DC2CD008AACA2 /* LoginParser.swift in Sources */,
-				EB21994A238DC9C7008A8772 /* Message.swift in Sources */,
 				EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */,
 				EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */,
 			);
