@@ -28,7 +28,7 @@ final class CredentialsService: CredentialsServiceProtocol {
             let refreshToken = defaults.string(forKey: "refresh_token")
         else { return nil }
         
-        return Login(refreshToken: refreshToken,
+        return .init(refreshToken: refreshToken,
                      accessToken: accessToken,
                      message: message)
     }

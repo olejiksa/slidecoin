@@ -51,24 +51,7 @@ final class RegistrationViewController: UIViewController {
     }
     
     
-    // MARK: Private
-    
-    private func setupDelegates() {
-        keyboardService.view = view
-        keyboardService.scrollView = scrollView
-        usernameField.delegate = keyboardService
-        passwordField.delegate = keyboardService
-        repeatPasswordField.delegate = keyboardService
-    }
-    
-    private func setupNavigationBar() {
-        navigationItem.title = "Регистрация"
-    }
-    
-    private func setupButtonValidationHelper() {
-        let textFields: [UITextField] = [usernameField, passwordField, repeatPasswordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
-    }
+    // MARK: Actions
 
     @IBAction private func registrationDidTap() {
         guard
@@ -109,5 +92,25 @@ final class RegistrationViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    
+    // MARK: Private
+    
+    private func setupDelegates() {
+        keyboardService.view = view
+        keyboardService.scrollView = scrollView
+        usernameField.delegate = keyboardService
+        passwordField.delegate = keyboardService
+        repeatPasswordField.delegate = keyboardService
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Регистрация"
+    }
+    
+    private func setupButtonValidationHelper() {
+        let textFields: [UITextField] = [usernameField, passwordField, repeatPasswordField]
+        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
     }
 }

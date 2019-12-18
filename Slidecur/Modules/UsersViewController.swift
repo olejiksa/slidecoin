@@ -15,6 +15,7 @@ final class UsersViewController: UIViewController {
     
     private let cellID = "\(UITableViewCell.self)"
     private let alertService: AlertServiceProtocol = AlertService()
+    private let credentialsService: CredentialsServiceProtocol = CredentialsService()
     private let requestSender: RequestSenderProtocol = RequestSender()
     private let searchController = UISearchController(searchResultsController: nil)
     
@@ -44,6 +45,9 @@ final class UsersViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Пользователи"
+        
+        let deleteAllUsersButton = UIBarButtonItem(title: "Удалить всех", style: .done, target: self, action: #selector(allUsersDidDelete))
+        navigationItem.rightBarButtonItem = deleteAllUsersButton
     }
     
     private func setupTableView() {
@@ -79,6 +83,52 @@ final class UsersViewController: UIViewController {
     private func filterContent(for searchText: String) {
         searchedUsers = users.filter {
             $0.username.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+    
+    @objc private func allUsersDidDelete() {
+        let message = "Вы действительно хотите удалить всех пользователей \"Сладовалюты\"?"
+        let alert = alertService.alert(message,
+                                       title: "Внимание",
+                                       isDestructive: true) { [weak self] _ in
+            self?.deleteAll()
+        }
+        
+        self.present(alert, animated: true)
+    }
+    
+    private func deleteAll() {
+        let config = RequestFactory.deleteAllUsers()
+        requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let login):
+                    let alert = self.alertService.alert(login.message,
+                                                        title: "Сообщение",
+                                                        isDestructive: false) { [weak self] _ in
+                        self?.reset()
+                    }
+                
+                    self.present(alert, animated: true)
+                    
+                case .failure(let error):
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+    }
+    
+    private func reset() {
+        credentialsService.removeCredentials()
+        
+        let scene = UIApplication.shared.connectedScenes.first
+        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+            let vc = AuthViewController()
+            let nvc = UINavigationController(rootViewController: vc)
+            mySceneDelegate.window?.rootViewController = nvc
         }
     }
 }

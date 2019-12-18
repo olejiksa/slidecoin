@@ -22,6 +22,10 @@
 		EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */; };
 		EB6AA84823AA5F6600938BB6 /* UsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6AA84623AA5F6600938BB6 /* UsersView.xib */; };
 		EB6AA84B23AAB77000938BB6 /* CredentialsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA84A23AAB77000938BB6 /* CredentialsService.swift */; };
+		EB6AA84D23AAD39900938BB6 /* SecretParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA84C23AAD39900938BB6 /* SecretParser.swift */; };
+		EB6AA84F23AAD3E500938BB6 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA84E23AAD3E500938BB6 /* Secret.swift */; };
+		EB6AA85123AAD43E00938BB6 /* SecretRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */; };
+		EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */; };
 		EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3501E238DB91B008AACA2 /* AppDelegate.swift */; };
 		EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35020238DB91B008AACA2 /* SceneDelegate.swift */; };
 		EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD35027238DB91F008AACA2 /* Assets.xcassets */; };
@@ -53,6 +57,10 @@
 		EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		EB6AA84623AA5F6600938BB6 /* UsersView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersView.xib; sourceTree = "<group>"; };
 		EB6AA84A23AAB77000938BB6 /* CredentialsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsService.swift; sourceTree = "<group>"; };
+		EB6AA84C23AAD39900938BB6 /* SecretParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretParser.swift; sourceTree = "<group>"; };
+		EB6AA84E23AAD3E500938BB6 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretRequest.swift; sourceTree = "<group>"; };
+		EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllUsersRequest.swift; sourceTree = "<group>"; };
 		EBD3501B238DB91B008AACA2 /* Slidecoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slidecoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD3501E238DB91B008AACA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBD35020238DB91B008AACA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD3504B238DC2CD008AACA2 /* LoginParser.swift */,
+				EB6AA84C23AAD39900938BB6 /* SecretParser.swift */,
 				EB6AA84123AA585000938BB6 /* UsersParser.swift */,
 			);
 			path = Parsers;
@@ -155,8 +164,10 @@
 		EBD3503C238DBF6D008AACA2 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */,
 				EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */,
 				EBD35051238DC317008AACA2 /* RegistrationRequest.swift */,
+				EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */,
 				EB6AA83F23AA57E800938BB6 /* UsersRequest.swift */,
 			);
 			path = Requests;
@@ -166,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD35054238DC422008AACA2 /* Login.swift */,
+				EB6AA84E23AAD3E500938BB6 /* Secret.swift */,
 				EB6AA84323AA589500938BB6 /* User.swift */,
 			);
 			path = Models;
@@ -273,13 +285,17 @@
 				EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */,
 				EB6AA84023AA57E800938BB6 /* UsersRequest.swift in Sources */,
 				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
+				EB6AA84D23AAD39900938BB6 /* SecretParser.swift in Sources */,
+				EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */,
 				EB6AA84423AA589500938BB6 /* User.swift in Sources */,
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
 				EB6AA84B23AAB77000938BB6 /* CredentialsService.swift in Sources */,
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
+				EB6AA84F23AAD3E500938BB6 /* Secret.swift in Sources */,
 				EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */,
 				EBD35034238DBAA9008AACA2 /* AuthViewController.swift in Sources */,
 				EB6AA84223AA585000938BB6 /* UsersParser.swift in Sources */,
+				EB6AA85123AAD43E00938BB6 /* SecretRequest.swift in Sources */,
 				EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */,
 				EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */,
 				EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */,

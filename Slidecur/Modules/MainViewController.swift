@@ -13,7 +13,9 @@ final class MainViewController: UIViewController {
 
     // MARK: Private Properties
     
+    private let alertService: AlertServiceProtocol = AlertService()
     private let credentialsService: CredentialsServiceProtocol = CredentialsService()
+    private let requestSender: RequestSenderProtocol = RequestSender()
     private let login: Login
     
     
@@ -43,21 +45,41 @@ final class MainViewController: UIViewController {
     }
     
     
-    // MARK: Private
-    
-    private func setupNavigationBar() {
-        navigationItem.title = "Главная"
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
+    // MARK: Actions
     
     @IBAction private func logoutDidTap() {
-        credentialsService.removeCredentials()
+        let message = "Вы действительно хотите выйти?"
+        let alert = alertService.alert(message,
+                                       title: "Внимание",
+                                       isDestructive: true) { [weak self] _ in
+            self?.credentialsService.removeCredentials()
+            
+            let scene = UIApplication.shared.connectedScenes.first
+            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                let vc = AuthViewController()
+                let nvc = UINavigationController(rootViewController: vc)
+                mySceneDelegate.window?.rootViewController = nvc
+            }
+        }
         
-        let scene = UIApplication.shared.connectedScenes.first
-        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-            let vc = AuthViewController()
-            let nvc = UINavigationController(rootViewController: vc)
-            mySceneDelegate.window?.rootViewController = nvc
+        self.present(alert, animated: true)
+    }
+    
+    @IBAction private func secretDidTap() {
+        guard let accessToken = login.accessToken else { return }
+        
+        let config = RequestFactory.secret(accessToken: accessToken)
+        requestSender.send(config: config) { result in
+            switch result {
+            case .success(let secret):
+                let alert = self.alertService.alert(String(secret.answer),
+                                                    title: "Secret")
+                self.present(alert, animated: true)
+                
+            case .failure(let error):
+                let alert = self.alertService.alert(error.localizedDescription)
+                self.present(alert, animated: true)
+            }
         }
     }
     
@@ -69,5 +91,13 @@ final class MainViewController: UIViewController {
     @IBAction private func allUsersDidTap() {
         let vc = UsersViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    // MARK: Private
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Главная"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }

@@ -57,30 +57,7 @@ final class AuthViewController: UIViewController {
     }
     
     
-    // MARK: Actions
-    
-    private func setupDelegates() {
-        keyboardService.view = view
-        keyboardService.scrollView = scrollView
-        usernameField.delegate = keyboardService
-        passwordField.delegate = keyboardService
-    }
-    
-    private func setupNavigationBar() {
-        navigationItem.title = "Авторизация"
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    private func setupAppleIDAuthButton() {
-        let button = ASAuthorizationAppleIDButton()
-        button.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
-        containerView.addArrangedSubview(button)
-    }
-    
-    private func setupButtonNavigationHelper() {
-        let textFields: [UITextField] = [usernameField, passwordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
-    }
+    // MARK: - Actions
     
     @IBAction private func loginDidTap() {
         guard
@@ -128,6 +105,29 @@ final class AuthViewController: UIViewController {
     
     
     // MARK: Private
+    
+    private func setupDelegates() {
+        keyboardService.view = view
+        keyboardService.scrollView = scrollView
+        usernameField.delegate = keyboardService
+        passwordField.delegate = keyboardService
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Авторизация"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func setupAppleIDAuthButton() {
+        let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
+        containerView.addArrangedSubview(button)
+    }
+    
+    private func setupButtonNavigationHelper() {
+        let textFields: [UITextField] = [usernameField, passwordField]
+        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
+    }
     
     @objc private func appleButtonDidTap() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
