@@ -51,8 +51,6 @@ final class AuthViewController: UIViewController {
         
         let textFields: [UITextField] = [usernameField, passwordField]
         buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
-        
-        skipIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,17 +128,6 @@ final class AuthViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true)
-    }
-    
-    private func skipIfNeeded() {
-        guard let login = credentialsService.getCredentials() else { return }
-        
-        let scene = UIApplication.shared.connectedScenes.first
-        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-            let vc = MainViewController(login: login)
-            let nvc = UINavigationController(rootViewController: vc)
-            mySceneDelegate.window?.rootViewController = nvc
-        }
     }
     
     @objc private func keyboardWillBeHidden() {
