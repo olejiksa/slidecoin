@@ -13,6 +13,8 @@
 		EB3D037F238E9A6B00E5BAE9 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D037E238E9A6B00E5BAE9 /* BigButton.swift */; };
 		EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */; };
 		EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB3D0383238EAD4400E5BAE9 /* MainView.xib */; };
+		EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */; };
+		EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6AA83623A8C09500938BB6 /* RestoreView.xib */; };
 		EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3501E238DB91B008AACA2 /* AppDelegate.swift */; };
 		EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35020238DB91B008AACA2 /* SceneDelegate.swift */; };
 		EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD35027238DB91F008AACA2 /* Assets.xcassets */; };
@@ -35,7 +37,9 @@
 		EB3D037E238E9A6B00E5BAE9 /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB3D0383238EAD4400E5BAE9 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
-		EBD3501B238DB91B008AACA2 /* Slidecur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slidecur.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreViewController.swift; sourceTree = "<group>"; };
+		EB6AA83623A8C09500938BB6 /* RestoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestoreView.xib; sourceTree = "<group>"; };
+		EBD3501B238DB91B008AACA2 /* Slidecoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slidecoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD3501E238DB91B008AACA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBD35020238DB91B008AACA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EBD35027238DB91F008AACA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,7 +89,7 @@
 		EBD3501C238DB91B008AACA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EBD3501B238DB91B008AACA2 /* Slidecur.app */,
+				EBD3501B238DB91B008AACA2 /* Slidecoin.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,6 +155,8 @@
 				EB219950238DD2E1008A8772 /* RegistrationView.xib */,
 				EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */,
 				EB3D0383238EAD4400E5BAE9 /* MainView.xib */,
+				EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */,
+				EB6AA83623A8C09500938BB6 /* RestoreView.xib */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -175,7 +181,7 @@
 				EBEF6A5A238EF36A008FD4F6 /* Toolkit */,
 			);
 			productName = Slidecur;
-			productReference = EBD3501B238DB91B008AACA2 /* Slidecur.app */;
+			productReference = EBD3501B238DB91B008AACA2 /* Slidecoin.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -219,6 +225,7 @@
 				EBD3502B238DB91F008AACA2 /* LaunchScreen.storyboard in Resources */,
 				EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */,
 				EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */,
+				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
 				EBD35035238DBAA9008AACA2 /* AuthView.xib in Resources */,
 				EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */,
 			);
@@ -232,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */,
+				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
 				EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */,
@@ -386,9 +394,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.Slidecur;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Slidecoin;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -405,9 +413,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.Slidecur;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Slidecoin;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

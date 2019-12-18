@@ -117,6 +117,11 @@ final class AuthViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func restoreDidTap() {
+        let vc = RestoreViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     // MARK: Private
     

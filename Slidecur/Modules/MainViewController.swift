@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toolkit
 
 final class MainViewController: UIViewController {
 
@@ -54,6 +55,11 @@ final class MainViewController: UIViewController {
             let nvc = UINavigationController(rootViewController: vc)
             mySceneDelegate.window?.rootViewController = nvc
         }
+    }
+    
+    @IBAction private func changePasswordDidTap() {
+        let vc = RestoreViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func save() {

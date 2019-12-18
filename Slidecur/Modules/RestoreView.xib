@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RestoreViewController" customModule="Slidecoin" customModuleProvider="target">
+            <connections>
+                <outlet property="doneButton" destination="WRZ-nh-2zc" id="Cbc-fQ-asT"/>
+                <outlet property="passwordField" destination="lj5-FT-0TN" id="jBc-aq-HYt"/>
+                <outlet property="repeatPasswordField" destination="RS5-td-KO3" id="DCO-lz-3rU"/>
+                <outlet property="scrollView" destination="s4K-Sm-r1a" id="ywI-vX-ilH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4K-Sm-r1a">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omG-hj-FbK">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="259"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fch-fy-dBx">
+                                    <rect key="frame" x="20" y="20" width="335" height="145"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новый пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzT-4c-koR">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lj5-FT-0TN">
+                                            <rect key="frame" x="0.0" y="32.5" width="335" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="new-password"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подтвердить новый пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sV4-vM-cvt">
+                                            <rect key="frame" x="0.0" y="78.5" width="335" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RS5-td-KO3">
+                                            <rect key="frame" x="0.0" y="111" width="335" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="new-password"/>
+                                        </textField>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRZ-nh-2zc" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="185" width="335" height="54"/>
+                                    <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="54" id="CZr-ly-0Q6"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <state key="normal" title="Сменить пароль">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="changePasswordDidTap" destination="-1" eventType="touchUpInside" id="xbR-kA-4ij"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="fch-fy-dBx" firstAttribute="top" secondItem="omG-hj-FbK" secondAttribute="top" constant="20" symbolic="YES" id="P6f-Dc-aZY"/>
+                                <constraint firstItem="WRZ-nh-2zc" firstAttribute="top" secondItem="fch-fy-dBx" secondAttribute="bottom" constant="20" id="S7Z-nx-bP6"/>
+                                <constraint firstAttribute="trailing" secondItem="fch-fy-dBx" secondAttribute="trailing" constant="20" id="V1z-2G-UCE"/>
+                                <constraint firstItem="fch-fy-dBx" firstAttribute="leading" secondItem="omG-hj-FbK" secondAttribute="leading" constant="20" symbolic="YES" id="cC0-JK-222"/>
+                                <constraint firstAttribute="trailing" secondItem="WRZ-nh-2zc" secondAttribute="trailing" constant="20" id="lL9-oc-Sny"/>
+                                <constraint firstItem="WRZ-nh-2zc" firstAttribute="leading" secondItem="omG-hj-FbK" secondAttribute="leading" constant="20" symbolic="YES" id="sKz-5m-qHv"/>
+                                <constraint firstAttribute="bottom" secondItem="WRZ-nh-2zc" secondAttribute="bottom" constant="20" id="x6l-9n-TGI"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="omG-hj-FbK" firstAttribute="centerX" secondItem="s4K-Sm-r1a" secondAttribute="centerX" id="Dj1-fa-o7G"/>
+                        <constraint firstItem="omG-hj-FbK" firstAttribute="top" secondItem="s4K-Sm-r1a" secondAttribute="top" id="R3r-n5-eEo"/>
+                        <constraint firstItem="omG-hj-FbK" firstAttribute="leading" secondItem="s4K-Sm-r1a" secondAttribute="leading" id="USr-cH-QWD"/>
+                        <constraint firstAttribute="bottom" secondItem="omG-hj-FbK" secondAttribute="bottom" id="Xsl-GX-ObD"/>
+                        <constraint firstAttribute="trailing" secondItem="omG-hj-FbK" secondAttribute="trailing" id="v7o-d3-F1y"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="yjh-L1-Fih"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="Oc2-tY-1BG"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="s4K-Sm-r1a" secondAttribute="bottom" id="F1k-hf-vh5"/>
+                <constraint firstItem="s4K-Sm-r1a" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bwl-cl-xJW"/>
+                <constraint firstItem="s4K-Sm-r1a" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="iBf-G7-9k2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="s4K-Sm-r1a" secondAttribute="trailing" id="xas-LS-Qjp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="125"/>
+        </view>
+    </objects>
+</document>
