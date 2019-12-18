@@ -25,4 +25,11 @@ struct RequestFactory {
         
         return RequestConfig<LoginParser>(request: request, parser: parser)
     }
+    
+    static func users() -> RequestConfig<UsersParser> {
+        let request = UsersRequest()
+        let parser = UsersParser()
+    
+        return RequestConfig<UsersParser>(request: request, parser: parser)
+    }
 }

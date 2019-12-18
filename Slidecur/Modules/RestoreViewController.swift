@@ -80,7 +80,7 @@ final class RestoreViewController: UIViewController {
         }
         
         // TODO: network request
-        navigationController?.popViewController(animated: true)
+        alert("Not yet implemented")
     }
     
     private func alert(_ message: String, okAction: (() -> ())? = nil) {

@@ -17,7 +17,6 @@ final class AuthViewController: UIViewController {
     private let requestSender: RequestSenderProtocol = RequestSender()
     private let keyboardService: KeyboardServiceProtocol = KeyboardService()
     private var buttonValidationHelper: ButtonValidationHelper?
-    private var activeField: UITextField?
     
     
     // MARK: Outlets
@@ -118,7 +117,7 @@ final class AuthViewController: UIViewController {
     }
     
     @IBAction func restoreDidTap() {
-        let vc = RestoreViewController()
+        let vc = PreRestoreViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
