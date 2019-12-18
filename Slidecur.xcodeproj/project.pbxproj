@@ -10,7 +10,6 @@
 		EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */; };
 		EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB219950238DD2E1008A8772 /* RegistrationView.xib */; };
 		EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */; };
-		EB3D037F238E9A6B00E5BAE9 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D037E238E9A6B00E5BAE9 /* BigButton.swift */; };
 		EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */; };
 		EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB3D0383238EAD4400E5BAE9 /* MainView.xib */; };
 		EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */; };
@@ -42,7 +41,6 @@
 		EB219950238DD2E1008A8772 /* RegistrationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationView.xib; sourceTree = "<group>"; };
 		EB3D037A238E956000E5BAE9 /* Slidecur.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slidecur.entitlements; sourceTree = "<group>"; };
 		EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
-		EB3D037E238E9A6B00E5BAE9 /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB3D0383238EAD4400E5BAE9 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreViewController.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 				EBD35036238DBF6D008AACA2 /* Network */,
 				EB6AA84923AAB74600938BB6 /* Services */,
 				EBD3501E238DB91B008AACA2 /* AppDelegate.swift */,
-				EB3D037E238E9A6B00E5BAE9 /* BigButton.swift */,
 				EBD35020238DB91B008AACA2 /* SceneDelegate.swift */,
 				EBD35027238DB91F008AACA2 /* Assets.xcassets */,
 				EBD35029238DB91F008AACA2 /* LaunchScreen.storyboard */,
@@ -285,7 +282,6 @@
 				EB6AA84223AA585000938BB6 /* UsersParser.swift in Sources */,
 				EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */,
 				EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */,
-				EB3D037F238E9A6B00E5BAE9 /* BigButton.swift in Sources */,
 				EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */,
 				EBD3504C238DC2CD008AACA2 /* LoginParser.swift in Sources */,
 				EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */,

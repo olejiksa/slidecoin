@@ -54,7 +54,7 @@
                                         </textField>
                                     </subviews>
                                 </stackView>
-                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRZ-nh-2zc" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRZ-nh-2zc" customClass="BigButton" customModule="Toolkit">
                                     <rect key="frame" x="20" y="185" width="335" height="54"/>
                                     <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
