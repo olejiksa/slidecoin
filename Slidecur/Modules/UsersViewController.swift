@@ -12,6 +12,7 @@ import Toolkit
 final class UsersViewController: UIViewController {
 
     private let cellID = "\(UITableViewCell.self)"
+    private let alertService: AlertServiceProtocol = AlertService()
     private let requestSender: RequestSenderProtocol = RequestSender()
     private let searchController = UISearchController(searchResultsController: nil)
     
@@ -34,14 +35,17 @@ final class UsersViewController: UIViewController {
         
         let config = RequestFactory.users()
         requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let users):
-                    self?.users = users
-                    self?.tableView.reloadData()
+                    self.users = users
+                    self.tableView.reloadData()
                     
                 case .failure(let error):
-                    self?.alert(error.localizedDescription)
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
                 }
             }
         }
@@ -51,13 +55,6 @@ final class UsersViewController: UIViewController {
         searchedUsers = users.filter {
             $0.username.localizedCaseInsensitiveContains(searchText)
         }
-    }
-    
-    private func alert(_ message: String) {
-        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true)
     }
 }
 

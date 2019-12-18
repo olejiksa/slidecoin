@@ -12,7 +12,8 @@ import Toolkit
 final class RestoreViewController: UIViewController {
 
     // MARK: Private Properties
-    
+
+    private let alertService: AlertServiceProtocol = AlertService()
     private let keyboardService: KeyboardServiceProtocol = KeyboardService()
     private var buttonValidationHelper: ButtonValidationHelper?
     
@@ -75,18 +76,13 @@ final class RestoreViewController: UIViewController {
         else { return }
         
         guard password == repeatPassword else {
-            alert("Введенные пароли не совпадают")
+            let alert = alertService.alert("Введенные пароли не совпадают")
+            present(alert, animated: true)
             return
         }
         
         // TODO: network request
-        alert("Not yet implemented")
-    }
-    
-    private func alert(_ message: String, okAction: (() -> ())? = nil) {
-        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default) { _ in okAction?() }
-        alert.addAction(action)
+        let alert = alertService.alert("Not yet implemented")
         present(alert, animated: true)
     }
 }

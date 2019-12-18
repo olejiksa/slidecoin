@@ -14,6 +14,7 @@ final class RegistrationViewController: UIViewController {
     // MARK: Private Propterties
     
     private let requestSender: RequestSenderProtocol = RequestSender()
+    private let alertService: AlertServiceProtocol = AlertService()
     private let keyboardService: KeyboardServiceProtocol = KeyboardService()
     private var buttonValidationHelper: ButtonValidationHelper?
     
@@ -79,13 +80,16 @@ final class RegistrationViewController: UIViewController {
         else { return }
         
         guard password == repeatPassword else {
-            alert("Введенные пароли не совпадают")
+            let alert = alertService.alert("Введенные пароли не совпадают")
+            present(alert, animated: true)
             return
         }
             
         let config = RequestFactory.register(username: login, password: password)
         
         requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let login):
@@ -97,20 +101,15 @@ final class RegistrationViewController: UIViewController {
                             mySceneDelegate.window?.rootViewController = nvc
                         }
                     } else {
-                        self?.alert(login.message)
+                        let alert = self.alertService.alert(login.message)
+                        self.present(alert, animated: true)
                     }
                     
                 case .failure(let error):
-                    self?.alert(error.localizedDescription)
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
                 }
             }
         }
-    }
-    
-    private func alert(_ message: String, okAction: (() -> ())? = nil) {
-        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default) { _ in okAction?() }
-        alert.addAction(action)
-        present(alert, animated: true)
     }
 }

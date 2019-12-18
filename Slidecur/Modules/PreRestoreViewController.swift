@@ -11,6 +11,7 @@ import Toolkit
 
 final class PreRestoreViewController: UIViewController {
 
+    private let alertService: AlertServiceProtocol = AlertService()
     private let requestSender: RequestSenderProtocol = RequestSender()
     private var buttonValidationHelper: ButtonValidationHelper?
    
@@ -30,28 +31,25 @@ final class PreRestoreViewController: UIViewController {
             
         let config = RequestFactory.users()
         requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let users):
                     let usernames = users.map { $0.username }
                     if usernames.contains(login) {
                         let vc = RestoreViewController()
-                        self?.navigationController?.pushViewController(vc, animated: true)
+                        self.navigationController?.pushViewController(vc, animated: true)
                     } else {
-                        self?.alert("Не удалось найти учетную запись с именем пользователя \(login)")
+                        let alert = self.alertService.alert("Не удалось найти учетную запись с именем пользователя \(login)")
+                        self.present(alert, animated: true)
                     }
                     
                 case .failure(let error):
-                    self?.alert(error.localizedDescription)
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
                 }
             }
         }
-    }
-    
-    private func alert(_ message: String) {
-        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true)
     }
 }
