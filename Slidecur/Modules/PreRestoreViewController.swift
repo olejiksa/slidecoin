@@ -26,12 +26,9 @@ final class PreRestoreViewController: UIViewController {
     }
 
     @IBAction private func continueDidTap() {
-        guard
-            let login = usernameField.text
-        else { return }
+        guard let login = usernameField.text else { return }
             
         let config = RequestFactory.users()
-        
         requestSender.send(config: config) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {

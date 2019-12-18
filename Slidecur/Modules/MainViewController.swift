@@ -62,6 +62,11 @@ final class MainViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction private func allUsersDidTap() {
+        let vc = UsersViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     private func save() {
         let defaults = UserDefaults.standard
         defaults.set(login.message, forKey: "message")

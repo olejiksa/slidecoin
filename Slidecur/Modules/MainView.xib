@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xr-V8-Oou" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
-                    <rect key="frame" x="20" y="179" width="374" height="54"/>
+                    <rect key="frame" x="20" y="253" width="374" height="54"/>
                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="qiD-iM-rz3"/>
@@ -44,7 +44,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgq-lq-8jm" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
-                    <rect key="frame" x="20" y="105" width="374" height="54"/>
+                    <rect key="frame" x="20" y="179" width="374" height="54"/>
                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="EiR-UR-fx3"/>
@@ -62,18 +62,40 @@
                         <action selector="changePasswordDidTap" destination="-1" eventType="touchUpInside" id="Lig-L2-XQB"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-dr-s8V" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
+                    <rect key="frame" x="20" y="105" width="374" height="54"/>
+                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="Qm9-5N-f58"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <state key="normal" title="Все пользователи">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="allUsersDidTap" destination="-1" eventType="touchUpInside" id="IQQ-TS-yqY"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="5Xr-V8-Oou" firstAttribute="top" secondItem="Hgq-lq-8jm" secondAttribute="bottom" constant="20" id="43s-x1-Tlj"/>
-                <constraint firstItem="Hgq-lq-8jm" firstAttribute="top" secondItem="mnM-02-CXh" secondAttribute="bottom" constant="20" id="ClS-8K-49j"/>
                 <constraint firstItem="Hgq-lq-8jm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="FEn-1A-tPd"/>
+                <constraint firstItem="Uu9-dr-s8V" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="NZu-lo-d2T"/>
                 <constraint firstItem="5Xr-V8-Oou" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Nix-k4-hOr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Uu9-dr-s8V" secondAttribute="trailing" constant="20" id="Or0-9i-b0V"/>
                 <constraint firstItem="mnM-02-CXh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Pl2-Hf-d9a"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mnM-02-CXh" secondAttribute="trailing" constant="20" id="QHk-8Z-faa"/>
                 <constraint firstItem="mnM-02-CXh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Vx9-Lv-61H"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5Xr-V8-Oou" secondAttribute="trailing" constant="20" id="YD6-eW-XfE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hgq-lq-8jm" secondAttribute="trailing" constant="20" id="fIc-Cl-Fsh"/>
+                <constraint firstItem="Hgq-lq-8jm" firstAttribute="top" secondItem="Uu9-dr-s8V" secondAttribute="bottom" constant="20" id="mqV-0i-r1f"/>
+                <constraint firstItem="Uu9-dr-s8V" firstAttribute="top" secondItem="mnM-02-CXh" secondAttribute="bottom" constant="20" id="x9q-I1-sgJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="128.57142857142856"/>
