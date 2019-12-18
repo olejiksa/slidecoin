@@ -32,17 +32,10 @@ final class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        keyboardService.view = view
-        keyboardService.scrollView = scrollView
-        usernameField.delegate = keyboardService
-        passwordField.delegate = keyboardService
-        repeatPasswordField.delegate = keyboardService
         
-        navigationItem.title = "Регистрация"
-        
-        let textFields: [UITextField] = [usernameField, passwordField, repeatPasswordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
+        setupDelegates()
+        setupNavigationBar()
+        setupButtonValidationHelper()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +64,23 @@ final class RegistrationViewController: UIViewController {
     
     
     // MARK: Private
+    
+    private func setupDelegates() {
+        keyboardService.view = view
+        keyboardService.scrollView = scrollView
+        usernameField.delegate = keyboardService
+        passwordField.delegate = keyboardService
+        repeatPasswordField.delegate = keyboardService
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Регистрация"
+    }
+    
+    private func setupButtonValidationHelper() {
+        let textFields: [UITextField] = [usernameField, passwordField, repeatPasswordField]
+        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
+    }
 
     @IBAction private func registrationDidTap() {
         guard

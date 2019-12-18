@@ -11,6 +11,8 @@ import Toolkit
 
 final class UsersViewController: UIViewController {
 
+    // MARK: Private Properties
+    
     private let cellID = "\(UITableViewCell.self)"
     private let alertService: AlertServiceProtocol = AlertService()
     private let requestSender: RequestSenderProtocol = RequestSender()
@@ -19,20 +21,43 @@ final class UsersViewController: UIViewController {
     private var users: [User] = []
     private var searchedUsers: [User] = []
     
+    
+    // MARK: Outlets
+    
     @IBOutlet private weak var tableView: UITableView!
+    
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupNavigationBar()
+        setupTableView()
+        setupSearchController()
+        
+        obtainUsers()
+    }
+    
+    
+    // MARK: Private
+    
+    private func setupNavigationBar() {
         navigationItem.title = "Пользователи"
-        
+    }
+    
+    private func setupTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
-        
+    }
+    
+    private func setupSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         
         navigationItem.searchController = searchController
-        
+    }
+    
+    private func obtainUsers() {
         let config = RequestFactory.users()
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
@@ -71,7 +96,8 @@ extension UsersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        cell.textLabel?.text = searchController.isActive ? searchedUsers[indexPath.row].username : users[indexPath.row].username
+        let user = searchController.isActive ? searchedUsers[indexPath.row] : users[indexPath.row]
+        cell.textLabel?.text = user.username
         return cell
     }
 }

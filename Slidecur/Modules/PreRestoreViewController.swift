@@ -11,18 +11,36 @@ import Toolkit
 
 final class PreRestoreViewController: UIViewController {
 
+    // MARK: Private Properties
+    
     private let alertService: AlertServiceProtocol = AlertService()
     private let requestSender: RequestSenderProtocol = RequestSender()
     private var buttonValidationHelper: ButtonValidationHelper?
    
+    
+    // MARK: Outlets
+    
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var doneButton: BigButton!
     
+    
+    // MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.title = "Восстановление"
         
+        setupNavigationBar()
+        setupButtonValidationHelper()
+    }
+    
+    
+    // MARK: Private
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Восстановление"
+    }
+    
+    private func setupButtonValidationHelper() {
         buttonValidationHelper = ButtonValidationHelper(textFields: [usernameField], button: doneButton)
     }
 
@@ -41,7 +59,8 @@ final class PreRestoreViewController: UIViewController {
                         let vc = RestoreViewController()
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
-                        let alert = self.alertService.alert("Не удалось найти учетную запись с именем пользователя \(login)")
+                        let text = "Не удалось найти учетную запись с именем пользователя \(login)"
+                        let alert = self.alertService.alert(text)
                         self.present(alert, animated: true)
                     }
                     

@@ -37,21 +37,11 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        keyboardService.view = view
-        keyboardService.scrollView = scrollView
-        usernameField.delegate = keyboardService
-        passwordField.delegate = keyboardService
         
-        navigationItem.title = "Авторизация"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let button = ASAuthorizationAppleIDButton()
-        button.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
-        containerView.addArrangedSubview(button)
-        
-        let textFields: [UITextField] = [usernameField, passwordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
+        setupDelegates()
+        setupNavigationBar()
+        setupAppleIDAuthButton()
+        setupButtonNavigationHelper()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +70,29 @@ final class AuthViewController: UIViewController {
     
     
     // MARK: Actions
+    
+    private func setupDelegates() {
+        keyboardService.view = view
+        keyboardService.scrollView = scrollView
+        usernameField.delegate = keyboardService
+        passwordField.delegate = keyboardService
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Авторизация"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func setupAppleIDAuthButton() {
+        let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
+        containerView.addArrangedSubview(button)
+    }
+    
+    private func setupButtonNavigationHelper() {
+        let textFields: [UITextField] = [usernameField, passwordField]
+        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
+    }
     
     @IBAction private func loginDidTap() {
         guard
@@ -137,6 +150,8 @@ final class AuthViewController: UIViewController {
         controller.performRequests()
     }
 }
+
+
 
 
 // MARK: - ASAuthorizationControllerDelegate

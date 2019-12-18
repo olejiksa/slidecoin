@@ -36,16 +36,19 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.title = "Главная"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
+        setupNavigationBar()
         messageLabel.text = login.message
         credentialsService.updateCredentials(with: login)
     }
     
     
     // MARK: Private
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Главная"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
     
     @IBAction private func logoutDidTap() {
         credentialsService.removeCredentials()

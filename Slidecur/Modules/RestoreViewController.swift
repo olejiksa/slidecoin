@@ -31,15 +31,9 @@ final class RestoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        keyboardService.view = view
-        keyboardService.scrollView = scrollView
-        passwordField.delegate = keyboardService
-        repeatPasswordField.delegate = keyboardService
-        
-        navigationItem.title = "Сброс пароля"
-        
-        let textFields: [UITextField] = [passwordField, repeatPasswordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
+        setupDelegates()
+        setupNavigationBar()
+        setupButtonValidationHelper()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +62,22 @@ final class RestoreViewController: UIViewController {
     
     
     // MARK: Private
+    
+    private func setupDelegates() {
+        keyboardService.view = view
+        keyboardService.scrollView = scrollView
+        passwordField.delegate = keyboardService
+        repeatPasswordField.delegate = keyboardService
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Сброс пароля"
+    }
+    
+    private func setupButtonValidationHelper() {
+        let textFields: [UITextField] = [passwordField, repeatPasswordField]
+        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
+    }
     
     @IBAction private func changePasswordDidTap() {
         guard
