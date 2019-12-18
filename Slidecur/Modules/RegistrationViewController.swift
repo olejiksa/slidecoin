@@ -47,25 +47,25 @@ final class RegistrationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillBeHidden),
+        NotificationCenter.default.addObserver(KeyboardService.self,
+                                               selector: Selector(("keyboardWillBeHidden")),
                                                name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
+                                               object: keyboardService)
+        NotificationCenter.default.addObserver(KeyboardService.self,
+                                               selector: Selector(("keyboardWillShow")),
                                                name: UIResponder.keyboardWillChangeFrameNotification,
-                                               object: nil)
+                                               object: keyboardService)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.removeObserver(self,
+        NotificationCenter.default.removeObserver(KeyboardService.self,
                                                   name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
+                                                  object: keyboardService)
+        NotificationCenter.default.removeObserver(KeyboardService.self,
                                                   name: UIResponder.keyboardWillChangeFrameNotification,
-                                                  object: nil)
+                                                  object: keyboardService)
     }
     
     
@@ -112,13 +112,5 @@ final class RegistrationViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .default) { _ in okAction?() }
         alert.addAction(action)
         present(alert, animated: true)
-    }
-    
-    @objc private func keyboardWillBeHidden() {
-        keyboardService.keyboardWillBeHidden()
-    }
-    
-    @objc private func keyboardWillShow(notification: Notification) {
-        keyboardService.keyboardWillShow(notification: notification)
     }
 }
