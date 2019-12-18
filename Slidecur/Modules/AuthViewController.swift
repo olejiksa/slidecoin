@@ -61,36 +61,11 @@ final class AuthViewController: UIViewController {
     
     @IBAction private func loginDidTap() {
         guard
-            let login = usernameField.text,
+            let username = usernameField.text,
             let password = passwordField.text
         else { return }
             
-        let config = RequestFactory.login(username: login, password: password)
-        
-        requestSender.send(config: config) { [weak self] result in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let login):
-                    if login.accessToken != nil, login.refreshToken != nil {
-                        let scene = UIApplication.shared.connectedScenes.first
-                        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                            let vc = MainViewController(login: login)
-                            let nvc = UINavigationController(rootViewController: vc)
-                            mySceneDelegate.window?.rootViewController = nvc
-                        }
-                    } else {
-                        let alert = self.alertService.alert(login.message)
-                        self.present(alert, animated: true)
-                    }
-                    
-                case .failure(let error):
-                    let alert = self.alertService.alert(error.localizedDescription)
-                    self.present(alert, animated: true)
-                }
-            }
-        }
+        login(username: username, password: password)
     }
     
     @IBAction private func registrationDidTap() {
@@ -129,12 +104,42 @@ final class AuthViewController: UIViewController {
         buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
     }
     
+    private func login(username: String, password: String) {
+        let config = RequestFactory.login(username: username, password: password)
+        
+        requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let login):
+                    if login.accessToken != nil, login.refreshToken != nil {
+                        let scene = UIApplication.shared.connectedScenes.first
+                        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                            let vc = MainViewController(login: login)
+                            let nvc = UINavigationController(rootViewController: vc)
+                            mySceneDelegate.window?.rootViewController = nvc
+                        }
+                    } else {
+                        let alert = self.alertService.alert(login.message)
+                        self.present(alert, animated: true)
+                    }
+                    
+                case .failure(let error):
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+    }
+    
     @objc private func appleButtonDidTap() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.email]
         
         let controller = ASAuthorizationController(authorizationRequests: [request])
         controller.delegate = self
+        controller.presentationContextProvider = self
         controller.performRequests()
     }
 }
@@ -146,5 +151,37 @@ final class AuthViewController: UIViewController {
 
 extension AuthViewController: ASAuthorizationControllerDelegate {
     
-    // unused
+    public func authorizationController(controller: ASAuthorizationController,
+                                        didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard
+            let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+            let code = appleIDCredential.authorizationCode,
+            let codeStr = String(data: code, encoding: .utf8),
+            let email = appleIDCredential.email
+        else {
+            let alert = alertService.alert("Не удалось выполнить авторизацию по Apple ID")
+            present(alert, animated: true)
+            return
+        }
+        
+        login(username: email, password: codeStr)
+    }
+    
+    public func authorizationController(controller: ASAuthorizationController,
+                                        didCompleteWithError error: Error) {
+        let alert = alertService.alert(error.localizedDescription)
+        present(alert, animated: true)
+    }
+}
+
+
+
+
+// MARK: - ASAuthorizationControllerPresentationContextProviding
+
+extension AuthViewController: ASAuthorizationControllerPresentationContextProviding {
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
 }
