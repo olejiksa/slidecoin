@@ -22,7 +22,7 @@ final class PreRestoreViewController: UIViewController {
 
         navigationItem.title = "Восстановление"
         
-        buttonValidationHelper = ButtonValidationHelper(textFields: [usernameField!], button: doneButton)
+        buttonValidationHelper = ButtonValidationHelper(textFields: [usernameField], button: doneButton)
     }
 
     @IBAction private func continueDidTap() {

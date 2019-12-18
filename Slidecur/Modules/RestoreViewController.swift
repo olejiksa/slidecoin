@@ -37,7 +37,7 @@ final class RestoreViewController: UIViewController {
         
         navigationItem.title = "Сброс пароля"
         
-        let textFields: [UITextField] = [passwordField!, repeatPasswordField!]
+        let textFields: [UITextField] = [passwordField, repeatPasswordField]
         buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
     }
     

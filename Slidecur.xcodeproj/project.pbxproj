@@ -22,6 +22,7 @@
 		EB6AA84423AA589500938BB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA84323AA589500938BB6 /* User.swift */; };
 		EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */; };
 		EB6AA84823AA5F6600938BB6 /* UsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6AA84623AA5F6600938BB6 /* UsersView.xib */; };
+		EB6AA84B23AAB77000938BB6 /* CredentialsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA84A23AAB77000938BB6 /* CredentialsService.swift */; };
 		EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3501E238DB91B008AACA2 /* AppDelegate.swift */; };
 		EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35020238DB91B008AACA2 /* SceneDelegate.swift */; };
 		EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD35027238DB91F008AACA2 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		EB6AA84323AA589500938BB6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		EB6AA84623AA5F6600938BB6 /* UsersView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersView.xib; sourceTree = "<group>"; };
+		EB6AA84A23AAB77000938BB6 /* CredentialsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsService.swift; sourceTree = "<group>"; };
 		EBD3501B238DB91B008AACA2 /* Slidecoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slidecoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD3501E238DB91B008AACA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBD35020238DB91B008AACA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB6AA84923AAB74600938BB6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EB6AA84A23AAB77000938BB6 /* CredentialsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		EBD35012238DB91B008AACA2 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +125,7 @@
 				EBD35058238DC72B008AACA2 /* Modules */,
 				EBD35053238DC419008AACA2 /* Models */,
 				EBD35036238DBF6D008AACA2 /* Network */,
+				EB6AA84923AAB74600938BB6 /* Services */,
 				EBD3501E238DB91B008AACA2 /* AppDelegate.swift */,
 				EB3D037E238E9A6B00E5BAE9 /* BigButton.swift */,
 				EBD35020238DB91B008AACA2 /* SceneDelegate.swift */,
@@ -267,6 +278,7 @@
 				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
 				EB6AA84423AA589500938BB6 /* User.swift in Sources */,
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
+				EB6AA84B23AAB77000938BB6 /* CredentialsService.swift in Sources */,
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
 				EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */,
 				EBD35034238DBAA9008AACA2 /* AuthViewController.swift in Sources */,

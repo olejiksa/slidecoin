@@ -13,7 +13,11 @@ final class MainViewController: UIViewController {
 
     // MARK: Private Properties
     
+    private let credentialsService: CredentialsServiceProtocol = CredentialsService()
     private let login: Login
+    
+    
+    // MARK: Outlets
     
     @IBOutlet private weak var messageLabel: UILabel!
     
@@ -37,17 +41,14 @@ final class MainViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         messageLabel.text = login.message
-        save()
+        credentialsService.updateCredentials(with: login)
     }
     
     
     // MARK: Private
     
     @IBAction private func logoutDidTap() {
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "message")
-        defaults.removeObject(forKey: "access_token")
-        defaults.removeObject(forKey: "refresh_token")
+        credentialsService.removeCredentials()
         
         let scene = UIApplication.shared.connectedScenes.first
         if let mySceneDelegate = scene?.delegate as? SceneDelegate {
@@ -65,12 +66,5 @@ final class MainViewController: UIViewController {
     @IBAction private func allUsersDidTap() {
         let vc = UsersViewController()
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func save() {
-        let defaults = UserDefaults.standard
-        defaults.set(login.message, forKey: "message")
-        defaults.set(login.accessToken!, forKey: "access_token")
-        defaults.set(login.refreshToken!, forKey: "refresh_token")
     }
 }

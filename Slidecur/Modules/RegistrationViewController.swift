@@ -40,7 +40,7 @@ final class RegistrationViewController: UIViewController {
         
         navigationItem.title = "Регистрация"
         
-        let textFields: [UITextField] = [usernameField!, passwordField!, repeatPasswordField!]
+        let textFields: [UITextField] = [usernameField, passwordField, repeatPasswordField]
         buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
     }
     

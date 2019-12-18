@@ -16,6 +16,7 @@ final class AuthViewController: UIViewController {
     
     private let requestSender: RequestSenderProtocol = RequestSender()
     private let keyboardService: KeyboardServiceProtocol = KeyboardService()
+    private let credentialsService: CredentialsServiceProtocol = CredentialsService()
     private var buttonValidationHelper: ButtonValidationHelper?
     
     
@@ -48,7 +49,7 @@ final class AuthViewController: UIViewController {
         button.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
         containerView.addArrangedSubview(button)
         
-        let textFields: [UITextField] = [usernameField!, passwordField!]
+        let textFields: [UITextField] = [usernameField, passwordField]
         buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
         
         skipIfNeeded()
@@ -132,19 +133,13 @@ final class AuthViewController: UIViewController {
     }
     
     private func skipIfNeeded() {
-        let defaults = UserDefaults.standard
-        let message = defaults.string(forKey: "message")
-        let accessToken = defaults.string(forKey: "access_token")
-        let refreshToken = defaults.string(forKey: "refresh_token")
+        guard let login = credentialsService.getCredentials() else { return }
         
-        if let message = message, let accessToken = accessToken, let refreshToken = refreshToken {
-            let scene = UIApplication.shared.connectedScenes.first
-            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                let login = Login(refreshToken: refreshToken, accessToken: accessToken, message: message)
-                let vc = MainViewController(login: login)
-                let nvc = UINavigationController(rootViewController: vc)
-                mySceneDelegate.window?.rootViewController = nvc
-            }
+        let scene = UIApplication.shared.connectedScenes.first
+        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+            let vc = MainViewController(login: login)
+            let nvc = UINavigationController(rootViewController: vc)
+            mySceneDelegate.window?.rootViewController = nvc
         }
     }
     
