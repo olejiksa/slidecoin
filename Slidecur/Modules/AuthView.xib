@@ -172,8 +172,8 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="Kqw-hk-u1s" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="M47-05-Z6O"/>
-                <constraint firstAttribute="trailing" secondItem="Kqw-hk-u1s" secondAttribute="trailing" id="Uci-dr-RzH"/>
+                <constraint firstItem="Kqw-hk-u1s" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="M47-05-Z6O"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Kqw-hk-u1s" secondAttribute="trailing" id="Uci-dr-RzH"/>
                 <constraint firstAttribute="bottom" secondItem="Kqw-hk-u1s" secondAttribute="bottom" priority="250" id="lcs-Ug-GAI"/>
                 <constraint firstItem="Kqw-hk-u1s" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uuN-l3-Eqg"/>
             </constraints>
