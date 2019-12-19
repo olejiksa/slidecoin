@@ -16,7 +16,7 @@ final class MainViewController: UIViewController {
     private let alertService: AlertServiceProtocol = AlertService()
     private let credentialsService: CredentialsServiceProtocol = CredentialsService()
     private let requestSender: RequestSenderProtocol = RequestSender()
-    private let login: Login
+    private var login: Login
     
     
     // MARK: Outlets
@@ -66,21 +66,12 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction private func secretDidTap() {
-        guard let accessToken = login.accessToken else { return }
+        guard
+            let accessToken = login.accessToken,
+            let refreshToken = login.refreshToken
+        else { return }
         
-        let config = RequestFactory.secret(accessToken: accessToken)
-        requestSender.send(config: config) { result in
-            switch result {
-            case .success(let secret):
-                let alert = self.alertService.alert(String(secret.answer),
-                                                    title: "Secret")
-                self.present(alert, animated: true)
-                
-            case .failure(let error):
-                let alert = self.alertService.alert(error.localizedDescription)
-                self.present(alert, animated: true)
-            }
-        }
+        obtainSecret(accessToken, refreshToken)
     }
     
     @IBAction private func changePasswordDidTap() {
@@ -99,5 +90,41 @@ final class MainViewController: UIViewController {
     private func setupNavigationBar() {
         navigationItem.title = "Главная"
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func obtainSecret(_ accessToken: String, _ refreshToken: String) {
+        let accessConfig = RequestFactory.secret(accessToken: accessToken)
+        requestSender.send(config: accessConfig) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let secret):
+                if let answer = secret.answer {
+                    let alert = self.alertService.alert(String(answer),
+                                                        title: "Secret")
+                    self.present(alert, animated: true)
+                } else {
+                    let refreshConfig = RequestFactory.tokenRefresh(refreshToken)
+                    self.requestSender.send(config: refreshConfig) { [weak self] result in
+                        guard let self = self else { return }
+                        
+                        switch result {
+                        case .success(let accessToken):
+                            self.login.accessToken = accessToken
+                            self.credentialsService.updateCredentials(with: self.login)
+                            self.obtainSecret(accessToken, refreshToken)
+                            
+                        case .failure(let error):
+                            let alert = self.alertService.alert(error.localizedDescription)
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+                
+            case .failure(let error):
+                let alert = self.alertService.alert(error.localizedDescription)
+                self.present(alert, animated: true)
+            }
+        }
     }
 }

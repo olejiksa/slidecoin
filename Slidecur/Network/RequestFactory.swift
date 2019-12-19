@@ -46,4 +46,11 @@ struct RequestFactory {
     
         return .init(request: request, parser: parser)
     }
+    
+    static func tokenRefresh(_ refreshToken: String) -> RequestConfig<AccessTokenParser> {
+        let request = TokenRefreshRequest(refreshToken: refreshToken)
+        let parser = AccessTokenParser()
+        
+        return .init(request: request, parser: parser)
+    }
 }

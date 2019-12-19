@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB09B47C23ABADC200680ABC /* TokenRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */; };
+		EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */; };
+		EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47F23ABAEEA00680ABC /* AccessToken.swift */; };
 		EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */; };
 		EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB219950238DD2E1008A8772 /* RegistrationView.xib */; };
 		EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */; };
@@ -41,6 +44,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequest.swift; sourceTree = "<group>"; };
+		EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenParser.swift; sourceTree = "<group>"; };
+		EB09B47F23ABAEEA00680ABC /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EB219950238DD2E1008A8772 /* RegistrationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationView.xib; sourceTree = "<group>"; };
 		EB3D037A238E956000E5BAE9 /* Slidecur.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slidecur.entitlements; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 		EBD35037238DBF6D008AACA2 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
+				EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */,
 				EBD3504B238DC2CD008AACA2 /* LoginParser.swift */,
 				EB6AA84C23AAD39900938BB6 /* SecretParser.swift */,
 				EB6AA84123AA585000938BB6 /* UsersParser.swift */,
@@ -168,6 +175,7 @@
 				EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */,
 				EBD35051238DC317008AACA2 /* RegistrationRequest.swift */,
 				EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */,
+				EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */,
 				EB6AA83F23AA57E800938BB6 /* UsersRequest.swift */,
 			);
 			path = Requests;
@@ -176,6 +184,7 @@
 		EBD35053238DC419008AACA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EB09B47F23ABAEEA00680ABC /* AccessToken.swift */,
 				EBD35054238DC422008AACA2 /* Login.swift */,
 				EB6AA84E23AAD3E500938BB6 /* Secret.swift */,
 				EB6AA84323AA589500938BB6 /* User.swift */,
@@ -288,6 +297,7 @@
 				EB6AA84D23AAD39900938BB6 /* SecretParser.swift in Sources */,
 				EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */,
 				EB6AA84423AA589500938BB6 /* User.swift in Sources */,
+				EB09B47C23ABADC200680ABC /* TokenRefreshRequest.swift in Sources */,
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
 				EB6AA84B23AAB77000938BB6 /* CredentialsService.swift in Sources */,
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
@@ -301,7 +311,9 @@
 				EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */,
 				EBD3504C238DC2CD008AACA2 /* LoginParser.swift in Sources */,
 				EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */,
+				EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */,
 				EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */,
+				EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

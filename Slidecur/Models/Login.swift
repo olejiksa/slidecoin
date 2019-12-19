@@ -15,6 +15,6 @@ struct Login: Decodable {
     }
     
     let refreshToken: String?
-    let accessToken: String?
+    var accessToken: String?
     let message: String
 }
