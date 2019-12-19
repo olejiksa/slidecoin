@@ -13,9 +13,10 @@ final class RegistrationViewController: UIViewController {
 
     // MARK: Private Propterties
     
-    private let requestSender: RequestSenderProtocol = RequestSender()
-    private let alertService: AlertServiceProtocol = AlertService()
-    private let keyboardService: KeyboardServiceProtocol = KeyboardService()
+    private let alertService = Assembly.alertService
+    private let keyboardService = Assembly.keyboardService
+    private let requestSender = Assembly.requestSender
+
     private var buttonValidationHelper: ButtonValidationHelper?
     
     

@@ -14,10 +14,11 @@ final class AuthViewController: UIViewController {
 
     // MARK: Private Properties
     
-    private let requestSender: RequestSenderProtocol = RequestSender()
-    private let alertService: AlertServiceProtocol = AlertService()
-    private let keyboardService: KeyboardServiceProtocol = KeyboardService()
-    private let credentialsService: CredentialsServiceProtocol = CredentialsService()
+    private let alertService = Assembly.alertService
+    private let credentialsService = Assembly.credentialsService
+    private let keyboardService = Assembly.keyboardService
+    private let requestSender = Assembly.requestSender
+
     private var buttonValidationHelper: ButtonValidationHelper?
     
     

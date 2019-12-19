@@ -13,8 +13,8 @@ final class RestoreViewController: UIViewController {
 
     // MARK: Private Properties
 
-    private let alertService: AlertServiceProtocol = AlertService()
-    private let keyboardService: KeyboardServiceProtocol = KeyboardService()
+    private let alertService = Assembly.alertService
+    private let keyboardService = Assembly.keyboardService
     private var buttonValidationHelper: ButtonValidationHelper?
     
     

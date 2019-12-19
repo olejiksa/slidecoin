@@ -10,7 +10,7 @@ import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    private let credentialsService: CredentialsServiceProtocol = CredentialsService()
+    private let credentialsService = Assembly.credentialsService
     
     var window: UIWindow?
 

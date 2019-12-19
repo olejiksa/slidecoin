@@ -13,9 +13,9 @@ final class PreRestoreViewController: UIViewController {
 
     // MARK: Private Properties
     
-    private let alertService: AlertServiceProtocol = AlertService()
-    private let keyboardService: KeyboardServiceProtocol = KeyboardService()
-    private let requestSender: RequestSenderProtocol = RequestSender()
+    private let alertService = Assembly.alertService
+    private let keyboardService = Assembly.keyboardService
+    private let requestSender = Assembly.requestSender
     private var buttonValidationHelper: ButtonValidationHelper?
    
     

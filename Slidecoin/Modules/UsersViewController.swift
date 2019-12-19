@@ -14,9 +14,11 @@ final class UsersViewController: UIViewController {
     // MARK: Private Properties
     
     private let cellID = "\(UITableViewCell.self)"
-    private let alertService: AlertServiceProtocol = AlertService()
-    private let credentialsService: CredentialsServiceProtocol = CredentialsService()
-    private let requestSender: RequestSenderProtocol = RequestSender()
+    
+    private let alertService = Assembly.alertService
+    private let credentialsService = Assembly.credentialsService
+    private let requestSender = Assembly.requestSender
+    
     private let searchController = UISearchController(searchResultsController: nil)
     
     private var users: [User] = []
