@@ -14,12 +14,14 @@ final class PreRestoreViewController: UIViewController {
     // MARK: Private Properties
     
     private let alertService: AlertServiceProtocol = AlertService()
+    private let keyboardService: KeyboardServiceProtocol = KeyboardService()
     private let requestSender: RequestSenderProtocol = RequestSender()
     private var buttonValidationHelper: ButtonValidationHelper?
    
     
     // MARK: Outlets
     
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var doneButton: BigButton!
     
@@ -29,12 +31,31 @@ final class PreRestoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupDelegates()
         setupNavigationBar()
         setupButtonValidationHelper()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        keyboardService.register()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        keyboardService.unregister()
+    }
+    
     
     // MARK: Private
+    
+    private func setupDelegates() {
+        keyboardService.view = view
+        keyboardService.scrollView = scrollView
+        usernameField.delegate = keyboardService
+    }
     
     private func setupNavigationBar() {
         navigationItem.title = "Восстановление"
