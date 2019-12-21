@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RestoreViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
                 <outlet property="doneButton" destination="WRZ-nh-2zc" id="Cbc-fQ-asT"/>
+                <outlet property="matchLabel" destination="ZDk-N3-wpO" id="Ocm-As-gCg"/>
                 <outlet property="passwordField" destination="lj5-FT-0TN" id="jBc-aq-HYt"/>
                 <outlet property="repeatPasswordField" destination="RS5-td-KO3" id="DCO-lz-3rU"/>
                 <outlet property="scrollView" destination="s4K-Sm-r1a" id="ywI-vX-ilH"/>
@@ -52,6 +53,12 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="new-password"/>
                                         </textField>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введенные пароли не совпадают" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDk-N3-wpO">
+                                            <rect key="frame" x="0.0" y="145" width="335" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRZ-nh-2zc" customClass="BigButton" customModule="Toolkit">

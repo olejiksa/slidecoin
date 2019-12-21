@@ -27,6 +27,7 @@ final class RegistrationViewController: UIViewController {
     @IBOutlet private weak var repeatPasswordField: UITextField!
     @IBOutlet private weak var doneButton: UIButton!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var matchLabel: UILabel!
     
     
     // MARK: Lifecycle
@@ -57,15 +58,8 @@ final class RegistrationViewController: UIViewController {
     @IBAction private func registrationDidTap() {
         guard
             let login = usernameField.text,
-            let password = passwordField.text,
-            let repeatPassword = repeatPasswordField.text
+            let password = passwordField.text
         else { return }
-        
-        guard password == repeatPassword else {
-            let alert = alertService.alert("Введенные пароли не совпадают")
-            present(alert, animated: true)
-            return
-        }
             
         let config = RequestFactory.register(username: login, password: password)
         
@@ -112,6 +106,8 @@ final class RegistrationViewController: UIViewController {
     
     private func setupButtonValidationHelper() {
         let textFields: [UITextField] = [usernameField, passwordField, repeatPasswordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
+        buttonValidationHelper = ButtonValidationHelper(textFields: textFields,
+                                                        button: doneButton,
+                                                        matchLabel: matchLabel)
     }
 }

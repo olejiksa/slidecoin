@@ -22,6 +22,7 @@ final class RestoreViewController: UIViewController {
     
     @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var repeatPasswordField: UITextField!
+    @IBOutlet private weak var matchLabel: UILabel!
     @IBOutlet private weak var doneButton: BigButton!
     @IBOutlet private weak var scrollView: UIScrollView!
     
@@ -64,21 +65,12 @@ final class RestoreViewController: UIViewController {
     
     private func setupButtonValidationHelper() {
         let textFields: [UITextField] = [passwordField, repeatPasswordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: doneButton)
+        buttonValidationHelper = ButtonValidationHelper(textFields: textFields,
+                                                        button: doneButton,
+                                                        matchLabel: matchLabel)
     }
     
     @IBAction private func changePasswordDidTap() {
-        guard
-            let password = passwordField.text,
-            let repeatPassword = repeatPasswordField.text
-        else { return }
-        
-        guard password == repeatPassword else {
-            let alert = alertService.alert("Введенные пароли не совпадают")
-            present(alert, animated: true)
-            return
-        }
-        
         // TODO: network request
         let alert = alertService.alert("Not yet implemented")
         present(alert, animated: true)
