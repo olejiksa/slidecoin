@@ -23,30 +23,30 @@
                     <rect key="frame" x="0.0" y="64" width="414" height="832"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lx7-63-bkq">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="387.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="obu-GK-07j">
-                                    <rect key="frame" x="20" y="0.0" width="374" height="421"/>
+                                    <rect key="frame" x="20" y="0.0" width="374" height="367.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="47N-iL-GsR">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="71.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnM-02-CXh">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 ₿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaL-uP-s77">
-                                                    <rect key="frame" x="0.0" y="30.5" width="374" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="0.0" y="30.5" width="374" height="41"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-dr-s8V" customClass="BigButton" customModule="Toolkit">
-                                            <rect key="frame" x="0.0" y="71" width="374" height="54"/>
+                                            <rect key="frame" x="0.0" y="91.5" width="374" height="54"/>
                                             <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="Qm9-5N-f58"/>
@@ -65,7 +65,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgq-lq-8jm" customClass="BigButton" customModule="Toolkit">
-                                            <rect key="frame" x="0.0" y="145" width="374" height="54"/>
+                                            <rect key="frame" x="0.0" y="165.5" width="374" height="54"/>
                                             <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="EiR-UR-fx3"/>
@@ -84,7 +84,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUT-Qg-9SJ" customClass="BigButton" customModule="Toolkit">
-                                            <rect key="frame" x="0.0" y="219" width="374" height="54"/>
+                                            <rect key="frame" x="0.0" y="239.5" width="374" height="54"/>
                                             <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="OtQ-FG-4Xd"/>
@@ -103,7 +103,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8s-37-XlH" customClass="BigButton" customModule="Toolkit">
-                                            <rect key="frame" x="0.0" y="293" width="374" height="54"/>
+                                            <rect key="frame" x="0.0" y="313.5" width="374" height="54"/>
                                             <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="VTq-vp-Qsx"/>
@@ -121,33 +121,14 @@
                                                 <action selector="changePasswordDidTap" destination="-1" eventType="touchUpInside" id="ifz-Zn-7eQ"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xr-V8-Oou" customClass="BigButton" customModule="Toolkit">
-                                            <rect key="frame" x="0.0" y="367" width="374" height="54"/>
-                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="54" id="qiD-iM-rz3"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <state key="normal" title="Выйти">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="logoutDidTap" destination="-1" eventType="touchUpInside" id="cDl-ma-cCq"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstItem="obu-GK-07j" firstAttribute="top" secondItem="lx7-63-bkq" secondAttribute="top" id="94f-dz-lD5"/>
-                                <constraint firstAttribute="trailing" secondItem="obu-GK-07j" secondAttribute="trailing" constant="20" id="dsC-4k-gqb"/>
-                                <constraint firstItem="obu-GK-07j" firstAttribute="leading" secondItem="lx7-63-bkq" secondAttribute="leading" constant="20" id="plz-NC-Pqt"/>
+                                <constraint firstAttribute="trailing" secondItem="obu-GK-07j" secondAttribute="trailing" constant="20" symbolic="YES" id="dsC-4k-gqb"/>
+                                <constraint firstItem="obu-GK-07j" firstAttribute="leading" secondItem="lx7-63-bkq" secondAttribute="leading" constant="20" symbolic="YES" id="plz-NC-Pqt"/>
                                 <constraint firstAttribute="bottom" secondItem="obu-GK-07j" secondAttribute="bottom" constant="20" id="s1w-34-b6q"/>
                             </constraints>
                         </view>

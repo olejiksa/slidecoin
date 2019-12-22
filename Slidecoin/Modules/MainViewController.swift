@@ -105,6 +105,12 @@ final class MainViewController: UIViewController {
     private func setupNavigationBar() {
         navigationItem.title = "Главная"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let userButton = UIBarButtonItem(title: "Выйти",
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(userDidTap))
+        navigationItem.rightBarButtonItem = userButton
     }
     
     private func obtainSecret(_ accessToken: String, _ refreshToken: String) {
@@ -141,5 +147,23 @@ final class MainViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         }
+    }
+    
+    @objc private func userDidTap() {
+        let message = "Вы действительно хотите выйти?"
+        let alert = alertService.alert(message,
+                                       title: "Внимание",
+                                       isDestructive: true) { [weak self] _ in
+            self?.credentialsService.removeCredentials()
+            
+            let scene = UIApplication.shared.connectedScenes.first
+            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                let vc = AuthViewController()
+                let nvc = UINavigationController(rootViewController: vc)
+                mySceneDelegate.window?.rootViewController = nvc
+            }
+        }
+        
+        self.present(alert, animated: true)
     }
 }
