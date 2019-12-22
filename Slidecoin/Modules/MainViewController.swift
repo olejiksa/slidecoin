@@ -19,10 +19,13 @@ final class MainViewController: UIViewController {
     
     private var login: Login
     
+    private var sum: Decimal = 0.0
+    
     
     // MARK: Outlets
     
     @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var sumLabel: UILabel!
     
     
     // MARK: Lifecycle
@@ -42,7 +45,12 @@ final class MainViewController: UIViewController {
         
         setupNavigationBar()
         messageLabel.text = login.message
-        credentialsService.updateCredentials(with: login)
+        
+        if let money = credentialsService.getMoney() {
+            sum = money
+        }
+        
+        sumLabel.text = "\(sum) ₿"
     }
     
     
@@ -73,6 +81,12 @@ final class MainViewController: UIViewController {
         else { return }
         
         obtainSecret(accessToken, refreshToken)
+    }
+    
+    @IBAction private func earnDidTap() {
+        sum += 0.01
+        sumLabel.text = "\(sum) ₿"
+        credentialsService.updateMoney(with: sum)
     }
     
     @IBAction private func changePasswordDidTap() {

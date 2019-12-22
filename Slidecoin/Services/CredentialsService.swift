@@ -8,12 +8,14 @@
 
 import Foundation
 
-
 protocol CredentialsServiceProtocol: class {
     
     func getCredentials() -> Login?
     func removeCredentials()
     func updateCredentials(with login: Login)
+    
+    func getMoney() -> Decimal?
+    func updateMoney(with sum: Decimal)
 }
 
 
@@ -50,5 +52,22 @@ final class CredentialsService: CredentialsServiceProtocol {
         defaults.set(login.message, forKey: "message")
         defaults.set(accessToken, forKey: "access_token")
         defaults.set(refreshToken, forKey: "refresh_token")
+    }
+    
+    func getMoney() -> Decimal? {
+        let defaults = UserDefaults.standard
+        
+        guard
+            let string = defaults.string(forKey: "money"),
+            let sum = Decimal(string: string)
+        else { return nil }
+        
+        return sum
+    }
+    
+    func updateMoney(with sum: Decimal) {
+        let defaults = UserDefaults.standard
+        let string = String(describing: sum)
+        defaults.set(string, forKey: "money")
     }
 }

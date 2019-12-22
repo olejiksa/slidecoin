@@ -162,6 +162,11 @@ extension UsersViewController: UITableViewDataSource {
 extension UsersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = TransferViewController()
+        let nvc = UINavigationController(rootViewController: vc)
+        
+        present(nvc, animated: true)
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

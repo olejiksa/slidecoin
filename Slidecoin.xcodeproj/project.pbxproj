@@ -30,6 +30,8 @@
 		EB6AA84F23AAD3E500938BB6 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA84E23AAD3E500938BB6 /* Secret.swift */; };
 		EB6AA85123AAD43E00938BB6 /* SecretRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */; };
 		EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */; };
+		EB839F0023AF9D7B0043B223 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */; };
+		EB839F0123AF9D7B0043B223 /* TransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB839EFF23AF9D7B0043B223 /* TransferView.xib */; };
 		EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3501E238DB91B008AACA2 /* AppDelegate.swift */; };
 		EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35020238DB91B008AACA2 /* SceneDelegate.swift */; };
 		EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD35027238DB91F008AACA2 /* Assets.xcassets */; };
@@ -69,6 +71,8 @@
 		EB6AA84E23AAD3E500938BB6 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretRequest.swift; sourceTree = "<group>"; };
 		EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllUsersRequest.swift; sourceTree = "<group>"; };
+		EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
+		EB839EFF23AF9D7B0043B223 /* TransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferView.xib; sourceTree = "<group>"; };
 		EBD3501B238DB91B008AACA2 /* Slidecoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slidecoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD3501E238DB91B008AACA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBD35020238DB91B008AACA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 				EB6AA83C23AA54D300938BB6 /* PreRestoreView.xib */,
 				EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */,
 				EB6AA84623AA5F6600938BB6 /* UsersView.xib */,
+				EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */,
+				EB839EFF23AF9D7B0043B223 /* TransferView.xib */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
 				EBD35035238DBAA9008AACA2 /* AuthView.xib in Resources */,
 				EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */,
+				EB839F0123AF9D7B0043B223 /* TransferView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +313,7 @@
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
 				EB6AA84F23AAD3E500938BB6 /* Secret.swift in Sources */,
 				EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */,
+				EB839F0023AF9D7B0043B223 /* TransferViewController.swift in Sources */,
 				EBD35034238DBAA9008AACA2 /* AuthViewController.swift in Sources */,
 				EB6AA84223AA585000938BB6 /* UsersParser.swift in Sources */,
 				EB6AA85123AAD43E00938BB6 /* SecretRequest.swift in Sources */,
@@ -454,15 +462,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecoin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecurrency;
 				PRODUCT_NAME = Slidecoin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -473,15 +484,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecoin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecurrency;
 				PRODUCT_NAME = Slidecoin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
