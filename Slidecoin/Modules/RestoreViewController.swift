@@ -61,6 +61,13 @@ final class RestoreViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Сброс пароля"
+        
+        if presentingViewController != nil {
+            let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                              target: self,
+                                              action: #selector(close))
+            navigationItem.rightBarButtonItem = closeButton
+        }
     }
     
     private func setupButtonValidationHelper() {
@@ -74,5 +81,9 @@ final class RestoreViewController: UIViewController {
         // TODO: network request
         let alert = alertService.alert("Not yet implemented")
         present(alert, animated: true)
+    }
+    
+    @objc private func close() {
+        dismiss(animated: true)
     }
 }

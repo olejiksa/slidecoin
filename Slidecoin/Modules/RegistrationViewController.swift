@@ -102,6 +102,11 @@ final class RegistrationViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Регистрация"
+        
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                          target: self,
+                                          action: #selector(close))
+        navigationItem.rightBarButtonItem = closeButton
     }
     
     private func setupButtonValidationHelper() {
@@ -109,5 +114,9 @@ final class RegistrationViewController: UIViewController {
         buttonValidationHelper = ButtonValidationHelper(textFields: textFields,
                                                         button: doneButton,
                                                         matchLabel: matchLabel)
+    }
+    
+    @objc private func close() {
+        dismiss(animated: true)
     }
 }

@@ -59,6 +59,11 @@ final class PreRestoreViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Восстановление"
+        
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                          target: self,
+                                          action: #selector(close))
+        navigationItem.rightBarButtonItem = closeButton
     }
     
     private func setupButtonValidationHelper() {
@@ -91,5 +96,9 @@ final class PreRestoreViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc private func close() {
+        dismiss(animated: true)
     }
 }

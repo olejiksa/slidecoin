@@ -71,12 +71,14 @@ final class AuthViewController: UIViewController {
     
     @IBAction private func registrationDidTap() {
         let vc = RegistrationViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let nvc = UINavigationController(rootViewController: vc)
+        present(nvc, animated: true)
     }
     
     @IBAction func restoreDidTap() {
         let vc = PreRestoreViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let nvc = UINavigationController(rootViewController: vc)
+        present(nvc, animated: true)
     }
     
     
