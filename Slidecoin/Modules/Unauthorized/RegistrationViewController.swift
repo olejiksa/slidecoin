@@ -29,7 +29,7 @@ final class RegistrationViewController: UIViewController {
     @IBOutlet private weak var repeatPasswordField: UITextField!
     @IBOutlet private weak var doneButton: BigButton!
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var matchLabel: UILabel!
+    @IBOutlet private weak var stackView: UIStackView!
     
     
     // MARK: Lifecycle
@@ -121,7 +121,7 @@ final class RegistrationViewController: UIViewController {
         let textFields: [UITextField] = [usernameField, emailField, passwordField, repeatPasswordField]
         formValidationHelper = FormValidationHelper(textFields: textFields,
                                                     button: doneButton,
-                                                    matchLabel: matchLabel)
+                                                    stackView: stackView)
     }
     
     @objc private func close() {

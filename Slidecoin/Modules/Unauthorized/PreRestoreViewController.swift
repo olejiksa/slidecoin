@@ -24,6 +24,7 @@ final class PreRestoreViewController: UIViewController {
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var doneButton: BigButton!
+    @IBOutlet private weak var stackView: UIStackView!
     
     
     // MARK: Lifecycle
@@ -67,7 +68,9 @@ final class PreRestoreViewController: UIViewController {
     }
     
     private func setupFormValidationHelper() {
-        formValidationHelper = FormValidationHelper(textFields: [usernameField], button: doneButton)
+        formValidationHelper = FormValidationHelper(textFields: [usernameField],
+                                                    button: doneButton,
+                                                    stackView: stackView)
     }
 
     @IBAction private func continueDidTap() {

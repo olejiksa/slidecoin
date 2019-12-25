@@ -22,9 +22,9 @@ final class RestoreViewController: UIViewController {
     
     @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var repeatPasswordField: UITextField!
-    @IBOutlet private weak var matchLabel: UILabel!
     @IBOutlet private weak var doneButton: BigButton!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var stackView: UIStackView!
     
     
     // MARK: Lifecycle
@@ -74,7 +74,7 @@ final class RestoreViewController: UIViewController {
         let textFields: [UITextField] = [passwordField, repeatPasswordField]
         formValidationHelper = FormValidationHelper(textFields: textFields,
                                                     button: doneButton,
-                                                    matchLabel: matchLabel)
+                                                    stackView: stackView)
     }
     
     @IBAction private func changePasswordDidTap() {

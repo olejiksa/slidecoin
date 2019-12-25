@@ -11,10 +11,10 @@
             <connections>
                 <outlet property="doneButton" destination="b2e-wh-kI5" id="Mn3-ni-hKt"/>
                 <outlet property="emailField" destination="VMl-4F-DCx" id="lGz-Z5-ivx"/>
-                <outlet property="matchLabel" destination="Ugu-QH-8C4" id="Qdo-ef-NV3"/>
                 <outlet property="passwordField" destination="eHE-Ho-Tbw" id="ecl-ZJ-f57"/>
                 <outlet property="repeatPasswordField" destination="1h3-0p-ROC" id="Cuu-bJ-AhP"/>
                 <outlet property="scrollView" destination="upD-pp-rD8" id="ObO-cG-Gz0"/>
+                <outlet property="stackView" destination="BCM-Oc-VXj" id="sPe-dk-fS5"/>
                 <outlet property="usernameField" destination="FCQ-Ie-KAP" id="KDN-2p-n9q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -89,12 +89,6 @@
                                                 <outlet property="delegate" destination="-1" id="ED6-DG-odO"/>
                                             </connections>
                                         </textField>
-                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введенные пароли не совпадают" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-QH-8C4">
-                                            <rect key="frame" x="0.0" y="288" width="335" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2e-wh-kI5" customClass="BigButton" customModule="Toolkit">

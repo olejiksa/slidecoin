@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="doneButton" destination="laE-1s-Cr2" id="DHI-MG-awA"/>
                 <outlet property="scrollView" destination="7ej-Zy-FYh" id="e7f-df-GYE"/>
+                <outlet property="stackView" destination="TgL-cA-TNL" id="cQV-qu-G7F"/>
                 <outlet property="usernameField" destination="1ZY-I5-sDT" id="yyv-e5-WSD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

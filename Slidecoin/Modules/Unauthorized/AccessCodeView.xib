@@ -12,6 +12,7 @@
                 <outlet property="accessCodeField" destination="4iX-aF-hVk" id="zRi-qp-tkC"/>
                 <outlet property="doneButton" destination="TeL-IT-sgk" id="HY7-Ha-kfM"/>
                 <outlet property="scrollView" destination="BnY-zm-LLF" id="26e-3Y-whd"/>
+                <outlet property="stackView" destination="TUW-3r-e1H" id="kBs-pm-aIy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="iNU-hj-wCc"/>
             </connections>
         </placeholder>

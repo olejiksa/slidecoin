@@ -35,6 +35,7 @@ final class AuthViewController: UIViewController {
     
     @IBOutlet private weak var rememberSwitch: UISwitch!
     
+    @IBOutlet private weak var stackView: UIStackView!
     
     
     // MARK: Lifecycle
@@ -109,7 +110,9 @@ final class AuthViewController: UIViewController {
     
     private func setupButtonNavigationHelper() {
         let textFields: [UITextField] = [usernameField, passwordField]
-        formValidationHelper = FormValidationHelper(textFields: textFields, button: loginButton)
+        formValidationHelper = FormValidationHelper(textFields: textFields,
+                                                    button: loginButton,
+                                                    stackView: stackView)
     }
     
     private func login(username: String, password: String) {

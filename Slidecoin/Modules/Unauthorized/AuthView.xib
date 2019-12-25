@@ -15,6 +15,7 @@
                 <outlet property="registrationButton" destination="gbl-UV-WJg" id="xGp-oH-I7n"/>
                 <outlet property="rememberSwitch" destination="QtK-cg-70B" id="qcA-eb-GTJ"/>
                 <outlet property="scrollView" destination="Kqw-hk-u1s" id="ZaB-tg-Hir"/>
+                <outlet property="stackView" destination="4Rp-8R-F1H" id="tYj-fu-GZi"/>
                 <outlet property="usernameField" destination="ri8-Q8-t4e" id="n70-o2-YF1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -24,6 +24,7 @@ final class AccessCodeViewController: UIViewController {
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var doneButton: UIButton!
     @IBOutlet private weak var accessCodeField: UITextField!
+    @IBOutlet private weak var stackView: UIStackView!
     
     
     
@@ -68,7 +69,9 @@ final class AccessCodeViewController: UIViewController {
     }
     
     private func setupFormValidationHelper() {
-        formValidationHelper = FormValidationHelper(textFields: [accessCodeField], button: doneButton)
+        formValidationHelper = FormValidationHelper(textFields: [accessCodeField],
+                                                    button: doneButton,
+                                                    stackView: stackView)
     }
     
     @IBAction private func continueDidTap() {
