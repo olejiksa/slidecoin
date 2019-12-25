@@ -16,7 +16,7 @@ final class AccessCodeViewController: UIViewController {
     private let alertService = Assembly.alertService
     private let keyboardService = Assembly.keyboardService
     private let requestSender = Assembly.requestSender
-    private var buttonValidationHelper: ButtonValidationHelper?
+    private var formValidationHelper: FormValidationHelper?
     
     
     // MARK: Outlets
@@ -34,7 +34,7 @@ final class AccessCodeViewController: UIViewController {
         
         setupDelegates()
         setupNavigationBar()
-        setupButtonValidationHelper()
+        setupFormValidationHelper()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,8 +67,8 @@ final class AccessCodeViewController: UIViewController {
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    private func setupButtonValidationHelper() {
-        buttonValidationHelper = ButtonValidationHelper(textFields: [accessCodeField], button: doneButton)
+    private func setupFormValidationHelper() {
+        formValidationHelper = FormValidationHelper(textFields: [accessCodeField], button: doneButton)
     }
     
     @IBAction private func continueDidTap() {

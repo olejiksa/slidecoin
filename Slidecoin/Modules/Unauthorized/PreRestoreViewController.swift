@@ -16,7 +16,7 @@ final class PreRestoreViewController: UIViewController {
     private let alertService = Assembly.alertService
     private let keyboardService = Assembly.keyboardService
     private let requestSender = Assembly.requestSender
-    private var buttonValidationHelper: ButtonValidationHelper?
+    private var formValidationHelper: FormValidationHelper?
    
     
     // MARK: Outlets
@@ -33,7 +33,7 @@ final class PreRestoreViewController: UIViewController {
         
         setupDelegates()
         setupNavigationBar()
-        setupButtonValidationHelper()
+        setupFormValidationHelper()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,8 +66,8 @@ final class PreRestoreViewController: UIViewController {
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    private func setupButtonValidationHelper() {
-        buttonValidationHelper = ButtonValidationHelper(textFields: [usernameField], button: doneButton)
+    private func setupFormValidationHelper() {
+        formValidationHelper = FormValidationHelper(textFields: [usernameField], button: doneButton)
     }
 
     @IBAction private func continueDidTap() {

@@ -18,12 +18,13 @@ final class RegistrationViewController: UIViewController {
     private let keyboardService = Assembly.keyboardService
     private let requestSender = Assembly.requestSender
 
-    private var buttonValidationHelper: ButtonValidationHelper?
+    private var formValidationHelper: FormValidationHelper?
     
     
     // MARK: Outlets
     
     @IBOutlet private weak var usernameField: UITextField!
+    @IBOutlet private weak var emailField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var repeatPasswordField: UITextField!
     @IBOutlet private weak var doneButton: BigButton!
@@ -38,7 +39,7 @@ final class RegistrationViewController: UIViewController {
         
         setupDelegates()
         setupNavigationBar()
-        setupButtonValidationHelper()
+        setupFormValidationHelper()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,11 +117,11 @@ final class RegistrationViewController: UIViewController {
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    private func setupButtonValidationHelper() {
-        let textFields: [UITextField] = [usernameField, passwordField, repeatPasswordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields,
-                                                        button: doneButton,
-                                                        matchLabel: matchLabel)
+    private func setupFormValidationHelper() {
+        let textFields: [UITextField] = [usernameField, emailField, passwordField, repeatPasswordField]
+        formValidationHelper = FormValidationHelper(textFields: textFields,
+                                                    button: doneButton,
+                                                    matchLabel: matchLabel)
     }
     
     @objc private func close() {

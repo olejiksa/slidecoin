@@ -15,7 +15,7 @@ final class RestoreViewController: UIViewController {
 
     private let alertService = Assembly.alertService
     private let keyboardService = Assembly.keyboardService
-    private var buttonValidationHelper: ButtonValidationHelper?
+    private var formValidationHelper: FormValidationHelper?
     
     
     // MARK: Outlets
@@ -34,7 +34,7 @@ final class RestoreViewController: UIViewController {
         
         setupDelegates()
         setupNavigationBar()
-        setupButtonValidationHelper()
+        setupFormValidationHelper()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,11 +70,11 @@ final class RestoreViewController: UIViewController {
         }
     }
     
-    private func setupButtonValidationHelper() {
+    private func setupFormValidationHelper() {
         let textFields: [UITextField] = [passwordField, repeatPasswordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields,
-                                                        button: doneButton,
-                                                        matchLabel: matchLabel)
+        formValidationHelper = FormValidationHelper(textFields: textFields,
+                                                    button: doneButton,
+                                                    matchLabel: matchLabel)
     }
     
     @IBAction private func changePasswordDidTap() {

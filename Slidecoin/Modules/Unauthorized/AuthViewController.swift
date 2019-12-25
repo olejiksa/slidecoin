@@ -19,7 +19,7 @@ final class AuthViewController: UIViewController {
     private let keyboardService = Assembly.keyboardService
     private let requestSender = Assembly.requestSender
 
-    private var buttonValidationHelper: ButtonValidationHelper?
+    private var formValidationHelper: FormValidationHelper?
     
     
     // MARK: Outlets
@@ -109,7 +109,7 @@ final class AuthViewController: UIViewController {
     
     private func setupButtonNavigationHelper() {
         let textFields: [UITextField] = [usernameField, passwordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields, button: loginButton)
+        formValidationHelper = FormValidationHelper(textFields: textFields, button: loginButton)
     }
     
     private func login(username: String, password: String) {
