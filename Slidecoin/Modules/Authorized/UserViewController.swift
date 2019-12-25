@@ -149,6 +149,7 @@ final class UserViewController: UIViewController {
 extension UserViewController: ImagePickerDelegate {
 
     func didSelect(image: UIImage?) {
+        guard let image = image else { return }
         imageView.image = image
     }
 }
