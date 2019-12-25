@@ -58,7 +58,7 @@ final class PreRestoreViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Восстановление"
+        navigationItem.title = "Восстановление доступа"
         
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
                                           target: self,
@@ -72,20 +72,24 @@ final class PreRestoreViewController: UIViewController {
 
     @IBAction private func continueDidTap() {
         guard let login = usernameField.text else { return }
+        
+        doneButton.showLoading()
             
         let config = RequestFactory.users()
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
+            
+            self.doneButton.hideLoading()
             
             DispatchQueue.main.async {
                 switch result {
                 case .success(let users):
                     let usernames = users.map { $0.username }
                     if usernames.contains(login) {
-                        let vc = RestoreViewController()
+                        let vc = AccessCodeViewController()
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
-                        let text = "Не удалось найти учетную запись с именем пользователя \(login)"
+                        let text = "User \(login) doesn't exist"
                         let alert = self.alertService.alert(text)
                         self.present(alert, animated: true)
                     }

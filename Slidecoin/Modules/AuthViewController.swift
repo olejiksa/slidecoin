@@ -27,7 +27,7 @@ final class AuthViewController: UIViewController {
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
     
-    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var loginButton: BigButton!
     @IBOutlet private weak var registrationButton: UIButton!
     
     @IBOutlet private weak var containerView: UIStackView!
@@ -65,6 +65,8 @@ final class AuthViewController: UIViewController {
             let username = usernameField.text,
             let password = passwordField.text
         else { return }
+        
+        loginButton.showLoading()
             
         login(username: username, password: password)
     }
@@ -113,12 +115,16 @@ final class AuthViewController: UIViewController {
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
+            self.loginButton.hideLoading()
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let login):
                     if login.accessToken != nil, login.refreshToken != nil {
                         let scene = UIApplication.shared.connectedScenes.first
                         if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                            self.credentialsService.updateCredentials(with: login)
+                            
                             let vc = MainViewController(login: login)
                             let nvc = UINavigationController(rootViewController: vc)
                             mySceneDelegate.window?.rootViewController = nvc
@@ -185,6 +191,6 @@ extension AuthViewController: ASAuthorizationControllerDelegate {
 extension AuthViewController: ASAuthorizationControllerPresentationContextProviding {
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
+        return view.window!
     }
 }

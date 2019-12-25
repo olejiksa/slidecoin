@@ -14,6 +14,7 @@ final class RegistrationViewController: UIViewController {
     // MARK: Private Propterties
     
     private let alertService = Assembly.alertService
+    private let credentialsService = Assembly.credentialsService
     private let keyboardService = Assembly.keyboardService
     private let requestSender = Assembly.requestSender
 
@@ -25,7 +26,7 @@ final class RegistrationViewController: UIViewController {
     @IBOutlet private weak var usernameField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var repeatPasswordField: UITextField!
-    @IBOutlet private weak var doneButton: UIButton!
+    @IBOutlet private weak var doneButton: BigButton!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var matchLabel: UILabel!
     
@@ -62,9 +63,12 @@ final class RegistrationViewController: UIViewController {
         else { return }
             
         let config = RequestFactory.register(username: login, password: password)
+        doneButton.showLoading()
         
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
+            
+            self.doneButton.hideLoading()
             
             DispatchQueue.main.async {
                 switch result {
@@ -72,6 +76,8 @@ final class RegistrationViewController: UIViewController {
                     if login.accessToken != nil, login.refreshToken != nil {
                         let scene = UIApplication.shared.connectedScenes.first
                         if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                            self.credentialsService.updateCredentials(with: login)
+                            
                             let vc = MainViewController(login: login)
                             let nvc = UINavigationController(rootViewController: vc)
                             mySceneDelegate.window?.rootViewController = nvc

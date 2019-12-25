@@ -16,6 +16,10 @@ final class TransferViewController: UIViewController {
         setupNavigationBar()
     }
     
+    @IBAction private func submit() {
+        close()
+    }
+    
     private func setupNavigationBar() {
         navigationItem.title = "Перевод"
         

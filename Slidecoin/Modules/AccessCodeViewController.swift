@@ -1,30 +1,30 @@
 //
-//  RestoreViewController.swift
+//  AccessCodeViewController.swift
 //  Slidecoin
 //
-//  Created by Oleg Samoylov on 17.12.2019.
+//  Created by Oleg Samoylov on 22.12.2019.
 //  Copyright © 2019 Oleg Samoylov. All rights reserved.
 //
 
-import UIKit
 import Toolkit
+import UIKit
 
-final class RestoreViewController: UIViewController {
-
+final class AccessCodeViewController: UIViewController {
+    
     // MARK: Private Properties
-
+    
     private let alertService = Assembly.alertService
     private let keyboardService = Assembly.keyboardService
+    private let requestSender = Assembly.requestSender
     private var buttonValidationHelper: ButtonValidationHelper?
     
     
     // MARK: Outlets
     
-    @IBOutlet private weak var passwordField: UITextField!
-    @IBOutlet private weak var repeatPasswordField: UITextField!
-    @IBOutlet private weak var matchLabel: UILabel!
-    @IBOutlet private weak var doneButton: BigButton!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var doneButton: UIButton!
+    @IBOutlet private weak var accessCodeField: UITextField!
+    
     
     
     // MARK: Lifecycle
@@ -55,30 +55,25 @@ final class RestoreViewController: UIViewController {
     private func setupDelegates() {
         keyboardService.view = view
         keyboardService.scrollView = scrollView
-        passwordField.delegate = keyboardService
-        repeatPasswordField.delegate = keyboardService
+        accessCodeField.delegate = keyboardService
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Сброс пароля"
+        navigationItem.title = "Код доступа"
         
-        if presentingViewController != nil {
-            let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
-                                              target: self,
-                                              action: #selector(close))
-            navigationItem.rightBarButtonItem = closeButton
-        }
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                          target: self,
+                                          action: #selector(close))
+        navigationItem.rightBarButtonItem = closeButton
     }
     
     private func setupButtonValidationHelper() {
-        let textFields: [UITextField] = [passwordField, repeatPasswordField]
-        buttonValidationHelper = ButtonValidationHelper(textFields: textFields,
-                                                        button: doneButton,
-                                                        matchLabel: matchLabel)
+        buttonValidationHelper = ButtonValidationHelper(textFields: [accessCodeField], button: doneButton)
     }
     
-    @IBAction private func changePasswordDidTap() {
-        close()
+    @IBAction private func continueDidTap() {
+        let vc = RestoreViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func close() {

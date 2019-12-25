@@ -56,24 +56,6 @@ final class MainViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction private func logoutDidTap() {
-        let message = "Вы действительно хотите выйти?"
-        let alert = alertService.alert(message,
-                                       title: "Внимание",
-                                       isDestructive: true) { [weak self] _ in
-            self?.credentialsService.removeCredentials()
-            
-            let scene = UIApplication.shared.connectedScenes.first
-            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                let vc = AuthViewController()
-                let nvc = UINavigationController(rootViewController: vc)
-                mySceneDelegate.window?.rootViewController = nvc
-            }
-        }
-        
-        self.present(alert, animated: true)
-    }
-    
     @IBAction private func secretDidTap() {
         guard
             let accessToken = login.accessToken,
@@ -89,11 +71,6 @@ final class MainViewController: UIViewController {
         credentialsService.updateMoney(with: sum)
     }
     
-    @IBAction private func changePasswordDidTap() {
-        let vc = RestoreViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     @IBAction private func allUsersDidTap() {
         let vc = UsersViewController()
         navigationController?.pushViewController(vc, animated: true)
@@ -106,7 +83,8 @@ final class MainViewController: UIViewController {
         navigationItem.title = "Главная"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let userButton = UIBarButtonItem(title: "Выйти",
+        let image = UIImage(systemName: "person.crop.circle")
+        let userButton = UIBarButtonItem(image: image,
                                          style: .done,
                                          target: self,
                                          action: #selector(userDidTap))
@@ -150,20 +128,8 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func userDidTap() {
-        let message = "Вы действительно хотите выйти?"
-        let alert = alertService.alert(message,
-                                       title: "Внимание",
-                                       isDestructive: true) { [weak self] _ in
-            self?.credentialsService.removeCredentials()
-            
-            let scene = UIApplication.shared.connectedScenes.first
-            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                let vc = AuthViewController()
-                let nvc = UINavigationController(rootViewController: vc)
-                mySceneDelegate.window?.rootViewController = nvc
-            }
-        }
-        
-        self.present(alert, animated: true)
+        let vc = UserViewController(username: String(login.message.split(separator: " ").last!))
+        let nvc = UINavigationController(rootViewController: vc)
+        present(nvc, animated: true)
     }
 }

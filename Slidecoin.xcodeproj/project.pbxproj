@@ -16,6 +16,10 @@
 		EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */; };
 		EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB3D0383238EAD4400E5BAE9 /* MainView.xib */; };
 		EB61FB5323ABDBC500DC8E21 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61FB5223ABDBC500DC8E21 /* Assembly.swift */; };
+		EB6803BE23B00DA1003456AC /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6803BC23B00DA1003456AC /* AccessCodeViewController.swift */; };
+		EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6803BD23B00DA1003456AC /* AccessCodeView.xib */; };
+		EB6803C223B02685003456AC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6803C023B02685003456AC /* UserViewController.swift */; };
+		EB6803C323B02685003456AC /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6803C123B02685003456AC /* UserView.xib */; };
 		EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */; };
 		EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6AA83623A8C09500938BB6 /* RestoreView.xib */; };
 		EB6AA83D23AA54D300938BB6 /* PreRestoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA83B23AA54D300938BB6 /* PreRestoreViewController.swift */; };
@@ -57,6 +61,10 @@
 		EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB3D0383238EAD4400E5BAE9 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		EB61FB5223ABDBC500DC8E21 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		EB6803BC23B00DA1003456AC /* AccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewController.swift; sourceTree = "<group>"; };
+		EB6803BD23B00DA1003456AC /* AccessCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessCodeView.xib; sourceTree = "<group>"; };
+		EB6803C023B02685003456AC /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		EB6803C123B02685003456AC /* UserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreViewController.swift; sourceTree = "<group>"; };
 		EB6AA83623A8C09500938BB6 /* RestoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestoreView.xib; sourceTree = "<group>"; };
 		EB6AA83B23AA54D300938BB6 /* PreRestoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRestoreViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +224,10 @@
 				EB6AA84623AA5F6600938BB6 /* UsersView.xib */,
 				EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */,
 				EB839EFF23AF9D7B0043B223 /* TransferView.xib */,
+				EB6803BC23B00DA1003456AC /* AccessCodeViewController.swift */,
+				EB6803BD23B00DA1003456AC /* AccessCodeView.xib */,
+				EB6803C023B02685003456AC /* UserViewController.swift */,
+				EB6803C123B02685003456AC /* UserView.xib */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -281,9 +293,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB6803C323B02685003456AC /* UserView.xib in Resources */,
 				EBD3502B238DB91F008AACA2 /* LaunchScreen.storyboard in Resources */,
 				EB6AA84823AA5F6600938BB6 /* UsersView.xib in Resources */,
 				EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */,
+				EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */,
 				EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */,
 				EB6AA83E23AA54D300938BB6 /* PreRestoreView.xib in Resources */,
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
@@ -313,6 +327,7 @@
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
 				EB6AA84F23AAD3E500938BB6 /* Secret.swift in Sources */,
 				EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */,
+				EB6803BE23B00DA1003456AC /* AccessCodeViewController.swift in Sources */,
 				EB839F0023AF9D7B0043B223 /* TransferViewController.swift in Sources */,
 				EBD35034238DBAA9008AACA2 /* AuthViewController.swift in Sources */,
 				EB6AA84223AA585000938BB6 /* UsersParser.swift in Sources */,
@@ -320,6 +335,7 @@
 				EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */,
 				EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */,
 				EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */,
+				EB6803C223B02685003456AC /* UserViewController.swift in Sources */,
 				EBD3504C238DC2CD008AACA2 /* LoginParser.swift in Sources */,
 				EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */,
 				EB61FB5323ABDBC500DC8E21 /* Assembly.swift in Sources */,

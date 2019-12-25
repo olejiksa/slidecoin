@@ -25,12 +25,34 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2O8-8Z-vY7" customClass="BigButton" customModule="Toolkit">
+                    <rect key="frame" x="20" y="74" width="335" height="54"/>
+                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="BIi-Ud-aml"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                    <state key="normal" title="Отправить">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="submit" destination="-1" eventType="touchUpInside" id="eNn-lK-v9S"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="U2o-C9-zLC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="3Uq-X9-nlo"/>
                 <constraint firstItem="U2o-C9-zLC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="HX2-8Q-aXp"/>
+                <constraint firstItem="2O8-8Z-vY7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Mv7-bH-tsn"/>
                 <constraint firstItem="7BQ-1P-tUg" firstAttribute="centerY" secondItem="U2o-C9-zLC" secondAttribute="centerY" id="OSB-wl-6Yl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2O8-8Z-vY7" secondAttribute="trailing" constant="20" id="Rn0-HU-LSd"/>
+                <constraint firstItem="2O8-8Z-vY7" firstAttribute="top" secondItem="U2o-C9-zLC" secondAttribute="bottom" constant="20" id="VUh-Ve-Vfo"/>
                 <constraint firstItem="7BQ-1P-tUg" firstAttribute="leading" secondItem="U2o-C9-zLC" secondAttribute="trailing" constant="20" id="cth-hX-oL5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7BQ-1P-tUg" secondAttribute="trailing" constant="20" id="pUH-9E-WoM"/>
             </constraints>

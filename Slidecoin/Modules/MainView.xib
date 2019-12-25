@@ -23,10 +23,10 @@
                     <rect key="frame" x="0.0" y="64" width="414" height="832"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lx7-63-bkq">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="387.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="313.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="obu-GK-07j">
-                                    <rect key="frame" x="20" y="0.0" width="374" height="367.5"/>
+                                    <rect key="frame" x="20" y="0.0" width="374" height="293.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="47N-iL-GsR">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="71.5"/>
@@ -100,25 +100,6 @@
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="earnDidTap" destination="-1" eventType="touchUpInside" id="BgE-Lr-pZu"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8s-37-XlH" customClass="BigButton" customModule="Toolkit">
-                                            <rect key="frame" x="0.0" y="313.5" width="374" height="54"/>
-                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="54" id="VTq-vp-Qsx"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <state key="normal" title="Сменить пароль">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="changePasswordDidTap" destination="-1" eventType="touchUpInside" id="ifz-Zn-7eQ"/>
                                             </connections>
                                         </button>
                                     </subviews>
