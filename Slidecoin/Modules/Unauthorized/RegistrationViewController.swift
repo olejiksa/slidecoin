@@ -58,11 +58,11 @@ final class RegistrationViewController: UIViewController {
 
     @IBAction private func registrationDidTap() {
         guard
-            let login = usernameField.text,
+            let username = usernameField.text,
             let password = passwordField.text
         else { return }
             
-        let config = RequestFactory.register(username: login, password: password)
+        let config = RequestFactory.register(username: username, password: password)
         doneButton.showLoading()
         
         requestSender.send(config: config) { [weak self] result in
@@ -72,10 +72,11 @@ final class RegistrationViewController: UIViewController {
             
             DispatchQueue.main.async {
                 switch result {
-                case .success(let login):
+                case .success(var login):
                     if login.accessToken != nil, login.refreshToken != nil {
                         let scene = UIApplication.shared.connectedScenes.first
                         if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                            login.message = username
                             self.credentialsService.updateCredentials(with: login)
                             
                             let vc = MainViewController(login: login)

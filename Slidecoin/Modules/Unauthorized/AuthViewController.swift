@@ -33,6 +33,9 @@ final class AuthViewController: UIViewController {
     @IBOutlet private weak var containerView: UIStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
     
+    @IBOutlet private weak var rememberSwitch: UISwitch!
+    
+    
     
     // MARK: Lifecycle
     
@@ -119,11 +122,15 @@ final class AuthViewController: UIViewController {
             
             DispatchQueue.main.async {
                 switch result {
-                case .success(let login):
+                case .success(var login):
                     if login.accessToken != nil, login.refreshToken != nil {
                         let scene = UIApplication.shared.connectedScenes.first
                         if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                            self.credentialsService.updateCredentials(with: login)
+                            login.message = username
+                            
+                            if self.rememberSwitch.isOn {
+                                self.credentialsService.updateCredentials(with: login)
+                            }
                             
                             let vc = MainViewController(login: login)
                             let nvc = UINavigationController(rootViewController: vc)

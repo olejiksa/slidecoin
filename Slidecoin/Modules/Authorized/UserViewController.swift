@@ -92,8 +92,6 @@ final class UserViewController: UIViewController {
     private func setupUserTile() {
         imagePicker = ImagePicker(presentationController: self, delegate: self)
         
-        imageView.layer.borderColor = UIColor.systemGray.cgColor
-        imageView.layer.borderWidth = 3
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true

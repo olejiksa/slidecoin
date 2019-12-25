@@ -13,6 +13,7 @@
                 <outlet property="loginButton" destination="G2X-8R-uiw" id="Zi1-jf-kqp"/>
                 <outlet property="passwordField" destination="vd3-Gl-K8e" id="Fo4-pg-TOV"/>
                 <outlet property="registrationButton" destination="gbl-UV-WJg" id="xGp-oH-I7n"/>
+                <outlet property="rememberSwitch" destination="QtK-cg-70B" id="qcA-eb-GTJ"/>
                 <outlet property="scrollView" destination="Kqw-hk-u1s" id="ZaB-tg-Hir"/>
                 <outlet property="usernameField" destination="ri8-Q8-t4e" id="n70-o2-YF1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,10 +28,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efv-nK-JTq">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="602"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="645"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4Rp-8R-F1H">
-                                    <rect key="frame" x="20" y="20" width="335" height="145"/>
+                                    <rect key="frame" x="20" y="20" width="335" height="188"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя учетной записи пользователя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgX-VN-BOw">
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
@@ -54,10 +55,24 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                         </textField>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxj-Ux-biI">
+                                            <rect key="frame" x="0.0" y="157" width="335" height="31"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Запомнить пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYl-ec-Mvl">
+                                                    <rect key="frame" x="0.0" y="0.0" width="286" height="31"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QtK-cg-70B">
+                                                    <rect key="frame" x="286" y="0.0" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-8R-uiw" customClass="BigButton" customModule="Toolkit">
-                                    <rect key="frame" x="20" y="185" width="335" height="54"/>
+                                    <rect key="frame" x="20" y="228" width="335" height="54"/>
                                     <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="YMO-xF-WLZ"/>
@@ -76,20 +91,20 @@
                                     </connections>
                                 </button>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7aq-Mq-Mq7">
-                                    <rect key="frame" x="20" y="259" width="335" height="54"/>
+                                    <rect key="frame" x="20" y="302" width="335" height="54"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="ict-aj-qR1"/>
                                         <constraint firstAttribute="height" constant="54" id="zwc-LU-6K5"/>
                                     </constraints>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Еще не пользуетесь Слайдовалютой?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHR-E6-Fqc">
-                                    <rect key="frame" x="20" y="353" width="335" height="20.5"/>
+                                    <rect key="frame" x="20" y="396" width="335" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbl-UV-WJg" customClass="BigButton" customModule="Toolkit">
-                                    <rect key="frame" x="20" y="393.5" width="335" height="54"/>
+                                    <rect key="frame" x="20" y="436.5" width="335" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="1xc-yP-9CX"/>
@@ -108,13 +123,13 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Забыли пароль?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-zb-kik">
-                                    <rect key="frame" x="20" y="487.5" width="335" height="20.5"/>
+                                    <rect key="frame" x="20" y="530.5" width="335" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvI-3T-guY" customClass="BigButton" customModule="Toolkit">
-                                    <rect key="frame" x="20" y="528" width="335" height="54"/>
+                                    <rect key="frame" x="20" y="571" width="335" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="S7l-Zj-de9"/>

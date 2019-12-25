@@ -128,7 +128,7 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func userDidTap() {
-        let vc = UserViewController(username: String(login.message.split(separator: " ").last!))
+        let vc = UserViewController(username: String(login.message))
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }

@@ -126,6 +126,38 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		EB936EEB23B3944E0006FBAE /* Authorized */ = {
+			isa = PBXGroup;
+			children = (
+				EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */,
+				EB839EFF23AF9D7B0043B223 /* TransferView.xib */,
+				EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */,
+				EB3D0383238EAD4400E5BAE9 /* MainView.xib */,
+				EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */,
+				EB6AA84623AA5F6600938BB6 /* UsersView.xib */,
+				EB6803C023B02685003456AC /* UserViewController.swift */,
+				EB6803C123B02685003456AC /* UserView.xib */,
+			);
+			path = Authorized;
+			sourceTree = "<group>";
+		};
+		EB936EEC23B394690006FBAE /* Unauthorized */ = {
+			isa = PBXGroup;
+			children = (
+				EBD35032238DBAA9008AACA2 /* AuthViewController.swift */,
+				EBD35033238DBAA9008AACA2 /* AuthView.xib */,
+				EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */,
+				EB219950238DD2E1008A8772 /* RegistrationView.xib */,
+				EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */,
+				EB6AA83623A8C09500938BB6 /* RestoreView.xib */,
+				EB6AA83B23AA54D300938BB6 /* PreRestoreViewController.swift */,
+				EB6AA83C23AA54D300938BB6 /* PreRestoreView.xib */,
+				EB6803BC23B00DA1003456AC /* AccessCodeViewController.swift */,
+				EB6803BD23B00DA1003456AC /* AccessCodeView.xib */,
+			);
+			path = Unauthorized;
+			sourceTree = "<group>";
+		};
 		EBD35012238DB91B008AACA2 = {
 			isa = PBXGroup;
 			children = (
@@ -210,24 +242,8 @@
 		EBD35058238DC72B008AACA2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				EBD35032238DBAA9008AACA2 /* AuthViewController.swift */,
-				EBD35033238DBAA9008AACA2 /* AuthView.xib */,
-				EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */,
-				EB219950238DD2E1008A8772 /* RegistrationView.xib */,
-				EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */,
-				EB3D0383238EAD4400E5BAE9 /* MainView.xib */,
-				EB6AA83523A8C09500938BB6 /* RestoreViewController.swift */,
-				EB6AA83623A8C09500938BB6 /* RestoreView.xib */,
-				EB6AA83B23AA54D300938BB6 /* PreRestoreViewController.swift */,
-				EB6AA83C23AA54D300938BB6 /* PreRestoreView.xib */,
-				EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */,
-				EB6AA84623AA5F6600938BB6 /* UsersView.xib */,
-				EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */,
-				EB839EFF23AF9D7B0043B223 /* TransferView.xib */,
-				EB6803BC23B00DA1003456AC /* AccessCodeViewController.swift */,
-				EB6803BD23B00DA1003456AC /* AccessCodeView.xib */,
-				EB6803C023B02685003456AC /* UserViewController.swift */,
-				EB6803C123B02685003456AC /* UserView.xib */,
+				EB936EEB23B3944E0006FBAE /* Authorized */,
+				EB936EEC23B394690006FBAE /* Unauthorized */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
