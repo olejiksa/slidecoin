@@ -53,4 +53,18 @@ struct RequestFactory {
         
         return .init(request: request, parser: parser)
     }
+    
+    static func logoutAccess(_ accessToken: String) -> RequestConfig<MessageParser> {
+        let request = LogoutAccessRequest(accessToken: accessToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    static func logoutRefresh(_ refreshToken: String) -> RequestConfig<MessageParser> {
+        let request = LogoutRefreshRequest(refreshToken: refreshToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
 }

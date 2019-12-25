@@ -128,7 +128,11 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func userDidTap() {
-        let vc = UserViewController(username: String(login.message))
+        guard let accessToken = login.accessToken, let refreshToken = login.refreshToken else { return }
+        
+        let vc = UserViewController(username: String(login.message),
+                                    accessToken: accessToken,
+                                    refreshToken: refreshToken)
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }

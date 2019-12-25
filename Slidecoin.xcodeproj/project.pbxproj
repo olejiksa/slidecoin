@@ -15,6 +15,10 @@
 		EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */; };
 		EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */; };
 		EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB3D0383238EAD4400E5BAE9 /* MainView.xib */; };
+		EB60C34123B3E30F009CC4EC /* LogoutAccessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */; };
+		EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */; };
+		EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34423B3EE9E009CC4EC /* MessageParser.swift */; };
+		EB60C34723B3F024009CC4EC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34623B3F024009CC4EC /* Message.swift */; };
 		EB61FB5323ABDBC500DC8E21 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61FB5223ABDBC500DC8E21 /* Assembly.swift */; };
 		EB6803BE23B00DA1003456AC /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6803BC23B00DA1003456AC /* AccessCodeViewController.swift */; };
 		EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6803BD23B00DA1003456AC /* AccessCodeView.xib */; };
@@ -60,6 +64,10 @@
 		EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB3D0383238EAD4400E5BAE9 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAccessRequest.swift; sourceTree = "<group>"; };
+		EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRefreshRequest.swift; sourceTree = "<group>"; };
+		EB60C34423B3EE9E009CC4EC /* MessageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageParser.swift; sourceTree = "<group>"; };
+		EB60C34623B3F024009CC4EC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EB61FB5223ABDBC500DC8E21 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		EB6803BC23B00DA1003456AC /* AccessCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessCodeViewController.swift; sourceTree = "<group>"; };
 		EB6803BD23B00DA1003456AC /* AccessCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessCodeView.xib; sourceTree = "<group>"; };
@@ -207,8 +215,9 @@
 		EBD35037238DBF6D008AACA2 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
-				EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */,
 				EBD3504B238DC2CD008AACA2 /* LoginParser.swift */,
+				EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */,
+				EB60C34423B3EE9E009CC4EC /* MessageParser.swift */,
 				EB6AA84C23AAD39900938BB6 /* SecretParser.swift */,
 				EB6AA84123AA585000938BB6 /* UsersParser.swift */,
 			);
@@ -220,6 +229,8 @@
 			children = (
 				EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */,
 				EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */,
+				EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */,
+				EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */,
 				EBD35051238DC317008AACA2 /* RegistrationRequest.swift */,
 				EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */,
 				EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */,
@@ -235,6 +246,7 @@
 				EBD35054238DC422008AACA2 /* Login.swift */,
 				EB6AA84E23AAD3E500938BB6 /* Secret.swift */,
 				EB6AA84323AA589500938BB6 /* User.swift */,
+				EB60C34623B3F024009CC4EC /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,13 +346,17 @@
 				EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */,
 				EB6AA84023AA57E800938BB6 /* UsersRequest.swift in Sources */,
 				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
+				EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */,
 				EB6AA84D23AAD39900938BB6 /* SecretParser.swift in Sources */,
+				EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */,
 				EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */,
 				EB6AA84423AA589500938BB6 /* User.swift in Sources */,
 				EB09B47C23ABADC200680ABC /* TokenRefreshRequest.swift in Sources */,
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
 				EB6AA84B23AAB77000938BB6 /* CredentialsService.swift in Sources */,
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
+				EB60C34723B3F024009CC4EC /* Message.swift in Sources */,
+				EB60C34123B3E30F009CC4EC /* LogoutAccessRequest.swift in Sources */,
 				EB6AA84F23AAD3E500938BB6 /* Secret.swift in Sources */,
 				EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */,
 				EB6803BE23B00DA1003456AC /* AccessCodeViewController.swift in Sources */,

@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="3Wm-nX-Qj7" id="xhA-WL-JsH"/>
+                <outlet property="logoutButton" destination="3qV-ac-rio" id="rap-QH-Gqg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

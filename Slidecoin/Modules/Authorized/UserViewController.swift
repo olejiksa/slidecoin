@@ -14,21 +14,30 @@ final class UserViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var logoutButton: BigButton!
     
     
     // MARK: Private Properties
     
     private let username: String
+    private let accessToken: String
+    private let refreshToken: String
+    
     private var imagePicker: ImagePicker?
     private let alertService = Assembly.alertService
     private let credentialsService = Assembly.credentialsService
+    private let requestSender = Assembly.requestSender
     
     
     
     // MARK: Lifecycle
     
-    init(username: String) {
+    init(username: String,
+         accessToken: String,
+         refreshToken: String) {
         self.username = username
+        self.accessToken = accessToken
+        self.refreshToken = refreshToken
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -59,19 +68,10 @@ final class UserViewController: UIViewController {
     
     @IBAction private func logoutDidTap() {
         let message = "Вы действительно хотите выйти?"
-        let alert = alertService.alert(message,
-                                       title: "Внимание",
-                                       isDestructive: true) { [weak self] _ in
+        let alert = alertService.alert(message, title: "Внимание", isDestructive: true) { [weak self] _ in
             guard let self = self else { return }
-                                        
-            self.credentialsService.removeCredentials()
             
-            let scene = UIApplication.shared.connectedScenes.first
-            if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                let vc = AuthViewController()
-                let nvc = UINavigationController(rootViewController: vc)
-                mySceneDelegate.window?.rootViewController = nvc
-            }
+            self.requestLogout()
         }
         
         present(alert, animated: true)
@@ -95,6 +95,47 @@ final class UserViewController: UIViewController {
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
+    }
+    
+    private func requestLogout() {
+        logoutButton.showLoading()
+        
+        let accessConfig = RequestFactory.logoutAccess(accessToken)
+        requestSender.send(config: accessConfig) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success:
+                let refreshConfig = RequestFactory.logoutRefresh(self.refreshToken)
+                self.requestSender.send(config: refreshConfig) { [weak self] result in
+                    guard let self = self else { return }
+                    
+                    self.logoutButton.hideLoading()
+                    
+                    switch result {
+                    case .success:
+                        self.credentialsService.removeCredentials()
+                        
+                        let scene = UIApplication.shared.connectedScenes.first
+                        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                            let vc = AuthViewController()
+                            let nvc = UINavigationController(rootViewController: vc)
+                            mySceneDelegate.window?.rootViewController = nvc
+                        }
+                        
+                    case .failure(let error):
+                        let alert = self.alertService.alert(error.localizedDescription)
+                        self.present(alert, animated: true)
+                    }
+                }
+                
+            case .failure(let error):
+                self.logoutButton.hideLoading()
+                
+                let alert = self.alertService.alert(error.localizedDescription)
+                self.present(alert, animated: true)
+            }
+        }
     }
     
     @objc private func close() {
