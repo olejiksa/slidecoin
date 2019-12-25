@@ -40,6 +40,7 @@ final class CredentialsService: CredentialsServiceProtocol {
         defaults.removeObject(forKey: "message")
         defaults.removeObject(forKey: "access_token")
         defaults.removeObject(forKey: "refresh_token")
+        defaults.removeObject(forKey: "money")
     }
     
     func updateCredentials(with login: Login) {

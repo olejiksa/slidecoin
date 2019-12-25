@@ -22,7 +22,7 @@ final class AccessCodeViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var doneButton: UIButton!
+    @IBOutlet private weak var doneButton: BigButton!
     @IBOutlet private weak var accessCodeField: UITextField!
     @IBOutlet private weak var stackView: UIStackView!
     
@@ -75,11 +75,17 @@ final class AccessCodeViewController: UIViewController {
     }
     
     @IBAction private func continueDidTap() {
-        let vc = RestoreViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        doneButton.showLoading()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.doneButton.hideLoading()
+            
+            let vc = RestoreViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc private func close() {
-        dismiss(animated: true)
+        self.dismiss(animated: true)
     }
 }

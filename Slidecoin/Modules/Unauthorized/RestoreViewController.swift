@@ -78,10 +78,16 @@ final class RestoreViewController: UIViewController {
     }
     
     @IBAction private func changePasswordDidTap() {
-        close()
+        doneButton.showLoading()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.doneButton.hideLoading()
+            
+            self.dismiss(animated: true)
+        }
     }
     
     @objc private func close() {
-        dismiss(animated: true)
+        self.dismiss(animated: true)
     }
 }

@@ -26,6 +26,8 @@ final class MainViewController: UIViewController {
     
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var sumLabel: UILabel!
+    @IBOutlet private weak var secretButton: BigButton!
+    @IBOutlet private weak var earnButton: BigButton!
     
     
     // MARK: Lifecycle
@@ -92,9 +94,13 @@ final class MainViewController: UIViewController {
     }
     
     private func obtainSecret(_ accessToken: String, _ refreshToken: String) {
+        secretButton.showLoading()
+        
         let accessConfig = RequestFactory.secret(accessToken: accessToken)
         requestSender.send(config: accessConfig) { [weak self] result in
             guard let self = self else { return }
+            
+            self.secretButton.hideLoading()
             
             switch result {
             case .success(let secret):
@@ -128,9 +134,12 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func userDidTap() {
-        guard let accessToken = login.accessToken, let refreshToken = login.refreshToken else { return }
+        guard
+            let accessToken = login.accessToken,
+            let refreshToken = login.refreshToken
+        else { return }
         
-        let vc = UserViewController(username: String(login.message),
+        let vc = UserViewController(username: login.message,
                                     accessToken: accessToken,
                                     refreshToken: refreshToken)
         let nvc = UINavigationController(rootViewController: vc)
