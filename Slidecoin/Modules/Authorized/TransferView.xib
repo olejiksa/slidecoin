@@ -9,6 +9,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransferViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
+                <outlet property="amountField" destination="U2o-C9-zLC" id="RG8-Hh-YGx"/>
+                <outlet property="scrollView" destination="sJk-Hl-3sD" id="Rcz-Vd-jer"/>
+                <outlet property="stackView" destination="RLr-gX-iE1" id="t3T-ot-Fcp"/>
+                <outlet property="submitButton" destination="2O8-8Z-vY7" id="RB5-av-V7g"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,44 +21,66 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-1P-tUg">
-                    <rect key="frame" x="261" y="21" width="94" height="32"/>
-                </stepper>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U2o-C9-zLC">
-                    <rect key="frame" x="20" y="20" width="221" height="34"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2O8-8Z-vY7" customClass="BigButton" customModule="Toolkit">
-                    <rect key="frame" x="20" y="74" width="335" height="54"/>
-                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJk-Hl-3sD">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RLr-gX-iE1">
+                            <rect key="frame" x="20" y="20" width="335" height="32"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U2o-C9-zLC">
+                                    <rect key="frame" x="0.0" y="0.0" width="221" height="32"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                </textField>
+                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-1P-tUg">
+                                    <rect key="frame" x="241" y="0.0" width="94" height="32"/>
+                                </stepper>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="CWW-dA-4Xg"/>
+                            </constraints>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2O8-8Z-vY7" customClass="BigButton" customModule="Toolkit">
+                            <rect key="frame" x="20" y="72" width="335" height="54"/>
+                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="54" id="BIi-Ud-aml"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <state key="normal" title="Отправить">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="submit" destination="-1" eventType="touchUpInside" id="eNn-lK-v9S"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="54" id="BIi-Ud-aml"/>
+                        <constraint firstItem="2O8-8Z-vY7" firstAttribute="top" secondItem="RLr-gX-iE1" secondAttribute="bottom" constant="20" id="1MR-91-juM"/>
+                        <constraint firstItem="2O8-8Z-vY7" firstAttribute="leading" secondItem="sJk-Hl-3sD" secondAttribute="leading" constant="20" id="2nC-sA-ab9"/>
+                        <constraint firstAttribute="trailing" secondItem="2O8-8Z-vY7" secondAttribute="trailing" constant="20" id="C3B-ex-XQ8"/>
+                        <constraint firstItem="RLr-gX-iE1" firstAttribute="centerX" secondItem="sJk-Hl-3sD" secondAttribute="centerX" id="Dpq-ZB-Nab"/>
+                        <constraint firstItem="2O8-8Z-vY7" firstAttribute="centerX" secondItem="sJk-Hl-3sD" secondAttribute="centerX" id="Eih-AG-sRO"/>
+                        <constraint firstAttribute="trailing" secondItem="RLr-gX-iE1" secondAttribute="trailing" constant="20" id="HYR-iH-efv"/>
+                        <constraint firstAttribute="bottom" secondItem="2O8-8Z-vY7" secondAttribute="bottom" constant="20" id="cAF-MK-RU4"/>
+                        <constraint firstItem="RLr-gX-iE1" firstAttribute="top" secondItem="sJk-Hl-3sD" secondAttribute="top" constant="20" id="v9H-MQ-ZVa"/>
+                        <constraint firstItem="RLr-gX-iE1" firstAttribute="leading" secondItem="sJk-Hl-3sD" secondAttribute="leading" constant="20" id="zSi-iS-DE1"/>
                     </constraints>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                    <state key="normal" title="Отправить">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="submit" destination="-1" eventType="touchUpInside" id="eNn-lK-v9S"/>
-                    </connections>
-                </button>
+                    <viewLayoutGuide key="contentLayoutGuide" id="YfT-JR-m29"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="K2p-3k-w1k"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="U2o-C9-zLC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="3Uq-X9-nlo"/>
-                <constraint firstItem="U2o-C9-zLC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="HX2-8Q-aXp"/>
-                <constraint firstItem="2O8-8Z-vY7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Mv7-bH-tsn"/>
-                <constraint firstItem="7BQ-1P-tUg" firstAttribute="centerY" secondItem="U2o-C9-zLC" secondAttribute="centerY" id="OSB-wl-6Yl"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2O8-8Z-vY7" secondAttribute="trailing" constant="20" id="Rn0-HU-LSd"/>
-                <constraint firstItem="2O8-8Z-vY7" firstAttribute="top" secondItem="U2o-C9-zLC" secondAttribute="bottom" constant="20" id="VUh-Ve-Vfo"/>
-                <constraint firstItem="7BQ-1P-tUg" firstAttribute="leading" secondItem="U2o-C9-zLC" secondAttribute="trailing" constant="20" id="cth-hX-oL5"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7BQ-1P-tUg" secondAttribute="trailing" constant="20" id="pUH-9E-WoM"/>
+                <constraint firstItem="sJk-Hl-3sD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1gH-DE-rkg"/>
+                <constraint firstItem="sJk-Hl-3sD" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FUB-fr-KaF"/>
+                <constraint firstAttribute="bottom" secondItem="sJk-Hl-3sD" secondAttribute="bottom" id="coR-9p-aTo"/>
+                <constraint firstItem="sJk-Hl-3sD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fTb-0e-sfI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="125"/>

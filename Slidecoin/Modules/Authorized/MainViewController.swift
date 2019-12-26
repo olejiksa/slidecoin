@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import MessageUI
+import SafariServices
+import StoreKit
 import Toolkit
 
 final class MainViewController: UIViewController {
@@ -85,8 +88,15 @@ final class MainViewController: UIViewController {
         navigationItem.title = "Главная"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let image = UIImage(systemName: "person.crop.circle")
-        let userButton = UIBarButtonItem(image: image,
+        let infoImage = UIImage(systemName: "info.circle")
+        let infoButton = UIBarButtonItem(image: infoImage,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(infoDidTap))
+        navigationItem.leftBarButtonItem = infoButton
+        
+        let userImage = UIImage(systemName: "person.crop.circle")
+        let userButton = UIBarButtonItem(image: userImage,
                                          style: .done,
                                          target: self,
                                          action: #selector(userDidTap))
@@ -142,6 +152,12 @@ final class MainViewController: UIViewController {
         let vc = UserViewController(username: login.message,
                                     accessToken: accessToken,
                                     refreshToken: refreshToken)
+        let nvc = UINavigationController(rootViewController: vc)
+        present(nvc, animated: true)
+    }
+    
+    @objc private func infoDidTap() {
+        let vc = AboutViewController()
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }

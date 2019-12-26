@@ -40,6 +40,8 @@
 		EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */; };
 		EB839F0023AF9D7B0043B223 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */; };
 		EB839F0123AF9D7B0043B223 /* TransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB839EFF23AF9D7B0043B223 /* TransferView.xib */; };
+		EBB3361823B54CF1007923F9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3361623B54CF1007923F9 /* AboutViewController.swift */; };
+		EBB3361923B54CF1007923F9 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB3361723B54CF1007923F9 /* AboutView.xib */; };
 		EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3501E238DB91B008AACA2 /* AppDelegate.swift */; };
 		EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35020238DB91B008AACA2 /* SceneDelegate.swift */; };
 		EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD35027238DB91F008AACA2 /* Assets.xcassets */; };
@@ -89,6 +91,8 @@
 		EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllUsersRequest.swift; sourceTree = "<group>"; };
 		EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
 		EB839EFF23AF9D7B0043B223 /* TransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferView.xib; sourceTree = "<group>"; };
+		EBB3361623B54CF1007923F9 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		EBB3361723B54CF1007923F9 /* AboutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		EBD3501B238DB91B008AACA2 /* Slidecoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slidecoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD3501E238DB91B008AACA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBD35020238DB91B008AACA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				EB6AA84623AA5F6600938BB6 /* UsersView.xib */,
 				EB6803C023B02685003456AC /* UserViewController.swift */,
 				EB6803C123B02685003456AC /* UserView.xib */,
+				EBB3361623B54CF1007923F9 /* AboutViewController.swift */,
+				EBB3361723B54CF1007923F9 /* AboutView.xib */,
 			);
 			path = Authorized;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
 				EBD35035238DBAA9008AACA2 /* AuthView.xib in Resources */,
 				EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */,
+				EBB3361923B54CF1007923F9 /* AboutView.xib in Resources */,
 				EB839F0123AF9D7B0043B223 /* TransferView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +373,7 @@
 				EB6AA85123AAD43E00938BB6 /* SecretRequest.swift in Sources */,
 				EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */,
 				EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */,
+				EBB3361823B54CF1007923F9 /* AboutViewController.swift in Sources */,
 				EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */,
 				EB6803C223B02685003456AC /* UserViewController.swift in Sources */,
 				EBD3504C238DC2CD008AACA2 /* LoginParser.swift in Sources */,
