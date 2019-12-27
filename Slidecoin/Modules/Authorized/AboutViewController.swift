@@ -29,7 +29,7 @@ final class AboutViewController: UIViewController {
     }
     
     @IBAction private func goWeb() {
-        guard let url = URL(string: "http://dima.pythonanywhere.com") else { return }
+        guard let url = URL(string: RequestFactory.endpointRoot) else { return }
         let svc = SFSafariViewController(url: url)
         svc.modalPresentationStyle = .currentContext
         present(svc, animated: true, completion: nil)

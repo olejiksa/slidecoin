@@ -10,7 +10,7 @@ import Toolkit
 
 struct RequestFactory {
     
-    static let endpointRoot = "http://dima.pythonanywhere.com/"
+    static let endpointRoot = "https://dima.pythonanywhere.com/"
     
     static func login(username: String, password: String) -> RequestConfig<LoginParser> {
         let request = LoginRequest(username: username, password: password)

@@ -117,9 +117,9 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="T2o-xc-HTH" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="PUj-pw-whR"/>
+                <constraint firstItem="T2o-xc-HTH" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="PUj-pw-whR"/>
                 <constraint firstAttribute="bottom" secondItem="T2o-xc-HTH" secondAttribute="bottom" id="X4c-Jf-5PK"/>
-                <constraint firstItem="T2o-xc-HTH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YCx-f9-Nim"/>
+                <constraint firstItem="T2o-xc-HTH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YCx-f9-Nim"/>
                 <constraint firstItem="T2o-xc-HTH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nRi-hh-OPa"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
