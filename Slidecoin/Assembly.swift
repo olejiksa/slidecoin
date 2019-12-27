@@ -12,6 +12,5 @@ final class Assembly {
     
     static let alertService: AlertServiceProtocol = AlertService()
     static let credentialsService: CredentialsServiceProtocol = CredentialsService()
-    static let keyboardService: KeyboardServiceProtocol = KeyboardService()
     static let requestSender: RequestSenderProtocol = RequestSender()
 }

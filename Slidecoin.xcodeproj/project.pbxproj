@@ -10,6 +10,7 @@
 		EB09B47C23ABADC200680ABC /* TokenRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */; };
 		EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */; };
 		EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47F23ABAEEA00680ABC /* AccessToken.swift */; };
+		EB1A236323B62B8400E21318 /* KeyboardAdjuster in Frameworks */ = {isa = PBXBuildFile; productRef = EB1A236223B62B8400E21318 /* KeyboardAdjuster */; };
 		EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */; };
 		EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB219950238DD2E1008A8772 /* RegistrationView.xib */; };
 		EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */; };
@@ -114,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1A236323B62B8400E21318 /* KeyboardAdjuster in Frameworks */,
 				EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */,
 				EBEF6A5B238EF36A008FD4F6 /* Toolkit in Frameworks */,
 			);
@@ -284,6 +286,7 @@
 			name = Slidecoin;
 			packageProductDependencies = (
 				EBEF6A5A238EF36A008FD4F6 /* Toolkit */,
+				EB1A236223B62B8400E21318 /* KeyboardAdjuster */,
 			);
 			productName = Slidecur;
 			productReference = EBD3501B238DB91B008AACA2 /* Slidecoin.app */;
@@ -313,6 +316,9 @@
 				Base,
 			);
 			mainGroup = EBD35012238DB91B008AACA2;
+			packageReferences = (
+				EB1A236123B62B8400E21318 /* XCRemoteSwiftPackageReference "KeyboardAdjuster" */,
+			);
 			productRefGroup = EBD3501C238DB91B008AACA2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -582,7 +588,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		EB1A236123B62B8400E21318 /* XCRemoteSwiftPackageReference "KeyboardAdjuster" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lionheart/KeyboardAdjuster";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		EB1A236223B62B8400E21318 /* KeyboardAdjuster */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB1A236123B62B8400E21318 /* XCRemoteSwiftPackageReference "KeyboardAdjuster" */;
+			productName = KeyboardAdjuster;
+		};
 		EBEF6A5A238EF36A008FD4F6 /* Toolkit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Toolkit;

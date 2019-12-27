@@ -94,7 +94,6 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7aq-Mq-Mq7">
                                     <rect key="frame" x="20" y="302" width="335" height="54"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="ict-aj-qR1"/>
                                         <constraint firstAttribute="height" constant="54" id="zwc-LU-6K5"/>
                                     </constraints>
                                 </stackView>

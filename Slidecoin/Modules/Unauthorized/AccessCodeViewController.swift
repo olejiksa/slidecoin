@@ -14,7 +14,6 @@ final class AccessCodeViewController: UIViewController {
     // MARK: Private Properties
     
     private let alertService = Assembly.alertService
-    private let keyboardService = Assembly.keyboardService
     private let requestSender = Assembly.requestSender
     private var formValidationHelper: FormValidationHelper?
     
@@ -33,30 +32,16 @@ final class AccessCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupDelegates()
+        setupKeyboard()
         setupNavigationBar()
         setupFormValidationHelper()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        keyboardService.register()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        keyboardService.unregister()
     }
     
     
     // MARK: Private
     
-    private func setupDelegates() {
-        keyboardService.view = view
-        keyboardService.scrollView = scrollView
-        accessCodeField.delegate = keyboardService
+    private func setupKeyboard() {
+        scrollView.bottomAnchor.constraint(lessThanOrEqualTo: keyboardLayoutGuide.topAnchor).isActive = true
     }
     
     private func setupNavigationBar() {

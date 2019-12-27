@@ -7,6 +7,7 @@
 //
 
 import AuthenticationServices
+import KeyboardAdjuster
 import Toolkit
 import UIKit
 
@@ -16,7 +17,6 @@ final class AuthViewController: UIViewController {
     
     private let alertService = Assembly.alertService
     private let credentialsService = Assembly.credentialsService
-    private let keyboardService = Assembly.keyboardService
     private let requestSender = Assembly.requestSender
 
     private var formValidationHelper: FormValidationHelper?
@@ -43,22 +43,10 @@ final class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupDelegates()
+        setupKeyboard()
         setupNavigationBar()
         setupAppleIDAuthButton()
         setupButtonNavigationHelper()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        keyboardService.register()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        keyboardService.unregister()
     }
     
     
@@ -90,11 +78,8 @@ final class AuthViewController: UIViewController {
     
     // MARK: Private
     
-    private func setupDelegates() {
-        keyboardService.view = view
-        keyboardService.scrollView = scrollView
-        usernameField.delegate = keyboardService
-        passwordField.delegate = keyboardService
+    private func setupKeyboard() {
+        scrollView.bottomAnchor.constraint(lessThanOrEqualTo: keyboardLayoutGuide.topAnchor).isActive = true
     }
     
     private func setupNavigationBar() {
