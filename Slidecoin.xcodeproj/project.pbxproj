@@ -11,6 +11,9 @@
 		EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */; };
 		EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47F23ABAEEA00680ABC /* AccessToken.swift */; };
 		EB1A236323B62B8400E21318 /* KeyboardAdjuster in Frameworks */ = {isa = PBXBuildFile; productRef = EB1A236223B62B8400E21318 /* KeyboardAdjuster */; };
+		EB1A236523B634DE00E21318 /* TabBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1A236423B634DE00E21318 /* TabBarBuilder.swift */; };
+		EB1A236823B636CB00E21318 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1A236623B636CB00E21318 /* StoreViewController.swift */; };
+		EB1A236923B636CB00E21318 /* StoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB1A236723B636CB00E21318 /* StoreView.xib */; };
 		EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */; };
 		EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB219950238DD2E1008A8772 /* RegistrationView.xib */; };
 		EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */; };
@@ -61,6 +64,9 @@
 		EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequest.swift; sourceTree = "<group>"; };
 		EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenParser.swift; sourceTree = "<group>"; };
 		EB09B47F23ABAEEA00680ABC /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		EB1A236423B634DE00E21318 /* TabBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBuilder.swift; sourceTree = "<group>"; };
+		EB1A236623B636CB00E21318 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		EB1A236723B636CB00E21318 /* StoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreView.xib; sourceTree = "<group>"; };
 		EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EB219950238DD2E1008A8772 /* RegistrationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationView.xib; sourceTree = "<group>"; };
 		EB3D037A238E956000E5BAE9 /* Slidecoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slidecoin.entitlements; sourceTree = "<group>"; };
@@ -153,6 +159,9 @@
 				EB6803C123B02685003456AC /* UserView.xib */,
 				EBB3361623B54CF1007923F9 /* AboutViewController.swift */,
 				EBB3361723B54CF1007923F9 /* AboutView.xib */,
+				EB1A236623B636CB00E21318 /* StoreViewController.swift */,
+				EB1A236723B636CB00E21318 /* StoreView.xib */,
+				EB1A236423B634DE00E21318 /* TabBarBuilder.swift */,
 			);
 			path = Authorized;
 			sourceTree = "<group>";
@@ -339,6 +348,7 @@
 				EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */,
 				EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */,
 				EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */,
+				EB1A236923B636CB00E21318 /* StoreView.xib in Resources */,
 				EB6AA83E23AA54D300938BB6 /* PreRestoreView.xib in Resources */,
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
 				EBD35035238DBAA9008AACA2 /* AuthView.xib in Resources */,
@@ -364,6 +374,7 @@
 				EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */,
 				EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */,
 				EB6AA84423AA589500938BB6 /* User.swift in Sources */,
+				EB1A236523B634DE00E21318 /* TabBarBuilder.swift in Sources */,
 				EB09B47C23ABADC200680ABC /* TokenRefreshRequest.swift in Sources */,
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
 				EB6AA84B23AAB77000938BB6 /* CredentialsService.swift in Sources */,
@@ -374,6 +385,7 @@
 				EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */,
 				EB6803BE23B00DA1003456AC /* AccessCodeViewController.swift in Sources */,
 				EB839F0023AF9D7B0043B223 /* TransferViewController.swift in Sources */,
+				EB1A236823B636CB00E21318 /* StoreViewController.swift in Sources */,
 				EBD35034238DBAA9008AACA2 /* AuthViewController.swift in Sources */,
 				EB6AA84223AA585000938BB6 /* UsersParser.swift in Sources */,
 				EB6AA85123AAD43E00938BB6 /* SecretRequest.swift in Sources */,

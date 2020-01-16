@@ -67,9 +67,8 @@ final class RegistrationViewController: UIViewController {
                             login.message = username
                             self.credentialsService.updateCredentials(with: login)
                             
-                            let vc = MainViewController(login: login)
-                            let nvc = UINavigationController(rootViewController: vc)
-                            mySceneDelegate.window?.rootViewController = nvc
+                            let tabBarController = TabBarBuilder.build(with: login)
+                            mySceneDelegate.window?.rootViewController = tabBarController
                         }
                     } else {
                         let alert = self.alertService.alert(login.message)

@@ -9,7 +9,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
-                <outlet property="containerView" destination="7aq-Mq-Mq7" id="xUG-so-9c1"/>
                 <outlet property="loginButton" destination="G2X-8R-uiw" id="Zi1-jf-kqp"/>
                 <outlet property="passwordField" destination="vd3-Gl-K8e" id="Fo4-pg-TOV"/>
                 <outlet property="registrationButton" destination="gbl-UV-WJg" id="xGp-oH-I7n"/>
@@ -29,12 +28,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efv-nK-JTq">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="645"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="571"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4Rp-8R-F1H">
                                     <rect key="frame" x="20" y="20" width="335" height="188"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя учетной записи пользователя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgX-VN-BOw">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя пользователя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgX-VN-BOw">
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -43,7 +42,7 @@
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ri8-Q8-t4e">
                                             <rect key="frame" x="0.0" y="32.5" width="335" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пароль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prA-3o-C57">
                                             <rect key="frame" x="0.0" y="78.5" width="335" height="20.5"/>
@@ -54,7 +53,7 @@
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vd3-Gl-K8e">
                                             <rect key="frame" x="0.0" y="111" width="335" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                         </textField>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxj-Ux-biI">
                                             <rect key="frame" x="0.0" y="157" width="335" height="31"/>
@@ -72,13 +71,12 @@
                                         </stackView>
                                     </subviews>
                                 </stackView>
-                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-8R-uiw" customClass="BigButton" customModule="Toolkit">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-8R-uiw" customClass="BigButton" customModule="Toolkit">
                                     <rect key="frame" x="20" y="228" width="335" height="54"/>
                                     <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="YMO-xF-WLZ"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <state key="normal" title="Войти в систему">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -91,25 +89,18 @@
                                         <action selector="loginDidTap" destination="-1" eventType="touchUpInside" id="grW-Ud-Vrz"/>
                                     </connections>
                                 </button>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7aq-Mq-Mq7">
-                                    <rect key="frame" x="20" y="302" width="335" height="54"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="54" id="zwc-LU-6K5"/>
-                                    </constraints>
-                                </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Еще не пользуетесь Слайдовалютой?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHR-E6-Fqc">
-                                    <rect key="frame" x="20" y="396" width="335" height="20.5"/>
+                                    <rect key="frame" x="20" y="322" width="335" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbl-UV-WJg" customClass="BigButton" customModule="Toolkit">
-                                    <rect key="frame" x="20" y="436.5" width="335" height="54"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbl-UV-WJg" customClass="BigButton" customModule="Toolkit">
+                                    <rect key="frame" x="20" y="362.5" width="335" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="1xc-yP-9CX"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <state key="normal" title="Зарегистрироваться">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -123,18 +114,17 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Забыли пароль?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-zb-kik">
-                                    <rect key="frame" x="20" y="530.5" width="335" height="20.5"/>
+                                    <rect key="frame" x="20" y="456.5" width="335" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvI-3T-guY" customClass="BigButton" customModule="Toolkit">
-                                    <rect key="frame" x="20" y="571" width="335" height="54"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvI-3T-guY" customClass="BigButton" customModule="Toolkit">
+                                    <rect key="frame" x="20" y="497" width="335" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="S7l-Zj-de9"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <state key="normal" title="Восстановить доступ">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -150,14 +140,11 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="7aq-Mq-Mq7" secondAttribute="trailing" priority="250" constant="20" id="0G4-AX-Ey7"/>
                                 <constraint firstAttribute="trailing" secondItem="SvI-3T-guY" secondAttribute="trailing" constant="20" id="0kf-h5-5AQ"/>
                                 <constraint firstItem="SvI-3T-guY" firstAttribute="top" secondItem="gmK-zb-kik" secondAttribute="bottom" constant="20" id="1kL-ZZ-2T1"/>
-                                <constraint firstItem="7aq-Mq-Mq7" firstAttribute="centerX" secondItem="efv-nK-JTq" secondAttribute="centerX" id="3nN-bQ-yw7"/>
                                 <constraint firstItem="LHR-E6-Fqc" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="Bra-x5-WqS"/>
                                 <constraint firstAttribute="trailing" secondItem="LHR-E6-Fqc" secondAttribute="trailing" constant="20" id="FMF-lQ-MgY"/>
                                 <constraint firstItem="G2X-8R-uiw" firstAttribute="top" secondItem="4Rp-8R-F1H" secondAttribute="bottom" constant="20" id="G8r-WC-Cl3"/>
-                                <constraint firstItem="7aq-Mq-Mq7" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" priority="250" constant="20" id="GMU-Xl-7M4"/>
                                 <constraint firstAttribute="bottom" secondItem="SvI-3T-guY" secondAttribute="bottom" constant="20" id="H2A-hL-0VM"/>
                                 <constraint firstItem="4Rp-8R-F1H" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="H9j-qK-RUb"/>
                                 <constraint firstAttribute="trailing" secondItem="G2X-8R-uiw" secondAttribute="trailing" constant="20" id="M8q-FK-TCH"/>
@@ -166,9 +153,8 @@
                                 <constraint firstItem="gbl-UV-WJg" firstAttribute="top" secondItem="LHR-E6-Fqc" secondAttribute="bottom" constant="20" id="SXL-Gd-F8J"/>
                                 <constraint firstAttribute="trailing" secondItem="4Rp-8R-F1H" secondAttribute="trailing" constant="20" id="Wfq-of-g1g"/>
                                 <constraint firstAttribute="trailing" secondItem="gbl-UV-WJg" secondAttribute="trailing" constant="20" id="bd5-o1-s4v"/>
-                                <constraint firstItem="LHR-E6-Fqc" firstAttribute="top" secondItem="7aq-Mq-Mq7" secondAttribute="bottom" constant="40" id="daa-3i-mFE"/>
                                 <constraint firstItem="G2X-8R-uiw" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="kmQ-U4-ttC"/>
-                                <constraint firstItem="7aq-Mq-Mq7" firstAttribute="top" secondItem="G2X-8R-uiw" secondAttribute="bottom" constant="20" id="met-iG-6v4"/>
+                                <constraint firstItem="LHR-E6-Fqc" firstAttribute="top" secondItem="G2X-8R-uiw" secondAttribute="bottom" constant="40" id="lbt-oD-xhS"/>
                                 <constraint firstItem="gbl-UV-WJg" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="sMw-ZF-dWY"/>
                                 <constraint firstItem="gmK-zb-kik" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="sro-g5-X7e"/>
                                 <constraint firstItem="4Rp-8R-F1H" firstAttribute="top" secondItem="efv-nK-JTq" secondAttribute="top" constant="20" id="wOg-FM-8aR"/>

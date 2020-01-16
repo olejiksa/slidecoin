@@ -21,16 +21,19 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let vc: UIViewController
         if let login = credentialsService.getCredentials() {
-            vc = MainViewController(login: login)
+            let tabBarController = TabBarBuilder.build(with: login)
+            window?.rootViewController = tabBarController
         } else {
-            vc = AuthViewController()
+            let vc = AuthViewController()
+            let nvc = UINavigationController(rootViewController: vc)
+            
+            let tabBarController = UITabBarController()
+            tabBarController.viewControllers = [nvc]
+            
+            window?.rootViewController = nvc
         }
         
-        let nvc = UINavigationController(rootViewController: vc)
-        
-        window?.rootViewController = nvc
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
     }
