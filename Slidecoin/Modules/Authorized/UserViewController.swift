@@ -102,13 +102,13 @@ final class UserViewController: UIViewController {
     private func requestLogout() {
         logoutButton.showLoading()
         
-        let accessConfig = RequestFactory.logoutAccess(accessToken)
+        let accessConfig = RequestFactory.logoutAccess(accessToken: accessToken)
         requestSender.send(config: accessConfig) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success:
-                let refreshConfig = RequestFactory.logoutRefresh(self.refreshToken)
+                let refreshConfig = RequestFactory.logoutRefresh(refreshToken: self.refreshToken)
                 self.requestSender.send(config: refreshConfig) { [weak self] result in
                     guard let self = self else { return }
                     

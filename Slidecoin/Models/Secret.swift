@@ -8,6 +8,5 @@
 
 struct Secret: Decodable {
     
-    let answer: Int?
-    let message: String?
+    let answer: Int
 }

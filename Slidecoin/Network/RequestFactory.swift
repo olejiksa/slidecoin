@@ -11,6 +11,7 @@ import Toolkit
 struct RequestFactory {
     
     static let endpointRoot = "https://dima.pythonanywhere.com/"
+    static let endpointWeb = "https://slide-wallet.web.app"
     
     static func login(username: String, password: String) -> RequestConfig<LoginParser> {
         let request = LoginRequest(username: username, password: password)
@@ -33,8 +34,8 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func users() -> RequestConfig<UsersParser> {
-        let request = UsersRequest()
+    static func users(accessToken: String) -> RequestConfig<UsersParser> {
+        let request = UsersRequest(accessToken: accessToken)
         let parser = UsersParser()
     
         return .init(request: request, parser: parser)
@@ -47,21 +48,21 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func tokenRefresh(_ refreshToken: String) -> RequestConfig<AccessTokenParser> {
+    static func tokenRefresh(refreshToken: String) -> RequestConfig<AccessTokenParser> {
         let request = TokenRefreshRequest(refreshToken: refreshToken)
         let parser = AccessTokenParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func logoutAccess(_ accessToken: String) -> RequestConfig<MessageParser> {
+    static func logoutAccess(accessToken: String) -> RequestConfig<MessageParser> {
         let request = LogoutAccessRequest(accessToken: accessToken)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func logoutRefresh(_ refreshToken: String) -> RequestConfig<MessageParser> {
+    static func logoutRefresh(refreshToken: String) -> RequestConfig<MessageParser> {
         let request = LogoutRefreshRequest(refreshToken: refreshToken)
         let parser = MessageParser()
         

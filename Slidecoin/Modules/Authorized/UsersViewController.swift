@@ -24,6 +24,8 @@ final class UsersViewController: UIViewController {
     private var users: [User] = []
     private var searchedUsers: [User] = []
     
+    private var login: Login
+    
     
     // MARK: Outlets
     
@@ -31,6 +33,16 @@ final class UsersViewController: UIViewController {
     
     
     // MARK: Lifecycle
+    
+    init(login: Login) {
+        self.login = login
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +76,12 @@ final class UsersViewController: UIViewController {
     }
     
     private func obtainUsers() {
-        let config = RequestFactory.users()
+        guard
+            let accessToken = login.accessToken,
+            let refreshToken = login.refreshToken
+        else { return }
+        
+        let config = RequestFactory.users(accessToken: accessToken)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
@@ -75,8 +92,28 @@ final class UsersViewController: UIViewController {
                     self.tableView.reloadData()
                     
                 case .failure(let error):
-                    let alert = self.alertService.alert(error.localizedDescription)
-                    self.present(alert, animated: true)
+                    switch error {
+                    case is ResponseError:
+                        let refreshConfig = RequestFactory.tokenRefresh(refreshToken: refreshToken)
+                        self.requestSender.send(config: refreshConfig) { [weak self] result in
+                            guard let self = self else { return }
+                            
+                            switch result {
+                            case .success(let accessToken):
+                                self.login.accessToken = accessToken
+                                self.credentialsService.updateCredentials(with: self.login)
+                                self.obtainUsers()
+                                
+                            case .failure(let error):
+                                let alert = self.alertService.alert(error.localizedDescription)
+                                self.present(alert, animated: true)
+                            }
+                        }
+                        
+                    default:
+                        let alert = self.alertService.alert(error.localizedDescription)
+                        self.present(alert, animated: true)
+                    }
                 }
             }
         }

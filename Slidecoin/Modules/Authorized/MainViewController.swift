@@ -77,7 +77,7 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction private func allUsersDidTap() {
-        let vc = UsersViewController()
+        let vc = UsersViewController(login: login)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -114,12 +114,13 @@ final class MainViewController: UIViewController {
             
             switch result {
             case .success(let secret):
-                if let answer = secret.answer {
-                    let alert = self.alertService.alert(String(answer),
-                                                        title: "Secret")
-                    self.present(alert, animated: true)
-                } else {
-                    let refreshConfig = RequestFactory.tokenRefresh(refreshToken)
+                let alert = self.alertService.alert(String(secret.answer), title: "Secret")
+                self.present(alert, animated: true)
+                
+            case .failure(let error):
+                switch error {
+                case is ResponseError:
+                    let refreshConfig = RequestFactory.tokenRefresh(refreshToken: refreshToken)
                     self.requestSender.send(config: refreshConfig) { [weak self] result in
                         guard let self = self else { return }
                         
@@ -134,11 +135,11 @@ final class MainViewController: UIViewController {
                             self.present(alert, animated: true)
                         }
                     }
+                    
+                default:
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
                 }
-                
-            case .failure(let error):
-                let alert = self.alertService.alert(error.localizedDescription)
-                self.present(alert, animated: true)
             }
         }
     }
