@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
+                <outlet property="balanceLabel" destination="V0A-rV-2Xb" id="7Cb-jm-9Ks"/>
                 <outlet property="changePasswordButton" destination="bX2-pN-sb2" id="WsG-uz-hDC"/>
                 <outlet property="changePictureButton" destination="cho-nC-oMt" id="fYX-Jd-6RN"/>
                 <outlet property="emailLabel" destination="Yuj-rC-ENW" id="a2X-53-p1n"/>
@@ -113,7 +114,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7wV-nk-Uy2">
-                            <rect key="frame" x="140" y="34.5" width="244" height="71.5"/>
+                            <rect key="frame" x="140" y="21.5" width="244" height="97"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuW-UA-hB6">
                                     <rect key="frame" x="0.0" y="0.0" width="244" height="20.5"/>
@@ -129,6 +130,12 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Адрес электронной почты" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yuj-rC-ENW">
                                     <rect key="frame" x="0.0" y="51" width="244" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Баланс" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0A-rV-2Xb">
+                                    <rect key="frame" x="0.0" y="76.5" width="244" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

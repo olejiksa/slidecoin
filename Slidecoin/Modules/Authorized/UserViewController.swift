@@ -16,6 +16,7 @@ final class UserViewController: UIViewController {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var surnameLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
+    @IBOutlet private weak var balanceLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var logoutButton: BigButton!
     @IBOutlet private weak var transferButton: BigButton!
@@ -68,7 +69,7 @@ final class UserViewController: UIViewController {
     // MARK: Actions
     
     @IBAction private func transferMoneyDidTap() {
-        let vc = TransferViewController()
+        let vc = TransferViewController(receiver: user)
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }
@@ -112,6 +113,7 @@ final class UserViewController: UIViewController {
         nameLabel.text = user.name
         surnameLabel.text = user.surname
         emailLabel.text = user.email
+        balanceLabel.text = String(user.balance)
     }
     
     private func setupUserTile() {

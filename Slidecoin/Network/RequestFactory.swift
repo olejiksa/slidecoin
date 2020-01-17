@@ -70,6 +70,14 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
+    static func transfer(sender: User, receiver: User, amount: Int) -> RequestConfig<MessageParser> {
+        let request = TransferRequest(senderID: sender.id,
+                                      receiverID: receiver.id, amount: amount)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
     static func deleteAllUsers() -> RequestConfig<LoginParser> {
         let request = DeleteAllUsersRequest()
         let parser = LoginParser()

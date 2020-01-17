@@ -45,6 +45,7 @@ final class AuthViewController: UIViewController {
         
         setupKeyboard()
         setupNavigationBar()
+        setupAppleIDAuthButton()
         setupButtonNavigationHelper()
     }
     

@@ -89,7 +89,7 @@ final class UsersViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let users):
-                    self.users = users
+                    self.users = users.sorted(by: { $0.balance > $1.balance })
                     self.tableView.reloadData()
                     
                 case .failure(let error):

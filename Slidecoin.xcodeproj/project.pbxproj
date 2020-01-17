@@ -16,6 +16,7 @@
 		EB1A236923B636CB00E21318 /* StoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB1A236723B636CB00E21318 /* StoreView.xib */; };
 		EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */; };
 		EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB219950238DD2E1008A8772 /* RegistrationView.xib */; };
+		EB24546523D19ABB00C99EFB /* TransferRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24546423D19ABB00C99EFB /* TransferRequest.swift */; };
 		EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */; };
 		EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */; };
 		EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB3D0383238EAD4400E5BAE9 /* MainView.xib */; };
@@ -72,6 +73,7 @@
 		EB1A236723B636CB00E21318 /* StoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreView.xib; sourceTree = "<group>"; };
 		EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EB219950238DD2E1008A8772 /* RegistrationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationView.xib; sourceTree = "<group>"; };
+		EB24546423D19ABB00C99EFB /* TransferRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferRequest.swift; sourceTree = "<group>"; };
 		EB3D037A238E956000E5BAE9 /* Slidecoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slidecoin.entitlements; sourceTree = "<group>"; };
 		EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -255,12 +257,13 @@
 				EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */,
 				EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */,
 				EBD35051238DC317008AACA2 /* RegistrationRequest.swift */,
-				EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */,
-				EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */,
-				EB6AA83F23AA57E800938BB6 /* UsersRequest.swift */,
-				EBCE475E23D175840047F953 /* RestoreRequest.swift */,
 				EBCE476023D181790047F953 /* ResetEmailRequest.swift */,
 				EBCE476223D1916F0047F953 /* ResetRequest.swift */,
+				EBCE475E23D175840047F953 /* RestoreRequest.swift */,
+				EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */,
+				EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */,
+				EB24546423D19ABB00C99EFB /* TransferRequest.swift */,
+				EB6AA83F23AA57E800938BB6 /* UsersRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
 				EBCE475F23D175840047F953 /* RestoreRequest.swift in Sources */,
 				EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */,
+				EB24546523D19ABB00C99EFB /* TransferRequest.swift in Sources */,
 				EB6AA84D23AAD39900938BB6 /* SecretParser.swift in Sources */,
 				EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */,
 				EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */,

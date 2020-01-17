@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import MessageUI
-import SafariServices
-import StoreKit
 import Toolkit
 
 final class MainViewController: UIViewController {
@@ -30,7 +27,6 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var sumLabel: UILabel!
     @IBOutlet private weak var secretButton: BigButton!
-    @IBOutlet private weak var earnButton: BigButton!
     
     
     // MARK: Lifecycle
@@ -68,12 +64,6 @@ final class MainViewController: UIViewController {
         else { return }
         
         obtainSecret(accessToken, refreshToken)
-    }
-    
-    @IBAction private func earnDidTap() {
-        sum += 0.01
-        sumLabel.text = "\(sum) ₿"
-        credentialsService.updateMoney(with: sum)
     }
     
     @IBAction private func allUsersDidTap() {
@@ -150,7 +140,7 @@ final class MainViewController: UIViewController {
             let refreshToken = login.refreshToken
         else { return }
         
-        let user = User(id: 0, balance: 0, username: login.message,
+        let user = User(id: 0, balance: 100, username: login.message,
                         email: "oasamoylov@icloud.com", name: "Oleg", surname: "Samoylov")
         
         let vc = UserViewController(user: user,
