@@ -9,8 +9,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
+                <outlet property="changePasswordButton" destination="bX2-pN-sb2" id="WsG-uz-hDC"/>
+                <outlet property="changePictureButton" destination="cho-nC-oMt" id="fYX-Jd-6RN"/>
+                <outlet property="emailLabel" destination="Yuj-rC-ENW" id="a2X-53-p1n"/>
                 <outlet property="imageView" destination="3Wm-nX-Qj7" id="xhA-WL-JsH"/>
                 <outlet property="logoutButton" destination="3qV-ac-rio" id="rap-QH-Gqg"/>
+                <outlet property="nameLabel" destination="IuW-UA-hB6" id="nHe-Di-dXO"/>
+                <outlet property="surnameLabel" destination="0sa-Uj-XTi" id="mta-H5-kjE"/>
+                <outlet property="transferButton" destination="vOd-m6-Wfw" id="3yw-bb-ZOf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,13 +36,31 @@
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cqg-oL-OaU">
-                            <rect key="frame" x="20" y="140" width="374" height="202"/>
+                            <rect key="frame" x="20" y="140" width="374" height="276"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOd-m6-Wfw" customClass="BigButton" customModule="Toolkit">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="k4O-O3-rIi"/>
+                                    </constraints>
+                                    <state key="normal" title="Перевести">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="transferMoneyDidTap" destination="-1" eventType="touchUpInside" id="bAf-hX-B1Q"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cho-nC-oMt" customClass="BigButton" customModule="Toolkit">
+                                    <rect key="frame" x="0.0" y="74" width="374" height="54"/>
+                                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="54" id="gZS-jX-xAC"/>
                                     </constraints>
                                     <state key="normal" title="Сменить фото">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,11 +71,11 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="changeUserTileDidTap:" destination="-1" eventType="touchUpInside" id="Zdn-cb-Utp"/>
+                                        <action selector="changeUserTileDidTap:" destination="-1" eventType="touchUpInside" id="vlL-6a-5nc"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX2-pN-sb2" customClass="BigButton" customModule="Toolkit">
-                                    <rect key="frame" x="0.0" y="74" width="374" height="54"/>
+                                    <rect key="frame" x="0.0" y="148" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="J1m-wx-dU3"/>
@@ -69,7 +93,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qV-ac-rio" customClass="BigButton" customModule="Toolkit">
-                                    <rect key="frame" x="0.0" y="148" width="374" height="54"/>
+                                    <rect key="frame" x="0.0" y="222" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="rnO-rH-xag"/>
@@ -88,25 +112,42 @@
                                 </button>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привет! Можешь поставить сюда свою картинку, дружище" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuW-UA-hB6">
-                            <rect key="frame" x="140" y="49.5" width="254" height="41"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7wV-nk-Uy2">
+                            <rect key="frame" x="140" y="34.5" width="244" height="71.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuW-UA-hB6">
+                                    <rect key="frame" x="0.0" y="0.0" width="244" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фамилия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sa-Uj-XTi">
+                                    <rect key="frame" x="0.0" y="25.5" width="244" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Адрес электронной почты" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yuj-rC-ENW">
+                                    <rect key="frame" x="0.0" y="51" width="244" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="IuW-UA-hB6" firstAttribute="leading" secondItem="3Wm-nX-Qj7" secondAttribute="trailing" constant="20" id="6ex-Wf-X1o"/>
                         <constraint firstItem="3Wm-nX-Qj7" firstAttribute="top" secondItem="T2o-xc-HTH" secondAttribute="top" constant="20" id="C6p-AF-fQf"/>
+                        <constraint firstItem="7wV-nk-Uy2" firstAttribute="centerY" secondItem="3Wm-nX-Qj7" secondAttribute="centerY" id="C99-4e-xc1"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3Wm-nX-Qj7" secondAttribute="trailing" constant="20" id="DPi-gX-p9e"/>
-                        <constraint firstItem="zgd-XH-4y4" firstAttribute="trailing" secondItem="IuW-UA-hB6" secondAttribute="trailing" constant="20" id="RKm-1Z-bVF"/>
+                        <constraint firstItem="7wV-nk-Uy2" firstAttribute="leading" secondItem="3Wm-nX-Qj7" secondAttribute="trailing" constant="20" id="HuI-Ui-8RU"/>
                         <constraint firstAttribute="bottom" secondItem="Cqg-oL-OaU" secondAttribute="bottom" constant="20" id="VJY-he-hjI"/>
                         <constraint firstItem="Cqg-oL-OaU" firstAttribute="leading" secondItem="T2o-xc-HTH" secondAttribute="leading" constant="20" id="ZV5-Nf-bgG"/>
-                        <constraint firstItem="IuW-UA-hB6" firstAttribute="centerY" secondItem="3Wm-nX-Qj7" secondAttribute="centerY" id="fEu-h2-XhO"/>
                         <constraint firstAttribute="trailing" secondItem="Cqg-oL-OaU" secondAttribute="trailing" constant="20" id="j7U-yd-7r2"/>
                         <constraint firstItem="Cqg-oL-OaU" firstAttribute="centerX" secondItem="T2o-xc-HTH" secondAttribute="centerX" id="lvu-hg-OKO"/>
                         <constraint firstItem="3Wm-nX-Qj7" firstAttribute="leading" secondItem="T2o-xc-HTH" secondAttribute="leading" constant="20" id="nHt-Q5-fro"/>
                         <constraint firstItem="Cqg-oL-OaU" firstAttribute="top" secondItem="3Wm-nX-Qj7" secondAttribute="bottom" constant="20" id="raP-5b-mBU"/>
+                        <constraint firstAttribute="trailing" secondItem="7wV-nk-Uy2" secondAttribute="trailing" constant="30" id="sud-O3-rob"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="zgd-XH-4y4"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="avs-bP-D6D"/>

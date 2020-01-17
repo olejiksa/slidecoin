@@ -22,7 +22,7 @@ final class MainViewController: UIViewController {
     
     private var login: Login
     
-    private var sum: Decimal = 0.0
+    private var sum: Decimal = 100.0
     
     
     // MARK: Outlets
@@ -150,9 +150,13 @@ final class MainViewController: UIViewController {
             let refreshToken = login.refreshToken
         else { return }
         
-        let vc = UserViewController(username: login.message,
+        let user = User(id: 0, balance: 0, username: login.message,
+                        email: "oasamoylov@icloud.com", name: "Oleg", surname: "Samoylov")
+        
+        let vc = UserViewController(user: user,
                                     accessToken: accessToken,
-                                    refreshToken: refreshToken)
+                                    refreshToken: refreshToken,
+                                    isCurrent: true)
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }

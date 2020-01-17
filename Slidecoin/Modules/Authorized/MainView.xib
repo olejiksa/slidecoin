@@ -47,14 +47,14 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-dr-s8V" customClass="BigButton" customModule="Toolkit">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJH-5Z-c7k" customClass="BigButton" customModule="Toolkit">
                                             <rect key="frame" x="0.0" y="91.5" width="335" height="54"/>
                                             <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="54" id="Qm9-5N-f58"/>
+                                                <constraint firstAttribute="height" constant="54" id="XTs-9l-BuH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <state key="normal" title="Перевести">
+                                            <state key="normal" title="Транзакции">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
@@ -63,7 +63,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="allUsersDidTap" destination="-1" eventType="touchUpInside" id="IQQ-TS-yqY"/>
+                                                <action selector="allUsersDidTap" destination="-1" eventType="touchUpInside" id="ebT-XP-VP3"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUT-Qg-9SJ" customClass="BigButton" customModule="Toolkit">

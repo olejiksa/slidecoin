@@ -20,9 +20,38 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func register(username: String, password: String) -> RequestConfig<LoginParser> {
-        let request = RegistrationRequest(username: username, password: password)
+    static func register(username: String,
+                         password: String,
+                         email: String,
+                         name: String,
+                         surname: String) -> RequestConfig<LoginParser> {
+        let request = RegistrationRequest(username: username,
+                                          password: password,
+                                          email: email,
+                                          name: name,
+                                          surname: surname)
         let parser = LoginParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    static func restore(email: String) -> RequestConfig<MessageParser> {
+        let request = RestoreRequest(email: email)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    static func reset(accessToken: String, oldPassword: String, newPassword: String) -> RequestConfig<MessageParser> {
+        let request = ResetRequest(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    static func reset(newPassword: String, token: String) -> RequestConfig<MessageParser> {
+        let request = ResetEmailRequest(newPassword: newPassword, token: token)
+        let parser = MessageParser()
         
         return .init(request: request, parser: parser)
     }

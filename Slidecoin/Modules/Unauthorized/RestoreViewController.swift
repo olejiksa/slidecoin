@@ -14,11 +14,15 @@ final class RestoreViewController: UIViewController {
     // MARK: Private Properties
 
     private let alertService = Assembly.alertService
+    private let requestSender = Assembly.requestSender
     private var formValidationHelper: FormValidationHelper?
+    
+    private let accessToken: String
     
     
     // MARK: Outlets
     
+    @IBOutlet private weak var oldPasswordField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var repeatPasswordField: UITextField!
     @IBOutlet private weak var doneButton: BigButton!
@@ -27,6 +31,16 @@ final class RestoreViewController: UIViewController {
     
     
     // MARK: Lifecycle
+    
+    init(accessToken: String) {
+        self.accessToken = accessToken
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +58,7 @@ final class RestoreViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Сброс пароля"
+        navigationItem.title = "Изменение пароля"
         
         if presentingViewController != nil {
             let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
@@ -55,19 +69,45 @@ final class RestoreViewController: UIViewController {
     }
     
     private func setupFormValidationHelper() {
-        let textFields: [UITextField] = [passwordField, repeatPasswordField]
+        let textFields: [UITextField] = [oldPasswordField, passwordField, repeatPasswordField]
         formValidationHelper = FormValidationHelper(textFields: textFields,
                                                     button: doneButton,
                                                     stackView: stackView)
     }
     
     @IBAction private func changePasswordDidTap() {
-        doneButton.showLoading()
+        guard
+            let oldPassword = oldPasswordField.text,
+            let newPassword = passwordField.text
+        else { return }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.doneButton.hideLoading()
+        doneButton.showLoading()
             
-            self.dismiss(animated: true)
+        let config = RequestFactory.reset(accessToken: accessToken,
+                                          oldPassword: oldPassword,
+                                          newPassword: newPassword)
+        requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+
+            self.doneButton.hideLoading()
+
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let message):
+                    let alert = self.alertService.alert(message.message,
+                                                        title: "Сообщение",
+                                                        isDestructive: false) { _ in
+                        if message.message.contains("success") {
+                            self.dismiss(animated: true)
+                        }
+                    }
+                    self.present(alert, animated: true)
+
+                case .failure(let error):
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
+                }
+            }
         }
     }
     

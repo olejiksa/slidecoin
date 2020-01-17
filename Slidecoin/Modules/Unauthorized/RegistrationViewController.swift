@@ -23,6 +23,8 @@ final class RegistrationViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet private weak var usernameField: UITextField!
+    @IBOutlet private weak var nameField: UITextField!
+    @IBOutlet private weak var surnameField: UITextField!
     @IBOutlet private weak var emailField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var repeatPasswordField: UITextField!
@@ -47,10 +49,17 @@ final class RegistrationViewController: UIViewController {
     @IBAction private func registrationDidTap() {
         guard
             let username = usernameField.text,
-            let password = passwordField.text
+            let password = passwordField.text,
+            let email = emailField.text,
+            let name = nameField.text,
+            let surname = surnameField.text
         else { return }
             
-        let config = RequestFactory.register(username: username, password: password)
+        let config = RequestFactory.register(username: username,
+                                             password: password,
+                                             email: email,
+                                             name: name,
+                                             surname: surname)
         doneButton.showLoading()
         
         requestSender.send(config: config) { [weak self] result in
@@ -100,7 +109,12 @@ final class RegistrationViewController: UIViewController {
     }
     
     private func setupFormValidationHelper() {
-        let textFields: [UITextField] = [usernameField, emailField, passwordField, repeatPasswordField]
+        let textFields: [UITextField] = [usernameField,
+                                         nameField,
+                                         surnameField,
+                                         emailField,
+                                         passwordField,
+                                         repeatPasswordField]
         formValidationHelper = FormValidationHelper(textFields: textFields,
                                                     button: doneButton,
                                                     stackView: stackView)

@@ -12,10 +12,11 @@ final class TabBarBuilder {
     
     static func build(with login: Login) -> UITabBarController {
         let mainNvc = self.mainNvc(with: login)
+        let usersNvc = self.usersNvc(with: login)
         let storeNvc = self.storeNvc()
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [mainNvc, storeNvc]
+        tabBarController.viewControllers = [mainNvc, usersNvc, storeNvc]
         
         return tabBarController
     }
@@ -30,6 +31,19 @@ final class TabBarBuilder {
         let mainImage = UIImage(systemName: "house")
         let mainSelectedImage = UIImage(systemName: "house.fill")
         mainNvc.tabBarItem = UITabBarItem(title: "Главная",
+                                          image: mainImage,
+                                          selectedImage: mainSelectedImage)
+        
+        return mainNvc
+    }
+    
+    private static func usersNvc(with login: Login) -> UINavigationController {
+        let mainVc = UsersViewController(login: login)
+        let mainNvc = UINavigationController(rootViewController: mainVc)
+        
+        let mainImage = UIImage(systemName: "person.3")
+        let mainSelectedImage = UIImage(systemName: "person.3.fill")
+        mainNvc.tabBarItem = UITabBarItem(title: "Пользователи",
                                           image: mainImage,
                                           selectedImage: mainSelectedImage)
         

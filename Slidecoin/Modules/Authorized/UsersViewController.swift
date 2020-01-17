@@ -13,7 +13,7 @@ final class UsersViewController: UIViewController {
 
     // MARK: Private Properties
     
-    private let cellID = "\(UITableViewCell.self)"
+    private let cellID = "\(SubtitleCell.self)"
     
     private let alertService = Assembly.alertService
     private let credentialsService = Assembly.credentialsService
@@ -59,13 +59,14 @@ final class UsersViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Пользователи"
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let deleteAllUsersButton = UIBarButtonItem(title: "Удалить всех", style: .done, target: self, action: #selector(allUsersDidDelete))
         navigationItem.rightBarButtonItem = deleteAllUsersButton
     }
     
     private func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(SubtitleCell.self, forCellReuseIdentifier: cellID)
     }
     
     private func setupSearchController() {
@@ -121,7 +122,10 @@ final class UsersViewController: UIViewController {
     
     private func filterContent(for searchText: String) {
         searchedUsers = users.filter {
-            $0.username.localizedCaseInsensitiveContains(searchText)
+            $0.username.localizedCaseInsensitiveContains(searchText) ||
+            $0.email.localizedCaseInsensitiveContains(searchText) ||
+            $0.name.localizedCaseInsensitiveContains(searchText) ||
+            $0.surname.localizedCaseInsensitiveContains(searchText)
         }
     }
     
@@ -184,10 +188,11 @@ extension UsersViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? SubtitleCell
         let user = searchController.isActive ? searchedUsers[indexPath.row] : users[indexPath.row]
-        cell.textLabel?.text = user.username
-        return cell
+        cell?.textLabel?.text = user.username
+        cell?.detailTextLabel?.text = user.email
+        return cell ?? UITableViewCell(frame: .zero)
     }
 }
 
@@ -199,10 +204,18 @@ extension UsersViewController: UITableViewDataSource {
 extension UsersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = TransferViewController()
-        let nvc = UINavigationController(rootViewController: vc)
+        guard
+            let accessToken = login.accessToken,
+            let refreshToken = login.refreshToken
+        else { return }
         
-        present(nvc, animated: true)
+        let user = searchController.isActive ? searchedUsers[indexPath.row] : users[indexPath.row]
+        
+        let vc = UserViewController(user: user,
+                                    accessToken: accessToken,
+                                    refreshToken: refreshToken,
+                                    isCurrent: false)
+        navigationController?.pushViewController(vc, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

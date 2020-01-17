@@ -21,7 +21,7 @@ final class PreRestoreViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var usernameField: UITextField!
+    @IBOutlet private weak var emailField: UITextField!
     @IBOutlet private weak var doneButton: BigButton!
     @IBOutlet private weak var stackView: UIStackView!
     
@@ -44,7 +44,7 @@ final class PreRestoreViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Восстановление доступа"
+        navigationItem.title = "Восстановление"
         
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
                                           target: self,
@@ -53,41 +53,34 @@ final class PreRestoreViewController: UIViewController {
     }
     
     private func setupFormValidationHelper() {
-        formValidationHelper = FormValidationHelper(textFields: [usernameField],
+        formValidationHelper = FormValidationHelper(textFields: [emailField],
                                                     button: doneButton,
                                                     stackView: stackView)
     }
 
     @IBAction private func continueDidTap() {
-//        guard let login = usernameField.text else { return }
+        guard let email = emailField.text else { return }
         
         doneButton.showLoading()
             
-//        let config = RequestFactory.users(accessToken: accessToken)
-//        requestSender.send(config: config) { [weak self] result in
-//            guard let self = self else { return }
-//
-//            self.doneButton.hideLoading()
-//
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .success(let users):
-//                    let usernames = users.map { $0.username }
-//                    if usernames.contains(login) {
-                        let vc = AccessCodeViewController()
-                        self.navigationController?.pushViewController(vc, animated: true)
-//                    } else {
-//                        let text = "User \(login) doesn't exist"
-//                        let alert = self.alertService.alert(text)
-//                        self.present(alert, animated: true)
-//                    }
-//
-//                case .failure(let error):
-//                    let alert = self.alertService.alert(error.localizedDescription)
-//                    self.present(alert, animated: true)
-//                }
-//            }
-//        }
+        let config = RequestFactory.restore(email: email)
+        requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+
+            self.doneButton.hideLoading()
+
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    let vc = AccessCodeViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+
+                case .failure(let error):
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
+                }
+            }
+        }
     }
     
     @objc private func close() {

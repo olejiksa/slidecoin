@@ -10,9 +10,17 @@ import Toolkit
 
 final class RegistrationRequest: BasePostRequest {
     
-    init(username: String, password: String) {
+    init(username: String,
+         password: String,
+         email: String,
+         name: String,
+         surname: String) {
         let endpoint = "\(RequestFactory.endpointRoot)registration"
-        let parameters = ["username": username, "password": password]
+        let parameters = ["username": username,
+                          "password": password,
+                          "email": email,
+                          "name": name,
+                          "surname": surname]
         
         super.init(endpoint: endpoint, parameters: parameters)
     }

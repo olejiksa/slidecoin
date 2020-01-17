@@ -13,15 +13,22 @@ final class UserViewController: UIViewController {
 
     // MARK: Outlets
     
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var surnameLabel: UILabel!
+    @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var logoutButton: BigButton!
+    @IBOutlet private weak var transferButton: BigButton!
+    @IBOutlet private weak var changePictureButton: BigButton!
+    @IBOutlet private weak var changePasswordButton: BigButton!
     
     
     // MARK: Private Properties
     
-    private let username: String
+    private let user: User
     private let accessToken: String
     private let refreshToken: String
+    private let isCurrent: Bool
     
     private var imagePicker: ImagePicker?
     private let alertService = Assembly.alertService
@@ -32,12 +39,14 @@ final class UserViewController: UIViewController {
     
     // MARK: Lifecycle
     
-    init(username: String,
+    init(user: User,
          accessToken: String,
-         refreshToken: String) {
-        self.username = username
+         refreshToken: String,
+         isCurrent: Bool) {
+        self.user = user
         self.accessToken = accessToken
         self.refreshToken = refreshToken
+        self.isCurrent = isCurrent
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -50,18 +59,26 @@ final class UserViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
+        setupUserDescription()
         setupUserTile()
+        setupView()
     }
     
     
     // MARK: Actions
+    
+    @IBAction private func transferMoneyDidTap() {
+        let vc = TransferViewController()
+        let nvc = UINavigationController(rootViewController: vc)
+        present(nvc, animated: true)
+    }
     
     @IBAction private func changeUserTileDidTap(_ sender: UIButton) {
         imagePicker?.present(from: sender)
     }
     
     @IBAction private func changePasswordDidTap() {
-        let vc = RestoreViewController()
+        let vc = RestoreViewController(accessToken: accessToken)
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }
@@ -81,12 +98,20 @@ final class UserViewController: UIViewController {
     // MARK: Private
     
     private func setupNavigationBar() {
-        navigationItem.title = username
+        navigationItem.title = user.username
         
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
-                                          target: self,
-                                          action: #selector(close))
-        navigationItem.rightBarButtonItem = closeButton
+        if presentingViewController != nil {
+            let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                              target: self,
+                                              action: #selector(close))
+            navigationItem.rightBarButtonItem = closeButton
+        }
+    }
+    
+    private func setupUserDescription() {
+        nameLabel.text = user.name
+        surnameLabel.text = user.surname
+        emailLabel.text = user.email
     }
     
     private func setupUserTile() {
@@ -97,6 +122,16 @@ final class UserViewController: UIViewController {
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
+    }
+    
+    private func setupView() {
+        if isCurrent {
+            transferButton.isHidden = true
+        } else {
+            changePictureButton.isHidden = true
+            changePasswordButton.isHidden = true
+            logoutButton.isHidden = true
+        }
     }
     
     private func requestLogout() {

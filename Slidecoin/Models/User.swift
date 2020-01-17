@@ -8,7 +8,12 @@
 
 struct User: Decodable {
     
+    let id: Int
+    let balance: Int
     let username: String
+    let email: String
+    let name: String
+    let surname: String
 }
 
 struct UsersResponse: Decodable {
