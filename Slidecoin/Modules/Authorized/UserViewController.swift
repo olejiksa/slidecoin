@@ -14,7 +14,6 @@ final class UserViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var surnameLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var balanceLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
@@ -100,6 +99,7 @@ final class UserViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = user.username
+        navigationItem.largeTitleDisplayMode = .never
         
         if presentingViewController != nil {
             let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
@@ -110,8 +110,7 @@ final class UserViewController: UIViewController {
     }
     
     private func setupUserDescription() {
-        nameLabel.text = user.name
-        surnameLabel.text = user.surname
+        nameLabel.text = "\(user.name) \(user.surname)"
         emailLabel.text = user.email
         balanceLabel.text = String(user.balance)
     }

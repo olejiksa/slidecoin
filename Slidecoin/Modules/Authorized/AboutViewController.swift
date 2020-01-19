@@ -39,9 +39,8 @@ final class AboutViewController: UIViewController {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["oasamoylov@icloud.com"])
-            mail.setSubject("Slidecoin")
-            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            mail.setToRecipients(["slidecurrence@gmail.com"])
+            mail.setSubject("Обращение")
             
             present(mail, animated: true)
         } else {

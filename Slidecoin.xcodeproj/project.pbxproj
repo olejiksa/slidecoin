@@ -20,6 +20,11 @@
 		EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */; };
 		EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */; };
 		EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB3D0383238EAD4400E5BAE9 /* MainView.xib */; };
+		EB513F3023D2E29C00780EB9 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F2E23D2E29C00780EB9 /* ProductCell.swift */; };
+		EB513F3123D2E29C00780EB9 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB513F2F23D2E29C00780EB9 /* ProductCell.xib */; };
+		EB513F3423D2ED8D00780EB9 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F3223D2ED8D00780EB9 /* ProductViewController.swift */; };
+		EB513F3523D2ED8D00780EB9 /* ProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB513F3323D2ED8D00780EB9 /* ProductView.xib */; };
+		EB513F3723D2EDFC00780EB9 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F3623D2EDFC00780EB9 /* Product.swift */; };
 		EB60C34123B3E30F009CC4EC /* LogoutAccessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */; };
 		EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */; };
 		EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34423B3EE9E009CC4EC /* MessageParser.swift */; };
@@ -78,6 +83,11 @@
 		EB3D037C238E956000E5BAE9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB3D0383238EAD4400E5BAE9 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		EB513F2E23D2E29C00780EB9 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		EB513F2F23D2E29C00780EB9 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
+		EB513F3223D2ED8D00780EB9 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		EB513F3323D2ED8D00780EB9 /* ProductView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductView.xib; sourceTree = "<group>"; };
+		EB513F3623D2EDFC00780EB9 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAccessRequest.swift; sourceTree = "<group>"; };
 		EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRefreshRequest.swift; sourceTree = "<group>"; };
 		EB60C34423B3EE9E009CC4EC /* MessageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageParser.swift; sourceTree = "<group>"; };
@@ -170,6 +180,10 @@
 				EB1A236623B636CB00E21318 /* StoreViewController.swift */,
 				EB1A236723B636CB00E21318 /* StoreView.xib */,
 				EB1A236423B634DE00E21318 /* TabBarBuilder.swift */,
+				EB513F2E23D2E29C00780EB9 /* ProductCell.swift */,
+				EB513F2F23D2E29C00780EB9 /* ProductCell.xib */,
+				EB513F3223D2ED8D00780EB9 /* ProductViewController.swift */,
+				EB513F3323D2ED8D00780EB9 /* ProductView.xib */,
 			);
 			path = Authorized;
 			sourceTree = "<group>";
@@ -276,6 +290,7 @@
 				EB6AA84E23AAD3E500938BB6 /* Secret.swift */,
 				EB6AA84323AA589500938BB6 /* User.swift */,
 				EB60C34623B3F024009CC4EC /* Message.swift */,
+				EB513F3623D2EDFC00780EB9 /* Product.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -358,11 +373,13 @@
 				EBD3502B238DB91F008AACA2 /* LaunchScreen.storyboard in Resources */,
 				EB6AA84823AA5F6600938BB6 /* UsersView.xib in Resources */,
 				EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */,
+				EB513F3523D2ED8D00780EB9 /* ProductView.xib in Resources */,
 				EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */,
 				EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */,
 				EB1A236923B636CB00E21318 /* StoreView.xib in Resources */,
 				EB6AA83E23AA54D300938BB6 /* PreRestoreView.xib in Resources */,
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
+				EB513F3123D2E29C00780EB9 /* ProductCell.xib in Resources */,
 				EBD35035238DBAA9008AACA2 /* AuthView.xib in Resources */,
 				EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */,
 				EBB3361923B54CF1007923F9 /* AboutView.xib in Resources */,
@@ -404,6 +421,7 @@
 				EB1A236823B636CB00E21318 /* StoreViewController.swift in Sources */,
 				EBD35034238DBAA9008AACA2 /* AuthViewController.swift in Sources */,
 				EB6AA84223AA585000938BB6 /* UsersParser.swift in Sources */,
+				EB513F3423D2ED8D00780EB9 /* ProductViewController.swift in Sources */,
 				EB6AA85123AAD43E00938BB6 /* SecretRequest.swift in Sources */,
 				EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */,
 				EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */,
@@ -414,8 +432,10 @@
 				EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */,
 				EB61FB5323ABDBC500DC8E21 /* Assembly.swift in Sources */,
 				EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */,
+				EB513F3023D2E29C00780EB9 /* ProductCell.swift in Sources */,
 				EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */,
 				EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */,
+				EB513F3723D2EDFC00780EB9 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

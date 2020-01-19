@@ -20,10 +20,10 @@ final class UsersViewController: UIViewController {
     private let requestSender = Assembly.requestSender
     
     private let searchController = UISearchController(searchResultsController: nil)
+    private var refreshControl = UIRefreshControl()
     
     private var users: [User] = []
     private var searchedUsers: [User] = []
-    
     private var login: Login
     
     
@@ -49,6 +49,7 @@ final class UsersViewController: UIViewController {
         
         setupNavigationBar()
         setupTableView()
+        setupRefreshControl()
         setupSearchController()
         
         obtainUsers()
@@ -67,6 +68,12 @@ final class UsersViewController: UIViewController {
     
     private func setupTableView() {
         tableView.register(SubtitleCell.self, forCellReuseIdentifier: cellID)
+    }
+    
+    private func setupRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните для обновления")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     private func setupSearchController() {
@@ -89,6 +96,7 @@ final class UsersViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let users):
+                    self.refreshControl.endRefreshing()
                     self.users = users.sorted(by: { $0.balance > $1.balance })
                     self.tableView.reloadData()
                     
@@ -103,15 +111,18 @@ final class UsersViewController: UIViewController {
                             case .success(let accessToken):
                                 self.login.accessToken = accessToken
                                 self.credentialsService.updateCredentials(with: self.login)
+                                self.refreshControl.beginRefreshing()
                                 self.obtainUsers()
                                 
                             case .failure(let error):
+                                self.refreshControl.endRefreshing()
                                 let alert = self.alertService.alert(error.localizedDescription)
                                 self.present(alert, animated: true)
                             }
                         }
                         
                     default:
+                        self.refreshControl.endRefreshing()
                         let alert = self.alertService.alert(error.localizedDescription)
                         self.present(alert, animated: true)
                     }
@@ -138,6 +149,10 @@ final class UsersViewController: UIViewController {
         }
         
         self.present(alert, animated: true)
+    }
+    
+    @objc private func refresh() {
+        obtainUsers()
     }
     
     private func deleteAll() {
