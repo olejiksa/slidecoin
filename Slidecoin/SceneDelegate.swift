@@ -21,8 +21,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        if let login = credentialsService.getCredentials() {
-            let tabBarController = TabBarBuilder.build(with: login)
+        if let info = credentialsService.getCredentials() {
+            let tabBarController = TabBarBuilder.build(login: info.0, user: info.1)
             window?.rootViewController = tabBarController
         } else {
             let vc = AuthViewController()

@@ -22,7 +22,7 @@ final class RestoreViewController: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet private weak var oldPasswordField: UITextField!
+    @IBOutlet private weak var currentPasswordField: UITextField!
     @IBOutlet private weak var passwordField: UITextField!
     @IBOutlet private weak var repeatPasswordField: UITextField!
     @IBOutlet private weak var doneButton: BigButton!
@@ -69,7 +69,7 @@ final class RestoreViewController: UIViewController {
     }
     
     private func setupFormValidationHelper() {
-        let textFields: [UITextField] = [oldPasswordField, passwordField, repeatPasswordField]
+        let textFields: [UITextField] = [currentPasswordField, passwordField, repeatPasswordField]
         formValidationHelper = FormValidationHelper(textFields: textFields,
                                                     button: doneButton,
                                                     stackView: stackView)
@@ -77,14 +77,14 @@ final class RestoreViewController: UIViewController {
     
     @IBAction private func changePasswordDidTap() {
         guard
-            let oldPassword = oldPasswordField.text,
+            let currentPassword = currentPasswordField.text,
             let newPassword = passwordField.text
         else { return }
         
         doneButton.showLoading()
             
         let config = RequestFactory.reset(accessToken: accessToken,
-                                          oldPassword: oldPassword,
+                                          currentPassword: currentPassword,
                                           newPassword: newPassword)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }

@@ -42,8 +42,12 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func reset(accessToken: String, oldPassword: String, newPassword: String) -> RequestConfig<MessageParser> {
-        let request = ResetRequest(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword)
+    static func reset(accessToken: String,
+                      currentPassword: String,
+                      newPassword: String) -> RequestConfig<MessageParser> {
+        let request = ResetRequest(accessToken: accessToken,
+                                   currentPassword: currentPassword,
+                                   newPassword: newPassword)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
@@ -63,13 +67,6 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func users(accessToken: String) -> RequestConfig<UsersParser> {
-        let request = UsersRequest(accessToken: accessToken)
-        let parser = UsersParser()
-    
-        return .init(request: request, parser: parser)
-    }
-    
     static func transfer(sender: User, receiver: User, amount: Int) -> RequestConfig<MessageParser> {
         let request = TransferRequest(senderID: sender.id,
                                       receiverID: receiver.id, amount: amount)
@@ -78,10 +75,24 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
+    static func users(accessToken: String) -> RequestConfig<UsersParser> {
+        let request = UsersRequest(accessToken: accessToken)
+        let parser = UsersParser()
+    
+        return .init(request: request, parser: parser)
+    }
+    
     static func deleteAllUsers() -> RequestConfig<LoginParser> {
         let request = DeleteAllUsersRequest()
         let parser = LoginParser()
     
+        return .init(request: request, parser: parser)
+    }
+    
+    static func transactions() -> RequestConfig<TransactionsParser> {
+        let request = TransactionsRequest()
+        let parser = TransactionsParser()
+        
         return .init(request: request, parser: parser)
     }
     

@@ -10,40 +10,59 @@ import Foundation
 
 protocol CredentialsServiceProtocol: class {
     
-    func getCredentials() -> Login?
+    func getCredentials() -> (Login, User)?
     func removeCredentials()
-    func updateCredentials(with login: Login)
     
-    func getMoney() -> Decimal?
-    func updateMoney(with sum: Decimal)
+    func updateLogin(with login: Login)
+    func updateUser(_ user: User)
 }
 
 
 final class CredentialsService: CredentialsServiceProtocol {
     
-    func getCredentials() -> Login? {
+    func getCredentials() -> (Login, User)? {
         let defaults = UserDefaults.standard
         
         guard
-            let message = defaults.string(forKey: "message"),
             let accessToken = defaults.string(forKey: "access_token"),
-            let refreshToken = defaults.string(forKey: "refresh_token")
+            let refreshToken = defaults.string(forKey: "refresh_token"),
+            let username = defaults.string(forKey: "username"),
+            let email = defaults.string(forKey: "email"),
+            let name = defaults.string(forKey: "name"),
+            let surname = defaults.string(forKey: "surname")
         else { return nil }
         
-        return .init(refreshToken: refreshToken,
-                     accessToken: accessToken,
-                     message: message)
+        let balance = defaults.integer(forKey: "balance")
+        let userID = defaults.integer(forKey: "user_id")
+        
+        let login = Login(refreshToken: refreshToken,
+                          accessToken: accessToken,
+                          message: username)
+        
+        let user = User(id: userID,
+                        balance: balance,
+                        username: username,
+                        email: email,
+                        name: name,
+                        surname: surname)
+        
+        return (login, user)
     }
     
     func removeCredentials() {
         let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "message")
+        
         defaults.removeObject(forKey: "access_token")
         defaults.removeObject(forKey: "refresh_token")
-        defaults.removeObject(forKey: "money")
+        defaults.removeObject(forKey: "username")
+        defaults.removeObject(forKey: "email")
+        defaults.removeObject(forKey: "name")
+        defaults.removeObject(forKey: "surname")
+        defaults.removeObject(forKey: "balance")
+        defaults.removeObject(forKey: "user_id")
     }
     
-    func updateCredentials(with login: Login) {
+    func updateLogin(with login: Login) {
         guard
             let accessToken = login.accessToken,
             let refreshToken = login.refreshToken
@@ -55,20 +74,13 @@ final class CredentialsService: CredentialsServiceProtocol {
         defaults.set(refreshToken, forKey: "refresh_token")
     }
     
-    func getMoney() -> Decimal? {
+    func updateUser(_ user: User) {
         let defaults = UserDefaults.standard
-        
-        guard
-            let string = defaults.string(forKey: "money"),
-            let sum = Decimal(string: string)
-        else { return nil }
-        
-        return sum
-    }
-    
-    func updateMoney(with sum: Decimal) {
-        let defaults = UserDefaults.standard
-        let string = String(describing: sum)
-        defaults.set(string, forKey: "money")
+        defaults.set(user.id, forKey: "user_id")
+        defaults.set(user.balance, forKey: "balance")
+        defaults.set(user.email, forKey: "email")
+        defaults.set(user.name, forKey: "name")
+        defaults.set(user.surname, forKey: "surname")
+        defaults.set(user.username, forKey: "username")
     }
 }

@@ -25,6 +25,11 @@
 		EB513F3423D2ED8D00780EB9 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F3223D2ED8D00780EB9 /* ProductViewController.swift */; };
 		EB513F3523D2ED8D00780EB9 /* ProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB513F3323D2ED8D00780EB9 /* ProductView.xib */; };
 		EB513F3723D2EDFC00780EB9 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F3623D2EDFC00780EB9 /* Product.swift */; };
+		EB513F3923D444C400780EB9 /* TransactionsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F3823D444C400780EB9 /* TransactionsRequest.swift */; };
+		EB513F3B23D4456400780EB9 /* TransactionsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F3A23D4456400780EB9 /* TransactionsParser.swift */; };
+		EB513F3D23D4458900780EB9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F3C23D4458900780EB9 /* Transaction.swift */; };
+		EB513F4023D4475900780EB9 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB513F3E23D4475900780EB9 /* TransactionsViewController.swift */; };
+		EB513F4123D4475900780EB9 /* TransactionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB513F3F23D4475900780EB9 /* TransactionsView.xib */; };
 		EB60C34123B3E30F009CC4EC /* LogoutAccessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */; };
 		EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */; };
 		EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34423B3EE9E009CC4EC /* MessageParser.swift */; };
@@ -88,6 +93,11 @@
 		EB513F3223D2ED8D00780EB9 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		EB513F3323D2ED8D00780EB9 /* ProductView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductView.xib; sourceTree = "<group>"; };
 		EB513F3623D2EDFC00780EB9 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		EB513F3823D444C400780EB9 /* TransactionsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsRequest.swift; sourceTree = "<group>"; };
+		EB513F3A23D4456400780EB9 /* TransactionsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsParser.swift; sourceTree = "<group>"; };
+		EB513F3C23D4458900780EB9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		EB513F3E23D4475900780EB9 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		EB513F3F23D4475900780EB9 /* TransactionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsView.xib; sourceTree = "<group>"; };
 		EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAccessRequest.swift; sourceTree = "<group>"; };
 		EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRefreshRequest.swift; sourceTree = "<group>"; };
 		EB60C34423B3EE9E009CC4EC /* MessageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageParser.swift; sourceTree = "<group>"; };
@@ -156,6 +166,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB513F4223D447CD00780EB9 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */,
+				EB3D0383238EAD4400E5BAE9 /* MainView.xib */,
+				EBB3361623B54CF1007923F9 /* AboutViewController.swift */,
+				EBB3361723B54CF1007923F9 /* AboutView.xib */,
+				EB513F3E23D4475900780EB9 /* TransactionsViewController.swift */,
+				EB513F3F23D4475900780EB9 /* TransactionsView.xib */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		EB513F4323D447D600780EB9 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */,
+				EB6AA84623AA5F6600938BB6 /* UsersView.xib */,
+				EB6803C023B02685003456AC /* UserViewController.swift */,
+				EB6803C123B02685003456AC /* UserView.xib */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		EB513F4423D447D900780EB9 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				EB1A236623B636CB00E21318 /* StoreViewController.swift */,
+				EB1A236723B636CB00E21318 /* StoreView.xib */,
+				EB513F2E23D2E29C00780EB9 /* ProductCell.swift */,
+				EB513F2F23D2E29C00780EB9 /* ProductCell.xib */,
+				EB513F3223D2ED8D00780EB9 /* ProductViewController.swift */,
+				EB513F3323D2ED8D00780EB9 /* ProductView.xib */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		EB6AA84923AAB74600938BB6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,23 +214,12 @@
 		EB936EEB23B3944E0006FBAE /* Authorized */ = {
 			isa = PBXGroup;
 			children = (
+				EB513F4423D447D900780EB9 /* Store */,
+				EB513F4323D447D600780EB9 /* Users */,
+				EB513F4223D447CD00780EB9 /* Main */,
 				EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */,
 				EB839EFF23AF9D7B0043B223 /* TransferView.xib */,
-				EB3D0382238EAD4400E5BAE9 /* MainViewController.swift */,
-				EB3D0383238EAD4400E5BAE9 /* MainView.xib */,
-				EB6AA84523AA5F6600938BB6 /* UsersViewController.swift */,
-				EB6AA84623AA5F6600938BB6 /* UsersView.xib */,
-				EB6803C023B02685003456AC /* UserViewController.swift */,
-				EB6803C123B02685003456AC /* UserView.xib */,
-				EBB3361623B54CF1007923F9 /* AboutViewController.swift */,
-				EBB3361723B54CF1007923F9 /* AboutView.xib */,
-				EB1A236623B636CB00E21318 /* StoreViewController.swift */,
-				EB1A236723B636CB00E21318 /* StoreView.xib */,
 				EB1A236423B634DE00E21318 /* TabBarBuilder.swift */,
-				EB513F2E23D2E29C00780EB9 /* ProductCell.swift */,
-				EB513F2F23D2E29C00780EB9 /* ProductCell.xib */,
-				EB513F3223D2ED8D00780EB9 /* ProductViewController.swift */,
-				EB513F3323D2ED8D00780EB9 /* ProductView.xib */,
 			);
 			path = Authorized;
 			sourceTree = "<group>";
@@ -258,6 +294,7 @@
 				EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */,
 				EB60C34423B3EE9E009CC4EC /* MessageParser.swift */,
 				EB6AA84C23AAD39900938BB6 /* SecretParser.swift */,
+				EB513F3A23D4456400780EB9 /* TransactionsParser.swift */,
 				EB6AA84123AA585000938BB6 /* UsersParser.swift */,
 			);
 			path = Parsers;
@@ -278,6 +315,7 @@
 				EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */,
 				EB24546423D19ABB00C99EFB /* TransferRequest.swift */,
 				EB6AA83F23AA57E800938BB6 /* UsersRequest.swift */,
+				EB513F3823D444C400780EB9 /* TransactionsRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -291,6 +329,7 @@
 				EB6AA84323AA589500938BB6 /* User.swift */,
 				EB60C34623B3F024009CC4EC /* Message.swift */,
 				EB513F3623D2EDFC00780EB9 /* Product.swift */,
+				EB513F3C23D4458900780EB9 /* Transaction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -376,6 +415,7 @@
 				EB513F3523D2ED8D00780EB9 /* ProductView.xib in Resources */,
 				EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */,
 				EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */,
+				EB513F4123D4475900780EB9 /* TransactionsView.xib in Resources */,
 				EB1A236923B636CB00E21318 /* StoreView.xib in Resources */,
 				EB6AA83E23AA54D300938BB6 /* PreRestoreView.xib in Resources */,
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
@@ -412,11 +452,13 @@
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
 				EB6AA84B23AAB77000938BB6 /* CredentialsService.swift in Sources */,
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
+				EB513F4023D4475900780EB9 /* TransactionsViewController.swift in Sources */,
 				EB60C34723B3F024009CC4EC /* Message.swift in Sources */,
 				EB60C34123B3E30F009CC4EC /* LogoutAccessRequest.swift in Sources */,
 				EB6AA84F23AAD3E500938BB6 /* Secret.swift in Sources */,
 				EBD3501F238DB91B008AACA2 /* AppDelegate.swift in Sources */,
 				EB6803BE23B00DA1003456AC /* AccessCodeViewController.swift in Sources */,
+				EB513F3923D444C400780EB9 /* TransactionsRequest.swift in Sources */,
 				EB839F0023AF9D7B0043B223 /* TransferViewController.swift in Sources */,
 				EB1A236823B636CB00E21318 /* StoreViewController.swift in Sources */,
 				EBD35034238DBAA9008AACA2 /* AuthViewController.swift in Sources */,
@@ -430,12 +472,14 @@
 				EB6803C223B02685003456AC /* UserViewController.swift in Sources */,
 				EBD3504C238DC2CD008AACA2 /* LoginParser.swift in Sources */,
 				EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */,
+				EB513F3B23D4456400780EB9 /* TransactionsParser.swift in Sources */,
 				EB61FB5323ABDBC500DC8E21 /* Assembly.swift in Sources */,
 				EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */,
 				EB513F3023D2E29C00780EB9 /* ProductCell.swift in Sources */,
 				EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */,
 				EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */,
 				EB513F3723D2EDFC00780EB9 /* Product.swift in Sources */,
+				EB513F3D23D4458900780EB9 /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
