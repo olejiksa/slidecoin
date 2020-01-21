@@ -11,12 +11,23 @@ import Toolkit
 
 final class TransferRequest: BasePostRequest {
 
-    init(senderID: Int, receiverID: Int, amount: Int) {
+    private let accessToken: String
+    
+    init(accessToken: String,
+         receiverUsername: String,
+         amount: Int) {
+        self.accessToken = accessToken
+        
         let endpoint = "\(RequestFactory.endpointRoot)transaction"
-        let parameters = ["sender_id": senderID,
-                          "receiver_id": receiverID,
-                          "amount": amount]
+        let parameters = ["receiver_username": receiverUsername,
+                          "amount": amount] as [String: Any]
         
         super.init(endpoint: endpoint, parameters: parameters)
+    }
+    
+    override public var urlRequest: URLRequest? {
+        var request = super.urlRequest
+        request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        return request
     }
 }

@@ -7,5 +7,6 @@
 //
 
 struct Message: Decodable {
+    
     let message: String
 }

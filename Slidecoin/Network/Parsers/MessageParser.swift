@@ -11,11 +11,12 @@ import Toolkit
 
 final class MessageParser: ParserProtocol {
     
-    func parse(data: Data) -> Message? {
+    func parse(data: Data) -> String? {
         do {
             let jsonDecorder = JSONDecoder()
             jsonDecorder.dateDecodingStrategy = .iso8601
-            return try jsonDecorder.decode(Message.self, from: data)
+            let response = try jsonDecorder.decode(Message.self, from: data)
+            return response.message
         } catch  {
             print(error)
             return nil

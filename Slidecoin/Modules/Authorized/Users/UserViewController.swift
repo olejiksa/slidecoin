@@ -13,6 +13,7 @@ final class UserViewController: UIViewController {
 
     // MARK: Outlets
     
+    @IBOutlet private weak var identifierLabel: UILabel!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var balanceLabel: UILabel!
@@ -26,6 +27,7 @@ final class UserViewController: UIViewController {
     // MARK: Private Properties
     
     private let user: User
+    private let currentUser: User
     private let accessToken: String
     private let refreshToken: String
     private let isCurrent: Bool
@@ -40,10 +42,12 @@ final class UserViewController: UIViewController {
     // MARK: Lifecycle
     
     init(user: User,
+         currentUser: User,
          accessToken: String,
          refreshToken: String,
          isCurrent: Bool) {
         self.user = user
+        self.currentUser = currentUser
         self.accessToken = accessToken
         self.refreshToken = refreshToken
         self.isCurrent = isCurrent
@@ -68,7 +72,9 @@ final class UserViewController: UIViewController {
     // MARK: Actions
     
     @IBAction private func transferMoneyDidTap() {
-        let vc = TransferViewController(receiver: user)
+        let vc = TransferViewController(accessToken: accessToken,
+                                        currentUser: currentUser,
+                                        receiver: user)
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }
@@ -110,9 +116,10 @@ final class UserViewController: UIViewController {
     }
     
     private func setupUserDescription() {
+        identifierLabel.text = String(user.id)
         nameLabel.text = "\(user.name) \(user.surname)"
         emailLabel.text = user.email
-        balanceLabel.text = String(user.balance)
+        balanceLabel.text = "\(user.balance) ₿"
     }
     
     private func setupUserTile() {
@@ -128,6 +135,9 @@ final class UserViewController: UIViewController {
     private func setupView() {
         if isCurrent {
             transferButton.isHidden = true
+            
+            let interaction = UIContextMenuInteraction(delegate: self)
+            logoutButton.addInteraction(interaction)
         } else {
             changePictureButton.isHidden = true
             changePasswordButton.isHidden = true
@@ -152,14 +162,7 @@ final class UserViewController: UIViewController {
                     
                     switch result {
                     case .success:
-                        self.credentialsService.removeCredentials()
-                        
-                        let scene = UIApplication.shared.connectedScenes.first
-                        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                            let vc = AuthViewController()
-                            let nvc = UINavigationController(rootViewController: vc)
-                            mySceneDelegate.window?.rootViewController = nvc
-                        }
+                        self.doLogout()
                         
                     case .failure(let error):
                         let alert = self.alertService.alert(error.localizedDescription)
@@ -168,11 +171,42 @@ final class UserViewController: UIViewController {
                 }
                 
             case .failure(let error):
-                self.logoutButton.hideLoading()
-                
-                let alert = self.alertService.alert(error.localizedDescription)
-                self.present(alert, animated: true)
+                switch error {
+                case is ResponseError:
+                    let refreshConfig = RequestFactory.logoutRefresh(refreshToken: self.refreshToken)
+                    self.requestSender.send(config: refreshConfig) { [weak self] result in
+                        guard let self = self else { return }
+                        
+                        self.logoutButton.hideLoading()
+                        
+                        switch result {
+                        case .success:
+                            self.doLogout()
+                            
+                        case .failure(let error):
+                            let alert = self.alertService.alert(error.localizedDescription)
+                            self.present(alert, animated: true)
+                        }
+                    }
+                    
+                default:
+                    self.logoutButton.hideLoading()
+                    
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
+                }
             }
+        }
+    }
+    
+    private func doLogout() {
+        self.credentialsService.removeCredentials()
+        
+        let scene = UIApplication.shared.connectedScenes.first
+        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+            let vc = AuthViewController()
+            let nvc = UINavigationController(rootViewController: vc)
+            mySceneDelegate.window?.rootViewController = nvc
         }
     }
     
@@ -189,5 +223,36 @@ extension UserViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
         guard let image = image else { return }
         imageView.image = image
+    }
+}
+
+
+
+
+// MARK: - UIContextMenuInteractionDelegate
+
+extension UserViewController: UIContextMenuInteractionDelegate {
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { actions -> UIMenu? in
+            let forceLogout = UIAction(title: "Выйти принудительно",
+                                       image: UIImage(systemName: "power"),
+                                       attributes: .destructive) { [weak self] action in
+                guard let self = self else { return }
+                                    
+                self.credentialsService.removeCredentials()
+                
+                let scene = UIApplication.shared.connectedScenes.first
+                if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                    let vc = AuthViewController()
+                    let nvc = UINavigationController(rootViewController: vc)
+                    mySceneDelegate.window?.rootViewController = nvc
+                }
+            }
+
+            // Creating main context menu
+            return UIMenu(title: "", children: [forceLogout])
+        }
+        return configuration
     }
 }

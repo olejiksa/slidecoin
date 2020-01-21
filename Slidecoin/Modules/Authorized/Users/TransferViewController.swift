@@ -11,6 +11,8 @@ import UIKit
 
 final class TransferViewController: UIViewController {
     
+    private let accessToken: String
+    private let currentUser: User
     private let receiver: User
     private let alertService = Assembly.alertService
     private let requestSender = Assembly.requestSender
@@ -21,7 +23,9 @@ final class TransferViewController: UIViewController {
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var submitButton: BigButton!
     
-    init(receiver: User) {
+    init(accessToken: String, currentUser: User, receiver: User) {
+        self.accessToken = accessToken
+        self.currentUser = currentUser
         self.receiver = receiver
         
         super.init(nibName: nil, bundle: nil)
@@ -41,19 +45,28 @@ final class TransferViewController: UIViewController {
     @IBAction private func submit() {
         guard
             let amount = amountField.text,
-            let sum = Int(amount)
-        else { return }
+            let sum = Int(amount), sum > 0
+        else {
+            let alert = self.alertService.alert("В поле ввода суммы допущена ошибка. Убедитесь, что число является целым, положительным и не превышает текущий баланс.")
+            present(alert, animated: true)
+            return
+        }
         
-        let me = User(id: 16, balance: 0, username: "", email: "", name: "", surname: "")
-        
-        let config = RequestFactory.transfer(sender: me, receiver: receiver, amount: sum)
+        let config = RequestFactory.transfer(accessToken: accessToken,
+                                             receiver: receiver,
+                                             amount: sum)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
                 switch result {
                 case .success(let message):
-                    let alert = self.alertService.alert(message.message)
+                    let alert = self.alertService.alert(message,
+                                                        title: "Информация",
+                                                        isDestructive: false) {_ in
+                        self.dismiss(animated: true)
+                    }
+                    
                     self.present(alert, animated: true)
                     
                 case .failure(let error):

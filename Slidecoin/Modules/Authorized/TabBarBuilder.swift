@@ -12,7 +12,7 @@ final class TabBarBuilder {
     
     static func build(login: Login, user: User) -> UITabBarController {
         let mainNvc = self.mainNvc(login: login, user: user)
-        let usersNvc = self.usersNvc(login: login)
+        let usersNvc = self.usersNvc(login: login, user: user)
         let storeNvc = self.storeNvc()
         
         let tabBarController = UITabBarController()
@@ -37,8 +37,8 @@ final class TabBarBuilder {
         return mainNvc
     }
     
-    private static func usersNvc(login: Login) -> UINavigationController {
-        let mainVc = UsersViewController(login: login)
+    private static func usersNvc(login: Login, user: User) -> UINavigationController {
+        let mainVc = UsersViewController(login: login, currentUser: user)
         let mainNvc = UINavigationController(rootViewController: mainVc)
         
         let mainImage = UIImage(systemName: "person.3")

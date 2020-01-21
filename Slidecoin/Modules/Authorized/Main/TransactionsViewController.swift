@@ -14,13 +14,27 @@ final class TransactionsViewController: UIViewController {
     private let alertService = Assembly.alertService
     private let requestSender = Assembly.requestSender
     private let cellID = "\(SubtitleCell.self)"
+    private let user: User
     
-    private var refreshControl = UIRefreshControl()
+    private let refreshControl = UIRefreshControl()
     private var isFilterEnabled = false
     
     private var transactions: [Transaction] = []
+    private var filteredTransactions: [Transaction] = []
     
     @IBOutlet private weak var tableView: UITableView!
+    
+    init(user: User) {
+        self.user = user
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +48,7 @@ final class TransactionsViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Транзакции"
+        navigationItem.largeTitleDisplayMode = .never
         
         let filterIcon = UIImage(systemName: "line.horizontal.3.decrease.circle")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: filterIcon,
@@ -61,7 +76,7 @@ final class TransactionsViewController: UIViewController {
                 switch result {
                 case .success(let transactions):
                     self.refreshControl.endRefreshing()
-                    self.transactions = transactions
+                    self.transactions = transactions.reversed()
                     self.tableView.reloadData()
                     
                 case .failure(let error):
@@ -78,8 +93,13 @@ final class TransactionsViewController: UIViewController {
     
     @objc private func filter() {
         isFilterEnabled = !isFilterEnabled
-        let icon = isFilterEnabled ? UIImage(systemName: "line.horizontal.3.decrease.circle.fill") : UIImage(systemName: "line.horizontal.3.decrease.circle")
+        
+        let iconName = "line.horizontal.3.decrease.circle"
+        let icon = isFilterEnabled ? UIImage(systemName: "\(iconName).fill") : UIImage(systemName: iconName)
         navigationItem.rightBarButtonItem?.image = icon
+        
+        filteredTransactions = transactions.filter { $0.senderID == user.id || $0.receiverID == user.id }
+        tableView.reloadData()
     }
 }
 
@@ -90,16 +110,37 @@ final class TransactionsViewController: UIViewController {
 
 extension TransactionsViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Сегодня"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
+        return !isFilterEnabled ? transactions.count : filteredTransactions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? SubtitleCell
-        let transaction = transactions[indexPath.row]
+        let transaction = !isFilterEnabled ? transactions[indexPath.row] : filteredTransactions[indexPath.row]
         cell?.textLabel?.text = "\(transaction.amount) ₿"
-        cell?.textLabel?.textColor = transaction.amount >= 0 ? UIColor.systemGreen : UIColor.systemRed
-        cell?.detailTextLabel?.text = "От \(transaction.senderID) к \(transaction.receiverID)"
+        
+        let condition = transaction.amount < 0 || user.id == transaction.senderID
+        cell?.textLabel?.textColor = condition ? UIColor.systemRed : UIColor.systemGreen
+        
+        switch user.id {
+        case transaction.receiverID:
+            cell?.detailTextLabel?.text = "Пополнение: \(transaction.senderID)"
+            
+        case transaction.senderID:
+            cell?.detailTextLabel?.text = "Перевод: \(transaction.receiverID)"
+            
+        default:
+            cell?.detailTextLabel?.text = "От \(transaction.senderID) к \(transaction.receiverID)"
+        }
+        
         return cell ?? UITableViewCell(frame: .zero)
     }
 }

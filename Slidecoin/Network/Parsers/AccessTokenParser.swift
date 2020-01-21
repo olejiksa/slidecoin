@@ -15,7 +15,8 @@ final class AccessTokenParser: ParserProtocol {
         do {
             let jsonDecorder = JSONDecoder()
             jsonDecorder.dateDecodingStrategy = .iso8601
-            return try jsonDecorder.decode(AccessToken.self, from: data).accessToken
+            let response = try jsonDecorder.decode(AccessToken.self, from: data)
+            return response.accessToken
         } catch  {
             print(error)
             return nil

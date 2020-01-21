@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
                 <outlet property="messageLabel" destination="mnM-02-CXh" id="TeX-dL-Z3H"/>
+                <outlet property="scrollView" destination="hU2-e2-mcF" id="slR-Bn-TL6"/>
                 <outlet property="secretButton" destination="Hgq-lq-8jm" id="pEY-7Y-mJl"/>
                 <outlet property="sumLabel" destination="IaL-uP-s77" id="XJ3-LH-l8U"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

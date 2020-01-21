@@ -94,10 +94,10 @@ final class RestoreViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let message):
-                    let alert = self.alertService.alert(message.message,
+                    let alert = self.alertService.alert(message,
                                                         title: "Сообщение",
                                                         isDestructive: false) { _ in
-                        if message.message.contains("success") {
+                        if message.contains("success") {
                             self.dismiss(animated: true)
                         }
                     }

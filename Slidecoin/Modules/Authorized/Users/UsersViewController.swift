@@ -13,15 +13,16 @@ final class UsersViewController: UIViewController {
 
     // MARK: Private Properties
     
-    private let cellID = "\(SubtitleCell.self)"
+    private let cellID = "\(UserCell.self)"
     
     private let alertService = Assembly.alertService
     private let credentialsService = Assembly.credentialsService
     private let requestSender = Assembly.requestSender
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var refreshControl = UIRefreshControl()
+    private let refreshControl = UIRefreshControl()
     
+    private let currentUser: User
     private var users: [User] = []
     private var searchedUsers: [User] = []
     private var login: Login
@@ -34,8 +35,9 @@ final class UsersViewController: UIViewController {
     
     // MARK: Lifecycle
     
-    init(login: Login) {
+    init(login: Login, currentUser: User) {
         self.login = login
+        self.currentUser = currentUser
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -67,7 +69,8 @@ final class UsersViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.register(SubtitleCell.self, forCellReuseIdentifier: cellID)
+        tableView.rowHeight = 60
+        tableView.register(UINib(nibName: cellID, bundle: .main), forCellReuseIdentifier: cellID)
     }
     
     private func setupRefreshControl() {
@@ -203,10 +206,11 @@ extension UsersViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? SubtitleCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? UserCell
         let user = searchController.isActive ? searchedUsers[indexPath.row] : users[indexPath.row]
-        cell?.textLabel?.text = user.username
-        cell?.detailTextLabel?.text = user.email
+        cell?.usernameLabel?.text = user.username
+        cell?.emailLabel?.text = user.email
+        cell?.balanceLabel?.text = "\(user.balance) ₿"
         return cell ?? UITableViewCell(frame: .zero)
     }
 }
@@ -227,9 +231,10 @@ extension UsersViewController: UITableViewDelegate {
         let user = searchController.isActive ? searchedUsers[indexPath.row] : users[indexPath.row]
         
         let vc = UserViewController(user: user,
+                                    currentUser: currentUser,
                                     accessToken: accessToken,
                                     refreshToken: refreshToken,
-                                    isCurrent: false)
+                                    isCurrent: user.id == currentUser.id)
         navigationController?.pushViewController(vc, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)

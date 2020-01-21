@@ -67,9 +67,12 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func transfer(sender: User, receiver: User, amount: Int) -> RequestConfig<MessageParser> {
-        let request = TransferRequest(senderID: sender.id,
-                                      receiverID: receiver.id, amount: amount)
+    static func transfer(accessToken: String,
+                         receiver: User,
+                         amount: Int) -> RequestConfig<MessageParser> {
+        let request = TransferRequest(accessToken: accessToken,
+                                      receiverUsername: receiver.username,
+                                      amount: amount)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
@@ -79,6 +82,13 @@ struct RequestFactory {
         let request = UsersRequest(accessToken: accessToken)
         let parser = UsersParser()
     
+        return .init(request: request, parser: parser)
+    }
+    
+    static func user(_ identifier: Int, accessToken: String) -> RequestConfig<UserParser> {
+        let request = UserByIDRequest(accessToken: accessToken, identifier: identifier)
+        let parser = UserParser()
+        
         return .init(request: request, parser: parser)
     }
     

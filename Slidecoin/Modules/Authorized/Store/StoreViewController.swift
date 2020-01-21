@@ -15,6 +15,11 @@ final class StoreViewController: UIViewController {
                                        Product(image: #imageLiteral(resourceName: "Parker"), name: "Parker"),
                                        Product(image: #imageLiteral(resourceName: "IWC"), name: "IWC Schaffhausen")]
     
+     private var searchedProducts: [Product] = []
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let refreshControl = UIRefreshControl()
+    
     @IBOutlet private weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -24,18 +29,54 @@ final class StoreViewController: UIViewController {
         collectionView.delegate = self
         
         setupNavigationBar()
+        setupKeyboard()
         setupCollectionView()
+        setupRefreshControl()
+        setupSearchController()
     }
 
     private func setupNavigationBar() {
         navigationItem.title = "Магазин"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let image = UIImage(systemName: "cart")
+        let cartButton = UIBarButtonItem(image: image,
+                                         style: .plain,
+                                         target: self,
+                                         action: nil)
+        navigationItem.rightBarButtonItem = cartButton
+    }
+    
+    private func setupKeyboard() {
+        collectionView.bottomAnchor.constraint(lessThanOrEqualTo: keyboardLayoutGuide.topAnchor).isActive = true
     }
     
     private func setupCollectionView() {
         let nib = UINib(nibName: cellID, bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: cellID)
-        collectionView.delaysContentTouches = false
+    }
+    
+    private func setupRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните для обновления")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        navigationItem.searchController = searchController
+    }
+    
+    private func filterContent(for searchText: String) {
+        searchedProducts = products.filter {
+            $0.name.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+    
+    @objc private func refresh() {
+        refreshControl.endRefreshing()
     }
 }
 
@@ -47,26 +88,19 @@ final class StoreViewController: UIViewController {
 extension StoreViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return searchController.isActive ? searchedProducts.count : 50
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ProductCell
-        cell.imageView.image = products[indexPath.row % 3].image
-        cell.label.text = products[indexPath.row % 3].name
+        
+        let index = indexPath.row % 3
+        let product = searchController.isActive ? searchedProducts[indexPath.row] : products[index]
+        
+        cell.imageView.image = product.image
+        cell.label.text = product.name
+        
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ProductCell
-
-        cell.backgroundColor = UIColor.secondarySystemBackground
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ProductCell
-
-        cell.backgroundColor = UIColor.systemBackground
     }
 }
 
@@ -76,7 +110,26 @@ extension StoreViewController: UICollectionViewDataSource {
 extension StoreViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = ProductViewController(product: products[indexPath.row % 3])
+        let index = indexPath.row % 3
+        let product = searchController.isActive ? searchedProducts[indexPath.row] : products[index]
+        
+        let vc = ProductViewController(product: product)
         navigationController?.pushViewController(vc, animated: true)
+        
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
+
+
+
+// MARK: - UISearchResultsUpdating
+
+extension StoreViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        filterContent(for: searchText)
+        collectionView.reloadData()
     }
 }

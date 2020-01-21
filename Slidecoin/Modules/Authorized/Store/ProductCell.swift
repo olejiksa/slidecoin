@@ -10,15 +10,26 @@ import UIKit
 
 final class ProductCell: UICollectionViewCell {
     
+    @IBOutlet private weak var surroundingView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                backgroundColor = UIColor.secondarySystemBackground
+                surroundingView.backgroundColor = .systemFill
             } else {
-                backgroundColor = UIColor.systemBackground
+                surroundingView.backgroundColor = .systemBackground
+            }
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                surroundingView.backgroundColor = .systemFill
+            } else {
+                surroundingView.backgroundColor = .systemBackground
             }
         }
     }

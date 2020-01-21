@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,8 +25,8 @@
                                     <constraint firstAttribute="width" secondItem="JZR-uf-4Cb" secondAttribute="height" multiplier="1:1" id="MPV-hQ-5zA"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHS-FG-niJ">
-                                <rect key="frame" x="62" y="154" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHS-FG-niJ">
+                                <rect key="frame" x="20" y="154" width="126" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,12 +34,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HHS-FG-niJ" secondAttribute="trailing" constant="20" id="AhR-e8-Do3"/>
                             <constraint firstAttribute="trailing" secondItem="JZR-uf-4Cb" secondAttribute="trailing" constant="20" id="BaL-AB-KEc"/>
                             <constraint firstItem="HHS-FG-niJ" firstAttribute="centerX" secondItem="JZR-uf-4Cb" secondAttribute="centerX" id="CeK-C9-01a"/>
                             <constraint firstItem="HHS-FG-niJ" firstAttribute="top" secondItem="JZR-uf-4Cb" secondAttribute="bottom" constant="8" id="Cfc-6t-YaI"/>
                             <constraint firstItem="JZR-uf-4Cb" firstAttribute="leading" secondItem="Ugc-n0-Ipr" secondAttribute="leading" constant="20" id="Fk5-mL-Rxw"/>
                             <constraint firstItem="JZR-uf-4Cb" firstAttribute="top" secondItem="Ugc-n0-Ipr" secondAttribute="top" constant="20" id="UhD-om-x77"/>
                             <constraint firstAttribute="bottom" secondItem="HHS-FG-niJ" secondAttribute="bottom" constant="8" id="glB-s6-0I6"/>
+                            <constraint firstItem="HHS-FG-niJ" firstAttribute="leading" secondItem="Ugc-n0-Ipr" secondAttribute="leading" constant="20" id="lTv-Hw-N1m"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -55,6 +57,7 @@
             <connections>
                 <outlet property="imageView" destination="JZR-uf-4Cb" id="t3p-9f-2Du"/>
                 <outlet property="label" destination="HHS-FG-niJ" id="CZW-pV-Vh9"/>
+                <outlet property="surroundingView" destination="Ugc-n0-Ipr" id="BpF-TG-0Ez"/>
             </connections>
             <point key="canvasLocation" x="53.623188405797109" y="152.34375"/>
         </collectionViewCell>

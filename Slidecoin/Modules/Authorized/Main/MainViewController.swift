@@ -17,6 +17,8 @@ final class MainViewController: UIViewController {
     private let credentialsService = Assembly.credentialsService
     private let requestSender = Assembly.requestSender
     
+    private let refreshControl = UIRefreshControl()
+    
     private var login: Login
     private var user: User
     
@@ -26,6 +28,7 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var sumLabel: UILabel!
     @IBOutlet private weak var secretButton: BigButton!
+    @IBOutlet private weak var scrollView: UIScrollView!
     
     
     // MARK: Lifecycle
@@ -45,13 +48,8 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
-        messageLabel.text = login.message
-        
-//        if let money = credentialsService.getMoney() {
-//            user.balance = money
-//        }
-        
-        sumLabel.text = "\(user.balance) ₿"
+        setupRefreshControl()
+        setupView()
     }
     
     
@@ -67,7 +65,7 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction private func transactionsDidTap() {
-        let vc = TransactionsViewController()
+        let vc = TransactionsViewController(user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -93,6 +91,17 @@ final class MainViewController: UIViewController {
         navigationItem.rightBarButtonItem = userButton
     }
     
+    private func setupRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните для обновления")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+    }
+    
+    private func setupView() {
+        messageLabel.text = user.username
+        sumLabel.text = "\(user.balance) ₿"
+    }
+    
     private func obtainSecret(_ accessToken: String, _ refreshToken: String) {
         secretButton.showLoading()
         
@@ -104,7 +113,7 @@ final class MainViewController: UIViewController {
             
             switch result {
             case .success(let secret):
-                let alert = self.alertService.alert(String(secret.answer), title: "Secret")
+                let alert = self.alertService.alert(String(secret), title: "Secret")
                 self.present(alert, animated: true)
                 
             case .failure(let error):
@@ -141,6 +150,7 @@ final class MainViewController: UIViewController {
         else { return }
         
         let vc = UserViewController(user: user,
+                                    currentUser: user,
                                     accessToken: accessToken,
                                     refreshToken: refreshToken,
                                     isCurrent: true)
@@ -152,5 +162,26 @@ final class MainViewController: UIViewController {
         let vc = AboutViewController()
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
+    }
+    
+    @objc private func refresh() {
+        guard let accessToken = login.accessToken else { return }
+        
+        let config = RequestFactory.user(user.id, accessToken: accessToken)
+        requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.refreshControl.endRefreshing()
+
+            switch result {
+            case .success(let user):
+                self.user = user
+                self.setupView()
+                
+            case .failure(let error):
+                let alert = self.alertService.alert(error.localizedDescription)
+                self.present(alert, animated: true)
+            }
+        }
     }
 }

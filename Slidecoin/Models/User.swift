@@ -16,6 +16,11 @@ struct User: Decodable {
     let surname: String
 }
 
+struct UserResponse: Decodable {
+    
+    let user: User
+}
+
 struct UsersResponse: Decodable {
     
     let users: [User]

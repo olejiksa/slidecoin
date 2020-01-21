@@ -11,11 +11,12 @@ import Toolkit
 
 final class SecretParser: ParserProtocol {
     
-    func parse(data: Data) -> Secret? {
+    func parse(data: Data) -> Int? {
         do {
             let jsonDecorder = JSONDecoder()
             jsonDecorder.dateDecodingStrategy = .iso8601
-            return try jsonDecorder.decode(Secret.self, from: data)
+            let response = try jsonDecorder.decode(Secret.self, from: data)
+            return response.answer
         } catch  {
             print(error)
             return nil

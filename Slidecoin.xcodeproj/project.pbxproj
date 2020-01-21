@@ -10,6 +10,8 @@
 		EB09B47C23ABADC200680ABC /* TokenRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */; };
 		EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */; };
 		EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47F23ABAEEA00680ABC /* AccessToken.swift */; };
+		EB14979C23D46F2800F9AE87 /* UserByIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */; };
+		EB14979E23D4705C00F9AE87 /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14979D23D4705C00F9AE87 /* UserParser.swift */; };
 		EB1A236323B62B8400E21318 /* KeyboardAdjuster in Frameworks */ = {isa = PBXBuildFile; productRef = EB1A236223B62B8400E21318 /* KeyboardAdjuster */; };
 		EB1A236523B634DE00E21318 /* TabBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1A236423B634DE00E21318 /* TabBarBuilder.swift */; };
 		EB1A236823B636CB00E21318 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1A236623B636CB00E21318 /* StoreViewController.swift */; };
@@ -55,6 +57,8 @@
 		EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */; };
 		EB839F0023AF9D7B0043B223 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */; };
 		EB839F0123AF9D7B0043B223 /* TransferView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB839EFF23AF9D7B0043B223 /* TransferView.xib */; };
+		EB8E9EB123D5AA2100438338 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E9EAF23D5AA2100438338 /* UserCell.swift */; };
+		EB8E9EB223D5AA2100438338 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB8E9EB023D5AA2100438338 /* UserCell.xib */; };
 		EBB3361823B54CF1007923F9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3361623B54CF1007923F9 /* AboutViewController.swift */; };
 		EBB3361923B54CF1007923F9 /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB3361723B54CF1007923F9 /* AboutView.xib */; };
 		EBCE475F23D175840047F953 /* RestoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE475E23D175840047F953 /* RestoreRequest.swift */; };
@@ -78,6 +82,8 @@
 		EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequest.swift; sourceTree = "<group>"; };
 		EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenParser.swift; sourceTree = "<group>"; };
 		EB09B47F23ABAEEA00680ABC /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByIDRequest.swift; sourceTree = "<group>"; };
+		EB14979D23D4705C00F9AE87 /* UserParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserParser.swift; sourceTree = "<group>"; };
 		EB1A236423B634DE00E21318 /* TabBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBuilder.swift; sourceTree = "<group>"; };
 		EB1A236623B636CB00E21318 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		EB1A236723B636CB00E21318 /* StoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreView.xib; sourceTree = "<group>"; };
@@ -123,6 +129,8 @@
 		EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllUsersRequest.swift; sourceTree = "<group>"; };
 		EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
 		EB839EFF23AF9D7B0043B223 /* TransferView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferView.xib; sourceTree = "<group>"; };
+		EB8E9EAF23D5AA2100438338 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		EB8E9EB023D5AA2100438338 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		EBB3361623B54CF1007923F9 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		EBB3361723B54CF1007923F9 /* AboutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		EBCE475E23D175840047F953 /* RestoreRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreRequest.swift; sourceTree = "<group>"; };
@@ -186,6 +194,10 @@
 				EB6AA84623AA5F6600938BB6 /* UsersView.xib */,
 				EB6803C023B02685003456AC /* UserViewController.swift */,
 				EB6803C123B02685003456AC /* UserView.xib */,
+				EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */,
+				EB839EFF23AF9D7B0043B223 /* TransferView.xib */,
+				EB8E9EAF23D5AA2100438338 /* UserCell.swift */,
+				EB8E9EB023D5AA2100438338 /* UserCell.xib */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -217,8 +229,6 @@
 				EB513F4423D447D900780EB9 /* Store */,
 				EB513F4323D447D600780EB9 /* Users */,
 				EB513F4223D447CD00780EB9 /* Main */,
-				EB839EFE23AF9D7B0043B223 /* TransferViewController.swift */,
-				EB839EFF23AF9D7B0043B223 /* TransferView.xib */,
 				EB1A236423B634DE00E21318 /* TabBarBuilder.swift */,
 			);
 			path = Authorized;
@@ -290,12 +300,13 @@
 		EBD35037238DBF6D008AACA2 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
-				EBD3504B238DC2CD008AACA2 /* LoginParser.swift */,
 				EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */,
+				EBD3504B238DC2CD008AACA2 /* LoginParser.swift */,
 				EB60C34423B3EE9E009CC4EC /* MessageParser.swift */,
 				EB6AA84C23AAD39900938BB6 /* SecretParser.swift */,
 				EB513F3A23D4456400780EB9 /* TransactionsParser.swift */,
 				EB6AA84123AA585000938BB6 /* UsersParser.swift */,
+				EB14979D23D4705C00F9AE87 /* UserParser.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -313,9 +324,10 @@
 				EBCE475E23D175840047F953 /* RestoreRequest.swift */,
 				EB6AA85023AAD43E00938BB6 /* SecretRequest.swift */,
 				EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */,
+				EB513F3823D444C400780EB9 /* TransactionsRequest.swift */,
 				EB24546423D19ABB00C99EFB /* TransferRequest.swift */,
 				EB6AA83F23AA57E800938BB6 /* UsersRequest.swift */,
-				EB513F3823D444C400780EB9 /* TransactionsRequest.swift */,
+				EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -411,6 +423,7 @@
 				EB6803C323B02685003456AC /* UserView.xib in Resources */,
 				EBD3502B238DB91F008AACA2 /* LaunchScreen.storyboard in Resources */,
 				EB6AA84823AA5F6600938BB6 /* UsersView.xib in Resources */,
+				EB8E9EB223D5AA2100438338 /* UserCell.xib in Resources */,
 				EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */,
 				EB513F3523D2ED8D00780EB9 /* ProductView.xib in Resources */,
 				EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */,
@@ -437,14 +450,17 @@
 				EB6AA83D23AA54D300938BB6 /* PreRestoreViewController.swift in Sources */,
 				EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */,
 				EB6AA84023AA57E800938BB6 /* UsersRequest.swift in Sources */,
+				EB14979C23D46F2800F9AE87 /* UserByIDRequest.swift in Sources */,
 				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
 				EBCE475F23D175840047F953 /* RestoreRequest.swift in Sources */,
 				EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */,
+				EB14979E23D4705C00F9AE87 /* UserParser.swift in Sources */,
 				EB24546523D19ABB00C99EFB /* TransferRequest.swift in Sources */,
 				EB6AA84D23AAD39900938BB6 /* SecretParser.swift in Sources */,
 				EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */,
 				EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */,
 				EB6AA84423AA589500938BB6 /* User.swift in Sources */,
+				EB8E9EB123D5AA2100438338 /* UserCell.swift in Sources */,
 				EB1A236523B634DE00E21318 /* TabBarBuilder.swift in Sources */,
 				EBCE476323D1916F0047F953 /* ResetRequest.swift in Sources */,
 				EBCE476123D181790047F953 /* ResetEmailRequest.swift in Sources */,
@@ -618,6 +634,7 @@
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -625,12 +642,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecurrency;
 				PRODUCT_NAME = Slidecoin;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -641,6 +658,7 @@
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -648,12 +666,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecurrency;
 				PRODUCT_NAME = Slidecoin;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
