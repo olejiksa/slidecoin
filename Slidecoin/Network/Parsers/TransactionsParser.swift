@@ -14,12 +14,22 @@ final class TransactionsParser: ParserProtocol {
     func parse(data: Data) -> [Transaction]? {
         do {
             let jsonDecorder = JSONDecoder()
-            jsonDecorder.dateDecodingStrategy = .iso8601
+            jsonDecorder.dateDecodingStrategy = .custom(customDateDecoder)
             let response = try jsonDecorder.decode(TransactionsResponse.self, from: data)
             return response.transactions
         } catch  {
             print(error)
             return nil
         }
+    }
+    
+    private func customDateDecoder(decoder: Decoder) throws -> Date {
+        let container = try decoder.singleValueContainer()
+        let str = try container.decode(String.self)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+        let date = dateFormatter.date(from: str)
+        return date ?? Date()
     }
 }

@@ -75,6 +75,8 @@
 		EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */; };
 		EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35051238DC317008AACA2 /* RegistrationRequest.swift */; };
 		EBD35055238DC422008AACA2 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35054238DC422008AACA2 /* Login.swift */; };
+		EBE4675F23D8F415004A9EA5 /* NoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4675D23D8F415004A9EA5 /* NoUserViewController.swift */; };
+		EBE4676023D8F415004A9EA5 /* NoUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBE4675E23D8F415004A9EA5 /* NoUserView.xib */; };
 		EBEF6A5B238EF36A008FD4F6 /* Toolkit in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF6A5A238EF36A008FD4F6 /* Toolkit */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +151,8 @@
 		EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		EBD35051238DC317008AACA2 /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		EBD35054238DC422008AACA2 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		EBE4675D23D8F415004A9EA5 /* NoUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoUserViewController.swift; sourceTree = "<group>"; };
+		EBE4675E23D8F415004A9EA5 /* NoUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoUserView.xib; sourceTree = "<group>"; };
 		EBEF6A57238EF168008FD4F6 /* Toolkit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Toolkit; path = ../Toolkit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +202,8 @@
 				EB839EFF23AF9D7B0043B223 /* TransferView.xib */,
 				EB8E9EAF23D5AA2100438338 /* UserCell.swift */,
 				EB8E9EB023D5AA2100438338 /* UserCell.xib */,
+				EBE4675D23D8F415004A9EA5 /* NoUserViewController.swift */,
+				EBE4675E23D8F415004A9EA5 /* NoUserView.xib */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				EB1A236923B636CB00E21318 /* StoreView.xib in Resources */,
 				EB6AA83E23AA54D300938BB6 /* PreRestoreView.xib in Resources */,
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
+				EBE4676023D8F415004A9EA5 /* NoUserView.xib in Resources */,
 				EB513F3123D2E29C00780EB9 /* ProductCell.xib in Resources */,
 				EBD35035238DBAA9008AACA2 /* AuthView.xib in Resources */,
 				EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */,
@@ -485,6 +492,7 @@
 				EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */,
 				EBB3361823B54CF1007923F9 /* AboutViewController.swift in Sources */,
 				EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */,
+				EBE4675F23D8F415004A9EA5 /* NoUserViewController.swift in Sources */,
 				EB6803C223B02685003456AC /* UserViewController.swift in Sources */,
 				EBD3504C238DC2CD008AACA2 /* LoginParser.swift in Sources */,
 				EB3D0384238EAD4400E5BAE9 /* MainViewController.swift in Sources */,
@@ -634,7 +642,7 @@
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -656,9 +664,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;

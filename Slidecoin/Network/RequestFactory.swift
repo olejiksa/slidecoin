@@ -99,8 +99,8 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func transactions() -> RequestConfig<TransactionsParser> {
-        let request = TransactionsRequest()
+    static func transactions(accessToken: String) -> RequestConfig<TransactionsParser> {
+        let request = TransactionsRequest(accessToken: accessToken)
         let parser = TransactionsParser()
         
         return .init(request: request, parser: parser)

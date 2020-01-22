@@ -8,15 +8,15 @@
 
 import UIKit
 
-final class TabBarBuilder {
+final class TabBarBuilder: UISplitViewControllerDelegate {
     
     static func build(login: Login, user: User) -> UITabBarController {
-        let mainNvc = self.mainNvc(login: login, user: user)
-        let usersNvc = self.usersNvc(login: login, user: user)
-        let storeNvc = self.storeNvc()
+        let mainSvc = self.mainSvc(login: login, user: user)
+        let usersSvc = self.usersSvc(login: login, user: user)
+        let storeSvc = self.storeSvc()
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [mainNvc, usersNvc, storeNvc]
+        tabBarController.viewControllers = [mainSvc, usersSvc, storeSvc]
         
         return tabBarController
     }
@@ -24,42 +24,64 @@ final class TabBarBuilder {
     
     // MARK: Private
     
-    private static func mainNvc(login: Login, user: User) -> UINavigationController {
+    private static func mainSvc(login: Login, user: User) -> UISplitViewController {
         let mainVc = MainViewController(login: login, user: user)
         let mainNvc = UINavigationController(rootViewController: mainVc)
         
+        let transactionsVc = TransactionsViewController(user: user, accessToken: login.accessToken!)
+        let transactionsNvc = UINavigationController(rootViewController: transactionsVc)
+        
+        let mainSvc = UISplitViewController()
+        mainSvc.delegate = mainVc
+        mainSvc.preferredDisplayMode = .allVisible
+        mainSvc.viewControllers = [mainNvc, transactionsNvc]
+        
         let mainImage = UIImage(systemName: "house")
         let mainSelectedImage = UIImage(systemName: "house.fill")
-        mainNvc.tabBarItem = UITabBarItem(title: "Главная",
+        mainSvc.tabBarItem = UITabBarItem(title: "Главная",
                                           image: mainImage,
                                           selectedImage: mainSelectedImage)
         
-        return mainNvc
+        return mainSvc
     }
     
-    private static func usersNvc(login: Login, user: User) -> UINavigationController {
-        let mainVc = UsersViewController(login: login, currentUser: user)
-        let mainNvc = UINavigationController(rootViewController: mainVc)
+    private static func usersSvc(login: Login, user: User) -> UISplitViewController {
+        let usersVc = UsersViewController(login: login, currentUser: user)
+        let usersNvc = UINavigationController(rootViewController: usersVc)
         
-        let mainImage = UIImage(systemName: "person.3")
-        let mainSelectedImage = UIImage(systemName: "person.3.fill")
-        mainNvc.tabBarItem = UITabBarItem(title: "Пользователи",
-                                          image: mainImage,
-                                          selectedImage: mainSelectedImage)
+        let userVc = NoUserViewController("пользовател")
         
-        return mainNvc
+        let usersSvc = UISplitViewController()
+        usersSvc.delegate = usersVc
+        usersSvc.preferredDisplayMode = .allVisible
+        usersSvc.viewControllers = [usersNvc, userVc]
+        
+        let usersImage = UIImage(systemName: "person.3")
+        let usersSelectedImage = UIImage(systemName: "person.3.fill")
+        usersSvc.tabBarItem = UITabBarItem(title: "Пользователи",
+                                           image: usersImage,
+                                           selectedImage: usersSelectedImage)
+        
+        return usersSvc
     }
     
-    private static func storeNvc() -> UINavigationController {
+    private static func storeSvc() -> UISplitViewController {
         let storeVc = StoreViewController()
         let storeNvc = UINavigationController(rootViewController: storeVc)
         
+        let userVc = NoUserViewController("товар")
+        
+        let storeSvc = UISplitViewController()
+        storeSvc.delegate = storeVc
+        storeSvc.preferredDisplayMode = .allVisible
+        storeSvc.viewControllers = [storeNvc, userVc]
+        
         let storeImage = UIImage(systemName: "bag")
         let storeSelectedImage = UIImage(systemName: "bag.fill")
-        storeNvc.tabBarItem = UITabBarItem(title: "Магазин",
+        storeSvc.tabBarItem = UITabBarItem(title: "Магазин",
                                            image: storeImage,
                                            selectedImage: storeSelectedImage)
         
-        return storeNvc
+        return storeSvc
     }
 }

@@ -235,7 +235,13 @@ extension UsersViewController: UITableViewDelegate {
                                     accessToken: accessToken,
                                     refreshToken: refreshToken,
                                     isCurrent: user.id == currentUser.id)
-        navigationController?.pushViewController(vc, animated: true)
+        
+        if let splitVc = splitViewController, !splitVc.isCollapsed {
+            let nvc = UINavigationController(rootViewController: vc)
+            splitVc.showDetailViewController(nvc, sender: self)
+        } else {
+            navigationController?.pushViewController(vc, animated: true)
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -252,5 +258,17 @@ extension UsersViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else { return }
         filterContent(for: searchText)
         tableView.reloadData()
+    }
+}
+
+
+
+
+// MARK: - UISplitViewControllerDelegate
+
+extension UsersViewController: UISplitViewControllerDelegate {
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
     }
 }

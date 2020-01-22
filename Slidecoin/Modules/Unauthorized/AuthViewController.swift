@@ -48,13 +48,13 @@ final class AuthViewController: UIViewController {
         setupAppleIDAuthButton()
         setupButtonNavigationHelper()
         
-        if let url = URL(string: "https://slide-wallet.firebaseapp.com/auth/restore-password?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNTc5NjEyMzY2Ljg1NDY5NDh9.xvyJEW1xyQpjsBYirO4y1iAtXkv-U-Oyat7w05SGJ_U") {
-            let token = String(url.absoluteString.split(separator: "=")[1])
-            let vc = AccessCodeViewController(token: token)
-            let nvc = UINavigationController(rootViewController: vc)
-            
-            present(nvc, animated: true)
-        }
+//        if let url = URL(string: "https://slide-wallet.firebaseapp.com/auth/restore-password?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNTc5NjEyMzY2Ljg1NDY5NDh9.xvyJEW1xyQpjsBYirO4y1iAtXkv-U-Oyat7w05SGJ_U") {
+//            let token = String(url.absoluteString.split(separator: "=")[1])
+//            let vc = AccessCodeViewController(token: token)
+//            let nvc = UINavigationController(rootViewController: vc)
+//            
+//            present(nvc, animated: true)
+//        }
     }
     
     

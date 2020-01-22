@@ -29,6 +29,7 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var sumLabel: UILabel!
     @IBOutlet private weak var secretButton: BigButton!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var transactionsButton: BigButton!
     
     
     // MARK: Lifecycle
@@ -65,7 +66,9 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction private func transactionsDidTap() {
-        let vc = TransactionsViewController(user: user)
+        guard let accessToken = login.accessToken else { return }
+        
+        let vc = TransactionsViewController(user: user, accessToken: accessToken)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -100,6 +103,10 @@ final class MainViewController: UIViewController {
     private func setupView() {
         messageLabel.text = user.username
         sumLabel.text = "\(user.balance) ₿"
+        
+        if let svc = splitViewController {
+            transactionsButton.isHidden = svc.displayMode == .allVisible && !svc.isCollapsed
+        }
     }
     
     private func obtainSecret(_ accessToken: String, _ refreshToken: String) {
@@ -183,5 +190,17 @@ final class MainViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         }
+    }
+}
+
+
+
+
+// MARK: - UISplitViewControllerDelegate
+
+extension MainViewController: UISplitViewControllerDelegate {
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
     }
 }

@@ -32,6 +32,9 @@ final class ProductViewController: UIViewController {
         navigationItem.title = product.name
         navigationItem.largeTitleDisplayMode = .never
         imageView.image = product.image
+        
+        self.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        self.navigationItem.leftItemsSupplementBackButton = true
     }
     
     @IBAction private func buyDidTap() {

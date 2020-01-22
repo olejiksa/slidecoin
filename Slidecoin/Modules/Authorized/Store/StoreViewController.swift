@@ -114,7 +114,13 @@ extension StoreViewController: UICollectionViewDelegate {
         let product = searchController.isActive ? searchedProducts[indexPath.row] : products[index]
         
         let vc = ProductViewController(product: product)
-        navigationController?.pushViewController(vc, animated: true)
+        
+        if let splitVc = splitViewController, !splitVc.isCollapsed {
+            let nvc = UINavigationController(rootViewController: vc)
+            splitVc.showDetailViewController(nvc, sender: self)
+        } else {
+            navigationController?.pushViewController(vc, animated: true)
+        }
         
         collectionView.deselectItem(at: indexPath, animated: true)
     }
@@ -131,5 +137,17 @@ extension StoreViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else { return }
         filterContent(for: searchText)
         collectionView.reloadData()
+    }
+}
+
+
+
+
+// MARK: - UISplitViewControllerDelegate
+
+extension StoreViewController: UISplitViewControllerDelegate {
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
     }
 }

@@ -113,6 +113,9 @@ final class UserViewController: UIViewController {
                                               action: #selector(close))
             navigationItem.rightBarButtonItem = closeButton
         }
+        
+        self.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        self.navigationItem.leftItemsSupplementBackButton = true
     }
     
     private func setupUserDescription() {
