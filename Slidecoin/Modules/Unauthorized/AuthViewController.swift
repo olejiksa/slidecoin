@@ -16,7 +16,7 @@ final class AuthViewController: UIViewController {
     // MARK: Private Properties
     
     private let alertService = Assembly.alertService
-    private let credentialsService = Assembly.credentialsService
+    private let userDefaultsService = Assembly.userDefaultsService
     private let requestSender = Assembly.requestSender
 
     private var formValidationHelper: FormValidationHelper?
@@ -133,8 +133,8 @@ final class AuthViewController: UIViewController {
                                     login.message = username
                                     
                                     if self.rememberSwitch.isOn {
-                                        self.credentialsService.updateLogin(with: login)
-                                        self.credentialsService.updateUser(user)
+                                        self.userDefaultsService.updateLogin(with: login)
+                                        self.userDefaultsService.updateUser(user)
                                     }
                                     
                                     let tabBarController = TabBarBuilder.build(login: login, user: user)
@@ -195,8 +195,8 @@ final class AuthViewController: UIViewController {
                                 let scene = UIApplication.shared.connectedScenes.first
                                 if let mySceneDelegate = scene?.delegate as? SceneDelegate {
                                     login.message = email
-                                    self.credentialsService.updateLogin(with: login)
-                                    self.credentialsService.updateUser(user)
+                                    self.userDefaultsService.updateLogin(with: login)
+                                    self.userDefaultsService.updateUser(user)
                                     
                                     let tabBarController = TabBarBuilder.build(login: login, user: user)
                                     mySceneDelegate.window?.rootViewController = tabBarController

@@ -72,7 +72,9 @@ final class PreRestoreViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let message):
-                    let alert = self.alertService.alert(message, title: "Сообщение", isDestructive: false ) { _ in
+                    let alert = self.alertService.alert(message,
+                                                        title: .info,
+                                                        isDestructive: false ) { _ in
                         self.dismiss(animated: true)
                     }
                     self.present(alert, animated: true)

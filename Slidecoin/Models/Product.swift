@@ -6,10 +6,15 @@
 //  Copyright © 2020 Oleg Samoylov. All rights reserved.
 //
 
-import UIKit
-
-struct Product {
+struct Product: Decodable {
     
-    let image: UIImage
+    let id: Int
     let name: String
+    let price: Int
+    let description: String
+}
+
+struct ShopResponse: Decodable {
+    
+    let items: [Product]
 }

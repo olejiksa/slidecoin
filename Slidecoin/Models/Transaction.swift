@@ -11,14 +11,14 @@ import Foundation
 struct Transaction: Decodable {
     
     private enum CodingKeys: String, CodingKey {
-        case identifier = "id"
+        case id
         case amount
         case receiverID = "receiver_id"
         case senderID = "sender_id"
         case date
     }
     
-    let identifier: Int
+    let id: Int
     let amount: Int
     let receiverID: Int
     let senderID: Int

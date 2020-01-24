@@ -11,6 +11,6 @@ import Toolkit
 final class Assembly {
     
     static let alertService: AlertServiceProtocol = AlertService()
-    static let credentialsService: CredentialsServiceProtocol = CredentialsService()
+    static let userDefaultsService: UserDefaultsServiceProtocol = UserDefaultsService()
     static let requestSender: RequestSenderProtocol = RequestSender()
 }

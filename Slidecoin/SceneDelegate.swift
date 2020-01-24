@@ -10,7 +10,7 @@ import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    private let credentialsService = Assembly.credentialsService
+    private let userDefaultsService = Assembly.userDefaultsService
     
     var window: UIWindow?
 
@@ -21,7 +21,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        if let info = credentialsService.getCredentials() {
+        if let info = userDefaultsService.getCredentials() {
             let tabBarController = TabBarBuilder.build(login: info.0, user: info.1)
             window?.rootViewController = tabBarController
         } else {

@@ -126,4 +126,18 @@ struct RequestFactory {
         
         return .init(request: request, parser: parser)
     }
+    
+    static func shop(accessToken: String) -> RequestConfig<ShopParser> {
+        let request = ShopRequest(accessToken: accessToken)
+        let parser = ShopParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    static func buy(id: Int, accessToken: String) -> RequestConfig<MessageParser> {
+        let request = BuyRequest(id: id, accessToken: accessToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
 }

@@ -86,7 +86,7 @@ final class AccessCodeViewController: UIViewController {
                 switch result {
                 case .success(let message):
                     let alert = self.alertService.alert(message,
-                                                        title: "Сообщение",
+                                                        title: .info,
                                                         isDestructive: false) { _ in
                         if message.contains("success") {
                             self.dismiss(animated: true)
@@ -103,6 +103,6 @@ final class AccessCodeViewController: UIViewController {
     }
     
     @objc private func close() {
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
 }

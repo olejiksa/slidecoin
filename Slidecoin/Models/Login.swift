@@ -8,12 +8,6 @@
 
 struct Login: Decodable {
     
-    private enum CodingKeys: String, CodingKey {
-        case refreshToken = "refresh_token"
-        case accessToken = "access_token"
-        case message
-    }
-    
     let refreshToken: String?
     var accessToken: String?
     var message: String

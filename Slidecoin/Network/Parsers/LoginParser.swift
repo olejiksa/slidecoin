@@ -15,6 +15,7 @@ final class LoginParser: ParserProtocol {
         do {
             let jsonDecorder = JSONDecoder()
             jsonDecorder.dateDecodingStrategy = .iso8601
+            jsonDecorder.keyDecodingStrategy = .convertFromSnakeCase
             return try jsonDecorder.decode(Login.self, from: data)
         } catch  {
             print(error)
