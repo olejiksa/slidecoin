@@ -18,7 +18,7 @@ final class ResetRequest: BasePostRequest {
          newPassword: String) {
         self.accessToken = accessToken
         
-        let endpoint = "\(RequestFactory.endpointRoot)/password/change"
+        let endpoint = "\(RequestFactory.endpointRoot)password/change"
         let parameters = ["current_password": currentPassword,
                           "new_password": newPassword]
                           

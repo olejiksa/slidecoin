@@ -41,9 +41,6 @@ final class StoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        collectionView.dataSource = self
-        collectionView.delegate = self
         
         setupNavigationBar()
         setupKeyboard()
@@ -58,17 +55,17 @@ final class StoreViewController: UIViewController {
         navigationItem.title = "Магазин"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-//        let cartImage = UIImage(systemName: "cart")
-//        let cartButton = UIBarButtonItem(image: cartImage,
-//                                         style: .plain,
-//                                         target: self,
-//                                         action: #selector(navigateToPurchases))
-//        navigationItem.leftBarButtonItem = cartButton
-//
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .add,
-//                                        target: self,
-//                                        action: nil)
-//        navigationItem.rightBarButtonItem = addButton
+        let cartImage = UIImage(systemName: "cart")
+        let cartButton = UIBarButtonItem(image: cartImage,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(navigateToPurchases))
+        navigationItem.leftBarButtonItem = cartButton
+
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                        target: self,
+                                        action: #selector(addItem))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     private func setupKeyboard() {
@@ -153,8 +150,14 @@ final class StoreViewController: UIViewController {
     }
     
     @objc private func navigateToPurchases() {
-        let vc = PurchasesViewController()
+        let vc = PurchasesViewController(login: login, user: user)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func addItem() {
+        let vc = AddItemViewController()
+        let nvc = UINavigationController(rootViewController: vc)
+        present(nvc, animated: true)
     }
 }
 
@@ -180,6 +183,8 @@ extension StoreViewController: UICollectionViewDataSource {
 }
 
 
+
+
 // MARK: - UICollectionViewDelegate
 
 extension StoreViewController: UICollectionViewDelegate {
@@ -194,7 +199,8 @@ extension StoreViewController: UICollectionViewDelegate {
         let product = searchController.isActive ? searchedProducts[index] : products[index]
         let vc = ProductViewController(product: product,
                                        refreshToken: refreshToken,
-                                       accessToken: accessToken)
+                                       accessToken: accessToken,
+                                       alreadyPurchased: false)
         
         if let splitVc = splitViewController, !splitVc.isCollapsed {
             let nvc = UINavigationController(rootViewController: vc)

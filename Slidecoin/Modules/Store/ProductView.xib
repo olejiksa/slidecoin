@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
                 <outlet property="buyButton" destination="rCd-BQ-etj" id="z4D-fU-16o"/>
+                <outlet property="countLabel" destination="K2U-nd-q6x" id="Ukx-v5-O7Q"/>
                 <outlet property="descriptionLabel" destination="C5d-kz-Fyo" id="Hg9-gG-d0D"/>
                 <outlet property="imageView" destination="TST-YD-Utm" id="lH2-BK-IBu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,20 +28,31 @@
                         <constraint firstAttribute="width" secondItem="TST-YD-Utm" secondAttribute="height" multiplier="1:1" priority="750" id="LVt-zH-yXS"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5d-kz-Fyo">
-                    <rect key="frame" x="20" y="360" width="335" height="21"/>
-                    <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</mutableString>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCd-BQ-etj" customClass="BigButton" customModule="Toolkit">
-                    <rect key="frame" x="20" y="401" width="335" height="54"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZQl-CY-ioq">
+                    <rect key="frame" x="20" y="360" width="335" height="51"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5d-kz-Fyo">
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
+                            <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Куплено штук: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2U-nd-q6x">
+                            <rect key="frame" x="0.0" y="30.5" width="335" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCd-BQ-etj" customClass="BigButton" customModule="Toolkit">
+                    <rect key="frame" x="20" y="431" width="335" height="54"/>
                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="qnl-WN-mH7"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Купить">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -57,14 +69,14 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="rCd-BQ-etj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="0fG-nb-5Cj"/>
-                <constraint firstItem="C5d-kz-Fyo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="4l9-33-03L"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TST-YD-Utm" secondAttribute="trailing" constant="20" id="Cxt-us-HHX"/>
+                <constraint firstAttribute="trailing" secondItem="ZQl-CY-ioq" secondAttribute="trailing" constant="20" id="M8h-dj-dI0"/>
+                <constraint firstItem="ZQl-CY-ioq" firstAttribute="top" secondItem="TST-YD-Utm" secondAttribute="bottom" constant="20" id="MTr-iU-2Sk"/>
                 <constraint firstItem="TST-YD-Utm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="SNb-Qe-Qzj"/>
-                <constraint firstItem="rCd-BQ-etj" firstAttribute="top" secondItem="C5d-kz-Fyo" secondAttribute="bottom" constant="20" id="YU7-w9-Hku"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="C5d-kz-Fyo" secondAttribute="trailing" constant="20" id="l54-PQ-JUa"/>
-                <constraint firstItem="C5d-kz-Fyo" firstAttribute="top" secondItem="TST-YD-Utm" secondAttribute="bottom" constant="20" id="p0Z-DO-fhX"/>
+                <constraint firstItem="ZQl-CY-ioq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="cFE-tW-xLq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rCd-BQ-etj" secondAttribute="trailing" constant="20" id="teC-Fy-ydF"/>
                 <constraint firstItem="TST-YD-Utm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="x0l-Uf-A1Z"/>
+                <constraint firstItem="rCd-BQ-etj" firstAttribute="top" secondItem="ZQl-CY-ioq" secondAttribute="bottom" constant="20" id="xEl-Wr-On2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="125"/>

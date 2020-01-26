@@ -11,7 +11,7 @@ import Toolkit
 final class RestoreRequest: BasePostRequest {
     
     init(email: String) {
-        let endpoint = "\(RequestFactory.endpointRoot)/password/forgot"
+        let endpoint = "\(RequestFactory.endpointRoot)password/forgot"
         let parameters = ["email": email]
                           
         super.init(endpoint: endpoint, parameters: parameters)

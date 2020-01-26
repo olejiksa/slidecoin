@@ -18,6 +18,7 @@
 		EB1A236923B636CB00E21318 /* StoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB1A236723B636CB00E21318 /* StoreView.xib */; };
 		EB1CE49A23DB40E000150359 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1CE49923DB40E000150359 /* UserDefaultsService.swift */; };
 		EB1CE49C23DB443000150359 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1CE49B23DB442F00150359 /* TransactionCell.swift */; };
+		EB1CE49E23DB736E00150359 /* MyPurchasesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1CE49D23DB736E00150359 /* MyPurchasesRequest.swift */; };
 		EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */; };
 		EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB219950238DD2E1008A8772 /* RegistrationView.xib */; };
 		EB24546523D19ABB00C99EFB /* TransferRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB24546423D19ABB00C99EFB /* TransferRequest.swift */; };
@@ -82,6 +83,9 @@
 		EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */; };
 		EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35051238DC317008AACA2 /* RegistrationRequest.swift */; };
 		EBD35055238DC422008AACA2 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35054238DC422008AACA2 /* Login.swift */; };
+		EBD5D94A23DE1D9000D9BD64 /* AddItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5D94923DE1D9000D9BD64 /* AddItemRequest.swift */; };
+		EBD5D94D23DE1EA000D9BD64 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5D94B23DE1EA000D9BD64 /* AddItemViewController.swift */; };
+		EBD5D94E23DE1EA000D9BD64 /* AddItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBD5D94C23DE1EA000D9BD64 /* AddItemView.xib */; };
 		EBE4675F23D8F415004A9EA5 /* NoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4675D23D8F415004A9EA5 /* NoUserViewController.swift */; };
 		EBE4676023D8F415004A9EA5 /* NoUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBE4675E23D8F415004A9EA5 /* NoUserView.xib */; };
 		EBEF6A5B238EF36A008FD4F6 /* Toolkit in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF6A5A238EF36A008FD4F6 /* Toolkit */; };
@@ -98,6 +102,7 @@
 		EB1A236723B636CB00E21318 /* StoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreView.xib; sourceTree = "<group>"; };
 		EB1CE49923DB40E000150359 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		EB1CE49B23DB442F00150359 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		EB1CE49D23DB736E00150359 /* MyPurchasesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPurchasesRequest.swift; sourceTree = "<group>"; };
 		EB21994F238DD2E1008A8772 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EB219950238DD2E1008A8772 /* RegistrationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistrationView.xib; sourceTree = "<group>"; };
 		EB24546423D19ABB00C99EFB /* TransferRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferRequest.swift; sourceTree = "<group>"; };
@@ -165,6 +170,9 @@
 		EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		EBD35051238DC317008AACA2 /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		EBD35054238DC422008AACA2 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		EBD5D94923DE1D9000D9BD64 /* AddItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemRequest.swift; sourceTree = "<group>"; };
+		EBD5D94B23DE1EA000D9BD64 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		EBD5D94C23DE1EA000D9BD64 /* AddItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddItemView.xib; sourceTree = "<group>"; };
 		EBE4675D23D8F415004A9EA5 /* NoUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoUserViewController.swift; sourceTree = "<group>"; };
 		EBE4675E23D8F415004A9EA5 /* NoUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoUserView.xib; sourceTree = "<group>"; };
 		EBEF6A57238EF168008FD4F6 /* Toolkit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Toolkit; path = ../Toolkit; sourceTree = "<group>"; };
@@ -234,6 +242,8 @@
 				EB513F3323D2ED8D00780EB9 /* ProductView.xib */,
 				EB3EF1BF23DA584A000CCA4C /* PurchasesViewController.swift */,
 				EB3EF1C023DA584A000CCA4C /* PurchasesView.xib */,
+				EBD5D94B23DE1EA000D9BD64 /* AddItemViewController.swift */,
+				EBD5D94C23DE1EA000D9BD64 /* AddItemView.xib */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -344,6 +354,8 @@
 				EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */,
 				EB3EF1C323DA6146000CCA4C /* ShopRequest.swift */,
 				EB3EF1C723DA6A38000CCA4C /* BuyRequest.swift */,
+				EB1CE49D23DB736E00150359 /* MyPurchasesRequest.swift */,
+				EBD5D94923DE1D9000D9BD64 /* AddItemRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -456,6 +468,7 @@
 				EB513F3123D2E29C00780EB9 /* ProductCell.xib in Resources */,
 				EBD35035238DBAA9008AACA2 /* AuthView.xib in Resources */,
 				EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */,
+				EBD5D94E23DE1EA000D9BD64 /* AddItemView.xib in Resources */,
 				EBB3361923B54CF1007923F9 /* AboutView.xib in Resources */,
 				EB839F0123AF9D7B0043B223 /* TransferView.xib in Resources */,
 			);
@@ -473,6 +486,7 @@
 				EB3EF1C823DA6A38000CCA4C /* BuyRequest.swift in Sources */,
 				EB6AA84023AA57E800938BB6 /* UsersRequest.swift in Sources */,
 				EB14979C23D46F2800F9AE87 /* UserByIDRequest.swift in Sources */,
+				EB1CE49E23DB736E00150359 /* MyPurchasesRequest.swift in Sources */,
 				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
 				EBCE475F23D175840047F953 /* RestoreRequest.swift in Sources */,
 				EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */,
@@ -508,6 +522,7 @@
 				EB6AA84223AA585000938BB6 /* UsersParser.swift in Sources */,
 				EB513F3423D2ED8D00780EB9 /* ProductViewController.swift in Sources */,
 				EB6AA85123AAD43E00938BB6 /* SecretRequest.swift in Sources */,
+				EBD5D94D23DE1EA000D9BD64 /* AddItemViewController.swift in Sources */,
 				EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */,
 				EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */,
 				EBB3361823B54CF1007923F9 /* AboutViewController.swift in Sources */,
@@ -523,6 +538,7 @@
 				EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */,
 				EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */,
 				EB513F3723D2EDFC00780EB9 /* Product.swift in Sources */,
+				EBD5D94A23DE1D9000D9BD64 /* AddItemRequest.swift in Sources */,
 				EB513F3D23D4458900780EB9 /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -662,7 +678,7 @@
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -670,7 +686,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecurrency;
 				PRODUCT_NAME = Slidecoin;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -686,7 +702,7 @@
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -694,7 +710,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecurrency;
 				PRODUCT_NAME = Slidecoin;
 				PROVISIONING_PROFILE_SPECIFIER = "";

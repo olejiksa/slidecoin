@@ -12,6 +12,7 @@ struct Product: Decodable {
     let name: String
     let price: Int
     let description: String
+    let amount: Int?
 }
 
 struct ShopResponse: Decodable {

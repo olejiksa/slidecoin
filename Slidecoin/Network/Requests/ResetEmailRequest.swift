@@ -11,7 +11,7 @@ import Toolkit
 final class ResetEmailRequest: BasePostRequest {
     
     init(newPassword: String, token: String) {
-        let endpoint = "\(RequestFactory.endpointRoot)/password/forgot/reset/\(token)"
+        let endpoint = "\(RequestFactory.endpointRoot)password/forgot/reset/\(token)"
         let parameters = ["new_password": newPassword]
                           
         super.init(endpoint: endpoint, parameters: parameters)

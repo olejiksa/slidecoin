@@ -10,25 +10,36 @@ import Toolkit
 
 final class TransactionCell: DetailCell {
     
-    func setup(transaction: Transaction, user: User) {
+    func setup(transaction: Transaction, userIDs: [Int: String], user: User) {
         textLabel?.text = "\(transaction.amount) \(Global.currencySymbol)"
         
         let condition = transaction.amount < 0 || user.id == transaction.senderID || transaction.receiverID == 0
         textLabel?.textColor = condition ? .systemRed : .systemGreen
         
-        switch user.id {
-        case transaction.receiverID:
-            detailTextLabel?.text = "Пополнение (от кого): \(transaction.senderID)"
+        if transaction.receiverID == 0 {
+            if user.id == transaction.senderID {
+                detailTextLabel?.text = "Покупка"
+            } else {
+                let username = userIDs[transaction.senderID] ?? "Магазин"
+                detailTextLabel?.text = "Покупка \(username)"
+            }
             
-        case transaction.senderID:
-            detailTextLabel?.text = "Перевод (кому): \(transaction.receiverID)"
-            
-        default:
-            detailTextLabel?.text = "От \(transaction.senderID) к \(transaction.receiverID)"
+            return
         }
         
-        if transaction.receiverID == 0 {
-            detailTextLabel?.text = "Покупка (кем): \(transaction.senderID)"
+        switch user.id {
+        case transaction.receiverID:
+            let username = userIDs[transaction.senderID]!
+            detailTextLabel?.text = "Пополнение от \(username)"
+            
+        case transaction.senderID:
+            let username = userIDs[transaction.receiverID]!
+            detailTextLabel?.text = "Перевод \(username)"
+            
+        default:
+            let senderUsername = userIDs[transaction.senderID]!
+            let receiverUsername = userIDs[transaction.receiverID]!
+            detailTextLabel?.text = "От \(senderUsername) к \(receiverUsername)"
         }
     }
 }

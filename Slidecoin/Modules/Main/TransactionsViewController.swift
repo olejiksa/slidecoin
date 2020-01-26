@@ -23,6 +23,7 @@ final class TransactionsViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     private var isFilterEnabled = false
     
+    private var userIDs: [Int: String] = [:]
     private var transactions: [Transaction] = []
     private var filteredTransactions: [Transaction] = []
     
@@ -84,9 +85,26 @@ final class TransactionsViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let transactions):
-                    self.refreshControl.endRefreshing()
-                    self.transactions = transactions.reversed()
-                    self.tableView.reloadData()
+                    let usersConfig = RequestFactory.users(accessToken: self.accessToken)
+                    self.requestSender.send(config: usersConfig) { [weak self] result in
+                        guard let self = self else { return }
+                        
+                        switch result {
+                        case .success(let users):
+                            for i in 0..<users.count {
+                                self.userIDs[users[i].id] = users[i].username
+                            }
+                            
+                            self.refreshControl.endRefreshing()
+                            self.transactions = transactions.reversed()
+                            self.tableView.reloadData()
+                            
+                        case .failure(let error):
+                            self.refreshControl.endRefreshing()
+                            let alert = self.alertService.alert(error.localizedDescription)
+                            self.present(alert, animated: true)
+                        }
+                    }
                     
                 case .failure(let error):
                     switch error {
@@ -163,7 +181,7 @@ extension TransactionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TransactionCell
         let transaction = !isFilterEnabled ? transactions[indexPath.section] : filteredTransactions[indexPath.section]
-        cell?.setup(transaction: transaction, user: user)
+        cell?.setup(transaction: transaction, userIDs: userIDs, user: user)
         return cell ?? UITableViewCell(frame: .zero)
     }
 }

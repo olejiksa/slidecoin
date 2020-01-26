@@ -18,17 +18,21 @@ final class ProductViewController: UIViewController {
     private let product: Product
     private let refreshToken: String
     private var accessToken: String
+    private let alreadyPurchased: Bool
     
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var countLabel: UILabel!
     @IBOutlet private weak var buyButton: BigButton!
     
     init(product: Product,
          refreshToken: String,
-         accessToken: String) {
+         accessToken: String,
+         alreadyPurchased: Bool) {
         self.product = product
         self.refreshToken = refreshToken
         self.accessToken = accessToken
+        self.alreadyPurchased = alreadyPurchased
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -55,6 +59,13 @@ final class ProductViewController: UIViewController {
     private func setupView() {
         descriptionLabel.text = product.description
         buyButton.setTitle("\(product.price) \(Global.currencySymbol)", for: .normal)
+        buyButton.isHidden = alreadyPurchased
+        
+        if let count = product.amount {
+            countLabel.text = "Куплено штук: \(count)"
+        } else {
+            countLabel.isHidden = true
+        }
     }
     
     @IBAction private func buyDidTap() {
