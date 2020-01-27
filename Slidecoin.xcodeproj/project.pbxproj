@@ -10,6 +10,9 @@
 		EB09B47C23ABADC200680ABC /* TokenRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */; };
 		EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */; };
 		EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47F23ABAEEA00680ABC /* AccessToken.swift */; };
+		EB0D35CC23DF2C630079F554 /* AccentColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0D35CA23DF2C630079F554 /* AccentColorViewController.swift */; };
+		EB0D35CD23DF2C630079F554 /* AccentColorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0D35CB23DF2C630079F554 /* AccentColorView.xib */; };
+		EB0D35CF23DF31DA0079F554 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0D35CE23DF31D90079F554 /* BigButton.swift */; };
 		EB14979C23D46F2800F9AE87 /* UserByIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */; };
 		EB14979E23D4705C00F9AE87 /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14979D23D4705C00F9AE87 /* UserParser.swift */; };
 		EB1A236323B62B8400E21318 /* KeyboardAdjuster in Frameworks */ = {isa = PBXBuildFile; productRef = EB1A236223B62B8400E21318 /* KeyboardAdjuster */; };
@@ -95,6 +98,9 @@
 		EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequest.swift; sourceTree = "<group>"; };
 		EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenParser.swift; sourceTree = "<group>"; };
 		EB09B47F23ABAEEA00680ABC /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		EB0D35CA23DF2C630079F554 /* AccentColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorViewController.swift; sourceTree = "<group>"; };
+		EB0D35CB23DF2C630079F554 /* AccentColorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccentColorView.xib; sourceTree = "<group>"; };
+		EB0D35CE23DF31D90079F554 /* BigButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByIDRequest.swift; sourceTree = "<group>"; };
 		EB14979D23D4705C00F9AE87 /* UserParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserParser.swift; sourceTree = "<group>"; };
 		EB1A236423B634DE00E21318 /* TabBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBuilder.swift; sourceTree = "<group>"; };
@@ -210,6 +216,8 @@
 				EB513F3E23D4475900780EB9 /* TransactionsViewController.swift */,
 				EB513F3F23D4475900780EB9 /* TransactionsView.xib */,
 				EB1CE49B23DB442F00150359 /* TransactionCell.swift */,
+				EB0D35CA23DF2C630079F554 /* AccentColorViewController.swift */,
+				EB0D35CB23DF2C630079F554 /* AccentColorView.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -300,6 +308,7 @@
 				EBD35036238DBF6D008AACA2 /* Network */,
 				EB6AA84923AAB74600938BB6 /* Services */,
 				EB61FB5223ABDBC500DC8E21 /* Assembly.swift */,
+				EB0D35CE23DF31D90079F554 /* BigButton.swift */,
 				EB3EF1C923DB3F4B000CCA4C /* Global.swift */,
 				EBD3501E238DB91B008AACA2 /* AppDelegate.swift */,
 				EBD35020238DB91B008AACA2 /* SceneDelegate.swift */,
@@ -462,6 +471,7 @@
 				EB3D0385238EAD4400E5BAE9 /* MainView.xib in Resources */,
 				EB513F4123D4475900780EB9 /* TransactionsView.xib in Resources */,
 				EB1A236923B636CB00E21318 /* StoreView.xib in Resources */,
+				EB0D35CD23DF2C630079F554 /* AccentColorView.xib in Resources */,
 				EB6AA83E23AA54D300938BB6 /* PreRestoreView.xib in Resources */,
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
 				EBE4676023D8F415004A9EA5 /* NoUserView.xib in Resources */,
@@ -482,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB6AA83D23AA54D300938BB6 /* PreRestoreViewController.swift in Sources */,
+				EB0D35CF23DF31DA0079F554 /* BigButton.swift in Sources */,
 				EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */,
 				EB3EF1C823DA6A38000CCA4C /* BuyRequest.swift in Sources */,
 				EB6AA84023AA57E800938BB6 /* UsersRequest.swift in Sources */,
@@ -507,6 +518,7 @@
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
 				EB513F4023D4475900780EB9 /* TransactionsViewController.swift in Sources */,
+				EB0D35CC23DF2C630079F554 /* AccentColorViewController.swift in Sources */,
 				EB60C34723B3F024009CC4EC /* Message.swift in Sources */,
 				EB60C34123B3E30F009CC4EC /* LogoutAccessRequest.swift in Sources */,
 				EB6AA84F23AAD3E500938BB6 /* Secret.swift in Sources */,

@@ -25,10 +25,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lx7-63-bkq">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="185.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="259.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="obu-GK-07j">
-                                    <rect key="frame" x="20" y="20" width="335" height="145.5"/>
+                                    <rect key="frame" x="20" y="20" width="335" height="219.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="47N-iL-GsR">
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="71.5"/>
@@ -47,7 +47,7 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJH-5Z-c7k" customClass="BigButton" customModule="Toolkit">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJH-5Z-c7k" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="91.5" width="335" height="54"/>
                                             <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -64,6 +64,25 @@
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="transactionsDidTap" destination="-1" eventType="touchUpInside" id="V4e-mj-h2b"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Q1-NG-1y4" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="165.5" width="335" height="54"/>
+                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="54" id="WAJ-0c-qaV"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <state key="normal" title="Акцентный цвет">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="accentColorDidTap" destination="-1" eventType="touchUpInside" id="Wq9-KZ-aUt"/>
                                             </connections>
                                         </button>
                                     </subviews>

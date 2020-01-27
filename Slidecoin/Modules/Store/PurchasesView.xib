@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PurchasesViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="SBP-bU-l3J" id="DCp-8E-Bdq"/>
+                <outlet property="spinner" destination="z8S-yD-DSf" id="PC0-2i-Mze"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,12 +33,17 @@
                         <outlet property="delegate" destination="-1" id="CmE-2z-fZl"/>
                     </connections>
                 </collectionView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="z8S-yD-DSf">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="SBP-bU-l3J" secondAttribute="bottom" id="4qR-O0-dU1"/>
+                <constraint firstItem="z8S-yD-DSf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JV2-f4-jiP"/>
                 <constraint firstItem="SBP-bU-l3J" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ZpL-bY-VMt"/>
                 <constraint firstItem="SBP-bU-l3J" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="apm-xs-AVF"/>
+                <constraint firstItem="z8S-yD-DSf" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cvp-98-rBg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SBP-bU-l3J" secondAttribute="trailing" id="jrv-2o-ALe"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

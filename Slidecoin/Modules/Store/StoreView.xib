@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="ZAB-VK-muO" id="yRv-qL-ekb"/>
+                <outlet property="spinner" destination="bz9-qm-iSX" id="RPf-Ku-G68"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,11 +33,16 @@
                         <outlet property="delegate" destination="-1" id="1oB-uM-gUV"/>
                     </connections>
                 </collectionView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="bz9-qm-iSX">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="bz9-qm-iSX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2Rx-hx-ric"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZAB-VK-muO" secondAttribute="trailing" id="5NO-CL-GtM"/>
                 <constraint firstAttribute="bottom" secondItem="ZAB-VK-muO" secondAttribute="bottom" id="W26-9W-4Fz"/>
+                <constraint firstItem="bz9-qm-iSX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="d3o-fQ-SMs"/>
                 <constraint firstItem="ZAB-VK-muO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gig-5k-daM"/>
                 <constraint firstItem="ZAB-VK-muO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kji-yz-7NU"/>
             </constraints>

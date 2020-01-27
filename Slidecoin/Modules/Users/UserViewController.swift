@@ -30,7 +30,6 @@ final class UserViewController: UIViewController {
     private let refreshToken: String
     private let isCurrent: Bool
     
-    private var imagePicker: ImagePicker?
     private let alertService = Assembly.alertService
     private let userDefaultsService = Assembly.userDefaultsService
     private let requestSender = Assembly.requestSender
@@ -62,7 +61,6 @@ final class UserViewController: UIViewController {
         
         setupNavigationBar()
         setupUserDescription()
-        setupUserTile()
         setupView()
     }
     
@@ -75,10 +73,6 @@ final class UserViewController: UIViewController {
                                         receiver: user)
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
-    }
-    
-    @IBAction private func changeUserTileDidTap(_ sender: UIButton) {
-        imagePicker?.present(from: sender)
     }
     
     @IBAction private func changePasswordDidTap() {
@@ -122,16 +116,6 @@ final class UserViewController: UIViewController {
         nameLabel.text = "\(user.name) \(user.surname)"
         emailLabel.text = user.email
         balanceLabel.text = "\(user.balance) \(Global.currencySymbol)"
-    }
-    
-    private func setupUserTile() {
-        imagePicker = ImagePicker(presentationController: self, delegate: self)
-        
-        imageView.layer.borderColor = UIColor.systemBlue.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
-        imageView.clipsToBounds = true
     }
     
     private func setupView() {
@@ -213,17 +197,6 @@ final class UserViewController: UIViewController {
     
     @objc private func close() {
         dismiss(animated: true)
-    }
-}
-
-
-// MARK: - ImagePickerDelegate
-
-extension UserViewController: ImagePickerDelegate {
-
-    func didSelect(image: UIImage?) {
-        guard let image = image else { return }
-        imageView.image = image
     }
 }
 

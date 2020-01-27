@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 protocol UserDefaultsServiceProtocol: class {
     
@@ -15,10 +17,32 @@ protocol UserDefaultsServiceProtocol: class {
     
     func updateLogin(with login: Login)
     func updateUser(_ user: User)
+    
+    func getColor() -> UIColor
+    func setColor(_ color: UIColor)
 }
 
 
 final class UserDefaultsService: UserDefaultsServiceProtocol {
+    
+    func getColor() -> UIColor {
+        let defaults = UserDefaults.standard
+        
+        var color: UIColor? = nil
+        if let colorData = defaults.data(forKey: "color") {
+            color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
+        }
+        
+        return color ?? .systemBlue
+    }
+    
+    func setColor(_ color: UIColor) {
+        let defaults = UserDefaults.standard
+        if let data = try? NSKeyedArchiver.archivedData(withRootObject: color,
+                                                        requiringSecureCoding: false) {
+            defaults.set(data, forKey: "color")
+        }
+    }
     
     func getCredentials() -> (Login, User)? {
         let defaults = UserDefaults.standard

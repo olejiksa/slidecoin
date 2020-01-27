@@ -30,6 +30,7 @@ final class UsersViewController: UIViewController {
     
     // MARK: Outlets
     
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
     
     
@@ -92,6 +93,10 @@ final class UsersViewController: UIViewController {
             let refreshToken = login.refreshToken
         else { return }
         
+        if users.isEmpty {
+            spinner.startAnimating()
+        }
+        
         let config = RequestFactory.users(accessToken: accessToken)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
@@ -99,6 +104,8 @@ final class UsersViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let users):
+                    self.spinner.stopAnimating()
+                    self.tableView.separatorStyle = .singleLine
                     self.refreshControl.endRefreshing()
                     self.users = users.sorted(by: { $0.balance > $1.balance })
                     self.tableView.reloadData()
@@ -118,6 +125,8 @@ final class UsersViewController: UIViewController {
                                 self.obtainUsers()
                                 
                             case .failure(let error):
+                                self.spinner.stopAnimating()
+                                self.tableView.separatorStyle = .singleLine
                                 self.refreshControl.endRefreshing()
                                 let alert = self.alertService.alert(error.localizedDescription)
                                 self.present(alert, animated: true)
@@ -125,6 +134,8 @@ final class UsersViewController: UIViewController {
                         }
                         
                     default:
+                        self.spinner.stopAnimating()
+                        self.tableView.separatorStyle = .singleLine
                         self.refreshControl.endRefreshing()
                         let alert = self.alertService.alert(error.localizedDescription)
                         self.present(alert, animated: true)

@@ -27,6 +27,7 @@ final class TransactionsViewController: UIViewController {
     private var transactions: [Transaction] = []
     private var filteredTransactions: [Transaction] = []
     
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
     
     init(user: User, accessToken: String, refreshToken: String) {
@@ -76,6 +77,10 @@ final class TransactionsViewController: UIViewController {
     }
     
     private func obtainTransactions() {
+        if transactions.isEmpty {
+            spinner.startAnimating()
+        }
+        
         let config = RequestFactory.transactions(accessToken: accessToken)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
@@ -95,11 +100,15 @@ final class TransactionsViewController: UIViewController {
                                 self.userIDs[users[i].id] = users[i].username
                             }
                             
+                            self.spinner.stopAnimating()
+                            self.tableView.separatorStyle = .singleLine
                             self.refreshControl.endRefreshing()
                             self.transactions = transactions.reversed()
                             self.tableView.reloadData()
                             
                         case .failure(let error):
+                            self.spinner.stopAnimating()
+                            self.tableView.separatorStyle = .singleLine
                             self.refreshControl.endRefreshing()
                             let alert = self.alertService.alert(error.localizedDescription)
                             self.present(alert, animated: true)
@@ -123,6 +132,8 @@ final class TransactionsViewController: UIViewController {
                                 self.obtainTransactions()
                                 
                             case .failure(let error):
+                                self.spinner.stopAnimating()
+                                self.tableView.separatorStyle = .singleLine
                                 self.refreshControl.endRefreshing()
                                 let alert = self.alertService.alert(error.localizedDescription)
                                 self.present(alert, animated: true)
@@ -130,6 +141,8 @@ final class TransactionsViewController: UIViewController {
                         }
                         
                     default:
+                        self.spinner.stopAnimating()
+                        self.tableView.separatorStyle = .singleLine
                         self.refreshControl.endRefreshing()
                         let alert = self.alertService.alert(error.localizedDescription)
                         self.present(alert, animated: true)

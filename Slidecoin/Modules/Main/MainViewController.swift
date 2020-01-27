@@ -27,7 +27,6 @@ final class MainViewController: UIViewController {
     
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var sumLabel: UILabel!
-    @IBOutlet private weak var secretButton: BigButton!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var transactionsButton: BigButton!
     
@@ -55,15 +54,6 @@ final class MainViewController: UIViewController {
     
     
     // MARK: Actions
-    
-    @IBAction private func secretDidTap() {
-        guard
-            let accessToken = login.accessToken,
-            let refreshToken = login.refreshToken
-        else { return }
-        
-        obtainSecret(accessToken, refreshToken)
-    }
     
     @IBAction private func transactionsDidTap() {
         guard
@@ -112,48 +102,6 @@ final class MainViewController: UIViewController {
         }
     }
     
-    private func obtainSecret(_ accessToken: String, _ refreshToken: String) {
-        secretButton.showLoading()
-        
-        let accessConfig = RequestFactory.secret(accessToken: accessToken)
-        requestSender.send(config: accessConfig) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.secretButton.hideLoading()
-            
-            switch result {
-            case .success(let secret):
-                let alert = self.alertService.alert(String(secret),
-                                                    title: .info)
-                self.present(alert, animated: true)
-                
-            case .failure(let error):
-                switch error {
-                case is ResponseError:
-                    let refreshConfig = RequestFactory.tokenRefresh(refreshToken: refreshToken)
-                    self.requestSender.send(config: refreshConfig) { [weak self] result in
-                        guard let self = self else { return }
-                        
-                        switch result {
-                        case .success(let accessToken):
-                            self.login.accessToken = accessToken
-                            self.userDefaultsService.updateLogin(with: self.login)
-                            self.obtainSecret(accessToken, refreshToken)
-                            
-                        case .failure(let error):
-                            let alert = self.alertService.alert(error.localizedDescription)
-                            self.present(alert, animated: true)
-                        }
-                    }
-                    
-                default:
-                    let alert = self.alertService.alert(error.localizedDescription)
-                    self.present(alert, animated: true)
-                }
-            }
-        }
-    }
-    
     @objc private func userDidTap() {
         guard
             let accessToken = login.accessToken,
@@ -175,6 +123,11 @@ final class MainViewController: UIViewController {
         present(nvc, animated: true)
     }
     
+    @IBAction private func accentColorDidTap() {
+        let vc = AccentColorViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc private func refresh() {
         guard let accessToken = login.accessToken else { return }
         
@@ -187,6 +140,7 @@ final class MainViewController: UIViewController {
             switch result {
             case .success(let user):
                 self.user = user
+                self.userDefaultsService.updateUser(user)
                 self.setupView()
                 
             case .failure(let error):

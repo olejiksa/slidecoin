@@ -26,6 +26,7 @@ final class StoreViewController: UIViewController {
     private var login: Login
     private var user: User
     
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var collectionView: UICollectionView!
     
     init(login: Login, user: User) {
@@ -103,6 +104,10 @@ final class StoreViewController: UIViewController {
             let refreshToken = login.refreshToken
         else { return }
         
+        if products.isEmpty {
+            spinner.startAnimating()
+        }
+        
         let config = RequestFactory.shop(accessToken: accessToken)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
@@ -110,6 +115,7 @@ final class StoreViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let products):
+                    self.spinner.stopAnimating()
                     self.refreshControl.endRefreshing()
                     self.products = products
                     self.collectionView.reloadData()
@@ -129,6 +135,7 @@ final class StoreViewController: UIViewController {
                                 self.obtainProducts()
                                 
                             case .failure(let error):
+                                self.spinner.stopAnimating()
                                 self.refreshControl.endRefreshing()
                                 let alert = self.alertService.alert(error.localizedDescription)
                                 self.present(alert, animated: true)
@@ -136,6 +143,7 @@ final class StoreViewController: UIViewController {
                         }
                         
                     default:
+                        self.spinner.stopAnimating()
                         self.refreshControl.endRefreshing()
                         let alert = self.alertService.alert(error.localizedDescription)
                         self.present(alert, animated: true)
