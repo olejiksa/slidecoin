@@ -155,7 +155,12 @@ final class StoreViewController: UIViewController {
     }
     
     @objc private func addItem() {
-        let vc = AddItemViewController()
+        guard
+            let accessToken = login.accessToken,
+            let refreshToken = login.refreshToken
+        else { return }
+        
+        let vc = AddItemViewController(accessToken: accessToken, refreshToken: refreshToken)
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }

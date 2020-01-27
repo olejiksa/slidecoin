@@ -11,6 +11,9 @@ import UIKit
 
 final class AddItemViewController: UIViewController {
 
+    private let alertService = Assembly.alertService
+    private let userDefaultsService = Assembly.userDefaultsService
+    private let requestSender = Assembly.requestSender
     private var formValidationHelper: FormValidationHelper?
     
     @IBOutlet private weak var stackView: UIStackView!
@@ -19,6 +22,20 @@ final class AddItemViewController: UIViewController {
     @IBOutlet private weak var nameField: UITextField!
     @IBOutlet private weak var priceField: UITextField!
     @IBOutlet private weak var descriptionField: UITextField!
+    
+    private var accessToken: String
+    private let refreshToken: String
+    
+    init(accessToken: String, refreshToken: String) {
+        self.accessToken = accessToken
+        self.refreshToken = refreshToken
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +60,64 @@ final class AddItemViewController: UIViewController {
         formValidationHelper = FormValidationHelper(textFields: textFields,
                                                     button: submitButton,
                                                     stackView: stackView)
+    }
+    
+    @IBAction private func didTapSubmit() {
+        guard
+            let name = nameField.text,
+            let priceString = priceField.text,
+            let price = Int(priceString), price >= 0,
+            let description = descriptionField.text
+        else { return }
+        
+        submitButton.showLoading()
+        
+        let config = RequestFactory.addItem(name: name, price: price, description: description, accessToken: accessToken)
+        requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let message):
+                    self.submitButton.hideLoading()
+                    
+                    let alert = self.alertService.alert(message, title: .info, isDestructive: false ) { _ in
+                        if message.contains("success") {
+                            self.dismiss(animated: true)
+                        }
+                    }
+                    
+                    self.present(alert, animated: true)
+                    
+                case .failure(let error):
+                    switch error {
+                    case is ResponseError:
+                        let refreshConfig = RequestFactory.tokenRefresh(refreshToken: self.refreshToken)
+                        self.requestSender.send(config: refreshConfig) { [weak self] result in
+                            guard let self = self else { return }
+                            
+                            switch result {
+                            case .success(let accessToken):
+                                self.accessToken = accessToken
+                                let login = Login(refreshToken: self.refreshToken, accessToken: self.accessToken, message: "")
+                                self.userDefaultsService.updateLogin(with: login)
+                                self.didTapSubmit()
+                                
+                            case .failure(let error):
+                                self.submitButton.hideLoading()
+                                let alert = self.alertService.alert(error.localizedDescription)
+                                self.present(alert, animated: true)
+                            }
+                        }
+                        
+                    default:
+                        self.submitButton.hideLoading()
+                        let alert = self.alertService.alert(error.localizedDescription)
+                        self.present(alert, animated: true)
+                    }
+                }
+            }
+        }
     }
     
     @objc private func close() {

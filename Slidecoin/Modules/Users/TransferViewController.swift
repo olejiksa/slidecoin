@@ -63,8 +63,10 @@ final class TransferViewController: UIViewController {
                 case .success(let message):
                     let alert = self.alertService.alert(message,
                                                         title: .info,
-                                                        isDestructive: false) {_ in
-                        self.dismiss(animated: true)
+                                                        isDestructive: false) { _ in
+                        if message.contains("success") {
+                            self.dismiss(animated: true)
+                        }
                     }
                     
                     self.present(alert, animated: true)
