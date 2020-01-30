@@ -16,12 +16,16 @@ final class TransactionCell: DetailCell {
         let condition = transaction.amount < 0 || user.id == transaction.senderID || transaction.receiverID == 0
         textLabel?.textColor = condition ? .systemRed : .systemGreen
         
+        if transaction.amount == 0 {
+            textLabel?.textColor = nil
+        }
+        
         if transaction.receiverID == 0 {
             if user.id == transaction.senderID {
                 detailTextLabel?.text = "Покупка"
             } else {
-                let username = userIDs[transaction.senderID] ?? "Магазин"
-                detailTextLabel?.text = "Покупка \(username)"
+                let username = userIDs[transaction.senderID]
+                detailTextLabel?.text = username != nil ? "Покупка \(username!)" : "Покупка"
             }
             
             return
@@ -33,8 +37,8 @@ final class TransactionCell: DetailCell {
             detailTextLabel?.text = "Пополнение от \(username)"
             
         case transaction.senderID:
-            let username = userIDs[transaction.receiverID]!
-            detailTextLabel?.text = "Перевод \(username)"
+            let username = userIDs[transaction.receiverID]
+            detailTextLabel?.text = username != nil ? "Перевод \(username!)" : "Перевод"
             
         default:
             let senderUsername = userIDs[transaction.senderID]!

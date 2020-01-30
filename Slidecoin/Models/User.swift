@@ -14,6 +14,7 @@ struct User: Decodable {
     let email: String
     let name: String
     let surname: String
+    let isAdmin: Int
 }
 
 struct UserResponse: Decodable {

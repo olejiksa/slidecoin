@@ -9,7 +9,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
-                <outlet property="containerView" destination="EZG-FD-4dx" id="dEF-OS-PQV"/>
                 <outlet property="loginButton" destination="G2X-8R-uiw" id="Zi1-jf-kqp"/>
                 <outlet property="passwordField" destination="vd3-Gl-K8e" id="Fo4-pg-TOV"/>
                 <outlet property="registrationButton" destination="gbl-UV-WJg" id="xGp-oH-I7n"/>
@@ -72,30 +71,25 @@
                                         </stackView>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EZG-FD-4dx">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-8R-uiw" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
                                     <rect key="frame" x="20" y="228" width="335" height="54"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-8R-uiw" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="54"/>
-                                            <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="54" id="YMO-xF-WLZ"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <state key="normal" title="Войти в систему">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="loginDidTap" destination="-1" eventType="touchUpInside" id="grW-Ud-Vrz"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </stackView>
+                                    <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="54" id="YMO-xF-WLZ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <state key="normal" title="Войти в систему">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="loginDidTap" destination="-1" eventType="touchUpInside" id="grW-Ud-Vrz"/>
+                                    </connections>
+                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Еще не пользуетесь Слайдовалютой?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHR-E6-Fqc">
                                     <rect key="frame" x="20" y="322" width="335" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -151,21 +145,21 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="SvI-3T-guY" secondAttribute="trailing" constant="20" id="0kf-h5-5AQ"/>
                                 <constraint firstItem="SvI-3T-guY" firstAttribute="top" secondItem="gmK-zb-kik" secondAttribute="bottom" constant="20" id="1kL-ZZ-2T1"/>
-                                <constraint firstItem="LHR-E6-Fqc" firstAttribute="top" secondItem="EZG-FD-4dx" secondAttribute="bottom" constant="40" id="31T-zQ-jvG"/>
-                                <constraint firstAttribute="trailing" secondItem="EZG-FD-4dx" secondAttribute="trailing" constant="20" id="5o8-8i-Zqr"/>
+                                <constraint firstItem="G2X-8R-uiw" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="7tn-yR-ZCU"/>
+                                <constraint firstAttribute="trailing" secondItem="G2X-8R-uiw" secondAttribute="trailing" constant="20" id="8Zy-Tp-zEM"/>
                                 <constraint firstItem="LHR-E6-Fqc" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="Bra-x5-WqS"/>
                                 <constraint firstAttribute="trailing" secondItem="LHR-E6-Fqc" secondAttribute="trailing" constant="20" id="FMF-lQ-MgY"/>
                                 <constraint firstAttribute="bottom" secondItem="SvI-3T-guY" secondAttribute="bottom" constant="20" id="H2A-hL-0VM"/>
                                 <constraint firstItem="4Rp-8R-F1H" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="H9j-qK-RUb"/>
                                 <constraint firstAttribute="trailing" secondItem="gmK-zb-kik" secondAttribute="trailing" constant="20" id="MGd-D0-tLa"/>
                                 <constraint firstItem="gmK-zb-kik" firstAttribute="top" secondItem="gbl-UV-WJg" secondAttribute="bottom" constant="40" id="NXP-y9-Vpp"/>
+                                <constraint firstItem="G2X-8R-uiw" firstAttribute="top" secondItem="4Rp-8R-F1H" secondAttribute="bottom" constant="20" id="Np5-wv-APx"/>
                                 <constraint firstItem="gbl-UV-WJg" firstAttribute="top" secondItem="LHR-E6-Fqc" secondAttribute="bottom" constant="20" id="SXL-Gd-F8J"/>
                                 <constraint firstAttribute="trailing" secondItem="4Rp-8R-F1H" secondAttribute="trailing" constant="20" id="Wfq-of-g1g"/>
                                 <constraint firstAttribute="trailing" secondItem="gbl-UV-WJg" secondAttribute="trailing" constant="20" id="bd5-o1-s4v"/>
-                                <constraint firstItem="EZG-FD-4dx" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="dYu-ha-Ewp"/>
                                 <constraint firstItem="gbl-UV-WJg" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="sMw-ZF-dWY"/>
+                                <constraint firstItem="LHR-E6-Fqc" firstAttribute="top" secondItem="G2X-8R-uiw" secondAttribute="bottom" constant="40" id="sjy-Zv-1mc"/>
                                 <constraint firstItem="gmK-zb-kik" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="sro-g5-X7e"/>
-                                <constraint firstItem="EZG-FD-4dx" firstAttribute="top" secondItem="4Rp-8R-F1H" secondAttribute="bottom" constant="20" id="tOl-qH-aJD"/>
                                 <constraint firstItem="4Rp-8R-F1H" firstAttribute="top" secondItem="efv-nK-JTq" secondAttribute="top" constant="20" id="wOg-FM-8aR"/>
                                 <constraint firstItem="SvI-3T-guY" firstAttribute="leading" secondItem="efv-nK-JTq" secondAttribute="leading" constant="20" id="zX1-bb-Acc"/>
                             </constraints>

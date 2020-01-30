@@ -13,6 +13,9 @@ struct RequestFactory {
     static let endpointRoot = "https://dima.pythonanywhere.com/"
     static let endpointWeb = "https://slide-wallet.web.app"
     
+    
+    // MARK: Auth
+    
     static func login(username: String, password: String) -> RequestConfig<LoginParser> {
         let request = LoginRequest(username: username, password: password)
         let parser = LoginParser()
@@ -60,12 +63,29 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func secret(accessToken: String) -> RequestConfig<SecretParser> {
-        let request = SecretRequest(accessToken: accessToken)
-        let parser = SecretParser()
+    static func tokenRefresh(refreshToken: String) -> RequestConfig<AccessTokenParser> {
+        let request = TokenRefreshRequest(refreshToken: refreshToken)
+        let parser = AccessTokenParser()
         
         return .init(request: request, parser: parser)
     }
+    
+    static func logoutAccess(accessToken: String) -> RequestConfig<MessageParser> {
+        let request = LogoutAccessRequest(accessToken: accessToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    static func logoutRefresh(refreshToken: String) -> RequestConfig<MessageParser> {
+        let request = LogoutRefreshRequest(refreshToken: refreshToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    
+    // MARK: Users
     
     static func transfer(accessToken: String,
                          receiver: User,
@@ -92,12 +112,22 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
+    static func deleteUser(by userID: Int, accessToken: String) -> RequestConfig<MessageParser> {
+        let request = DeleteUserRequest(userID: userID, accessToken: accessToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
     static func deleteAllUsers() -> RequestConfig<LoginParser> {
         let request = DeleteAllUsersRequest()
         let parser = LoginParser()
     
         return .init(request: request, parser: parser)
     }
+    
+    
+    // MARK: Transactions
     
     static func transactions(accessToken: String) -> RequestConfig<TransactionsParser> {
         let request = TransactionsRequest(accessToken: accessToken)
@@ -106,26 +136,17 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func tokenRefresh(refreshToken: String) -> RequestConfig<AccessTokenParser> {
-        let request = TokenRefreshRequest(refreshToken: refreshToken)
-        let parser = AccessTokenParser()
-        
-        return .init(request: request, parser: parser)
-    }
-    
-    static func logoutAccess(accessToken: String) -> RequestConfig<MessageParser> {
-        let request = LogoutAccessRequest(accessToken: accessToken)
+    static func addMoney(userID: Int,
+                         amount: Int,
+                         accessToken: String) -> RequestConfig<MessageParser> {
+        let request = AddMoneyRequest(userID: userID, amount: amount, accessToken: accessToken)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func logoutRefresh(refreshToken: String) -> RequestConfig<MessageParser> {
-        let request = LogoutRefreshRequest(refreshToken: refreshToken)
-        let parser = MessageParser()
-        
-        return .init(request: request, parser: parser)
-    }
+    
+    // MARK: Store
     
     static func shop(accessToken: String) -> RequestConfig<ShopParser> {
         let request = ShopRequest(accessToken: accessToken)
@@ -156,6 +177,13 @@ struct RequestFactory {
                                      price: price,
                                      description: description,
                                      accessToken: accessToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    static func deleteItem(by productID: Int, accessToken: String) -> RequestConfig<MessageParser> {
+        let request = DeleteItemRequest(productID: productID, accessToken: accessToken)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)

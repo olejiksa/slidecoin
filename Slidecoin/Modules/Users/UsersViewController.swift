@@ -65,8 +65,10 @@ final class UsersViewController: UIViewController {
         navigationItem.title = "Пользователи"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let deleteAllUsersButton = UIBarButtonItem(title: "Удалить всех", style: .done, target: self, action: #selector(allUsersDidDelete))
-        navigationItem.rightBarButtonItem = deleteAllUsersButton
+        if currentUser.isAdmin == 1 {
+            let deleteAllUsersButton = UIBarButtonItem(title: "Удалить всех", style: .plain, target: self, action: #selector(allUsersDidDelete))
+            navigationItem.rightBarButtonItem = deleteAllUsersButton
+        }
     }
     
     private func setupTableView() {

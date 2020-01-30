@@ -8,6 +8,7 @@
 
 import UIKit
 import Toolkit
+import SafariServices
 
 final class MainViewController: UIViewController {
 
@@ -81,7 +82,7 @@ final class MainViewController: UIViewController {
         
         let userImage = UIImage(systemName: "person.crop.circle")
         let userButton = UIBarButtonItem(image: userImage,
-                                         style: .done,
+                                         style: .plain,
                                          target: self,
                                          action: #selector(userDidTap))
         navigationItem.rightBarButtonItem = userButton
@@ -94,7 +95,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setupView() {
-        messageLabel.text = user.username
+        messageLabel.text = "Добро пожаловать, \(user.username)"
         sumLabel.text = "\(user.balance) \(Global.currencySymbol)"
         
         if let svc = splitViewController {
@@ -126,6 +127,12 @@ final class MainViewController: UIViewController {
     @IBAction private func accentColorDidTap() {
         let vc = AccentColorViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction private func tasksDidTap() {
+        guard let url = URL(string: RequestFactory.endpointWeb) else { return }
+        let svc = SFSafariViewController(url: url)
+        present(svc, animated: true, completion: nil)
     }
     
     @objc private func refresh() {

@@ -58,6 +58,7 @@ final class UserDefaultsService: UserDefaultsServiceProtocol {
         
         let balance = defaults.integer(forKey: "balance")
         let userID = defaults.integer(forKey: "user_id")
+        let isAdmin = defaults.integer(forKey: "is_admin")
         
         let login = Login(refreshToken: refreshToken,
                           accessToken: accessToken,
@@ -68,7 +69,8 @@ final class UserDefaultsService: UserDefaultsServiceProtocol {
                         username: username,
                         email: email,
                         name: name,
-                        surname: surname)
+                        surname: surname,
+                        isAdmin: isAdmin)
         
         return (login, user)
     }
@@ -84,6 +86,7 @@ final class UserDefaultsService: UserDefaultsServiceProtocol {
         defaults.removeObject(forKey: "surname")
         defaults.removeObject(forKey: "balance")
         defaults.removeObject(forKey: "user_id")
+        defaults.removeObject(forKey: "is_admin")
     }
     
     func updateLogin(with login: Login) {
@@ -105,5 +108,6 @@ final class UserDefaultsService: UserDefaultsServiceProtocol {
         defaults.set(user.name, forKey: "name")
         defaults.set(user.surname, forKey: "surname")
         defaults.set(user.username, forKey: "username")
+        defaults.set(user.isAdmin, forKey: "is_admin")
     }
 }

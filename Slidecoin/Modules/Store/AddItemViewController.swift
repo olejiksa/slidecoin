@@ -26,6 +26,8 @@ final class AddItemViewController: UIViewController {
     private var accessToken: String
     private let refreshToken: String
     
+    var completionHandler: (() -> ())?
+    
     init(accessToken: String, refreshToken: String) {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
@@ -56,7 +58,7 @@ final class AddItemViewController: UIViewController {
     }
     
     private func setupFormValidationHelper() {
-        let textFields: [UITextField] = [nameField, priceField, descriptionField]
+        let textFields: [UITextField] = [nameField, priceField]
         formValidationHelper = FormValidationHelper(textFields: textFields,
                                                     button: submitButton,
                                                     stackView: stackView)
@@ -84,6 +86,7 @@ final class AddItemViewController: UIViewController {
                     let alert = self.alertService.alert(message, title: .info, isDestructive: false ) { _ in
                         if message.contains("success") {
                             self.dismiss(animated: true)
+                            self.completionHandler?()
                         }
                     }
                     

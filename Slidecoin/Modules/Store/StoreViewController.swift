@@ -63,10 +63,12 @@ final class StoreViewController: UIViewController {
                                          action: #selector(navigateToPurchases))
         navigationItem.leftBarButtonItem = cartButton
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add,
-                                        target: self,
-                                        action: #selector(addItem))
-        navigationItem.rightBarButtonItem = addButton
+        if user.isAdmin == 1 {
+            let addButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                            target: self,
+                                            action: #selector(addItem))
+            navigationItem.rightBarButtonItem = addButton
+        }
     }
     
     private func setupKeyboard() {
@@ -169,6 +171,10 @@ final class StoreViewController: UIViewController {
         else { return }
         
         let vc = AddItemViewController(accessToken: accessToken, refreshToken: refreshToken)
+        vc.completionHandler = { [weak self] in
+            self?.refresh()
+        }
+        
         let nvc = UINavigationController(rootViewController: vc)
         present(nvc, animated: true)
     }
@@ -213,7 +219,12 @@ extension StoreViewController: UICollectionViewDelegate {
         let vc = ProductViewController(product: product,
                                        refreshToken: refreshToken,
                                        accessToken: accessToken,
-                                       alreadyPurchased: false)
+                                       alreadyPurchased: false,
+                                       isAdmin: user.isAdmin)
+        
+        vc.completionHandler = { [weak self] in
+            self?.refresh()
+        }
         
         if let splitVc = splitViewController, !splitVc.isCollapsed {
             let nvc = UINavigationController(rootViewController: vc)

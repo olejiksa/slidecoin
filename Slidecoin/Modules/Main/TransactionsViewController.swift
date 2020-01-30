@@ -55,15 +55,16 @@ final class TransactionsViewController: UIViewController {
     private func setupNavigationBar() {
         navigationItem.title = "Транзакции"
         navigationItem.largeTitleDisplayMode = .never
-        
-        let filterIcon = UIImage(systemName: "line.horizontal.3.decrease.circle")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: filterIcon,
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(filter))
-        
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         navigationItem.leftItemsSupplementBackButton = true
+        
+        if user.isAdmin == 1 {
+            let filterIcon = UIImage(systemName: "line.horizontal.3.decrease.circle.fill")
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: filterIcon,
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(filter))
+        }
     }
     
     private func setupTableView() {
@@ -105,6 +106,7 @@ final class TransactionsViewController: UIViewController {
                             self.refreshControl.endRefreshing()
                             self.transactions = transactions.reversed()
                             self.tableView.reloadData()
+                            self.filter()
                             
                         case .failure(let error):
                             self.spinner.stopAnimating()
@@ -182,9 +184,11 @@ extension TransactionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let transaction = transactions[section]
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "dd MMM yyyy, HH:mm"
-        return dateFormatter.string(from: transaction.date)
+        
+        let offsetTime = TimeInterval(TimeZone.current.secondsFromGMT())
+        let date = transaction.date.addingTimeInterval(offsetTime)
+        return dateFormatter.string(from: date)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
