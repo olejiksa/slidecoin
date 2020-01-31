@@ -56,12 +56,12 @@ final class StoreViewController: UIViewController {
         navigationItem.title = "Магазин"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        let cartImage = UIImage(systemName: "cart")
-        let cartButton = UIBarButtonItem(image: cartImage,
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(navigateToPurchases))
-        navigationItem.leftBarButtonItem = cartButton
+//        let cartImage = UIImage(systemName: "cart")
+//        let cartButton = UIBarButtonItem(image: cartImage,
+//                                         style: .plain,
+//                                         target: self,
+//                                         action: #selector(navigateToPurchases))
+//        navigationItem.leftBarButtonItem = cartButton
 
         if user.isAdmin == 1 {
             let addButton = UIBarButtonItem(barButtonSystemItem: .add,
@@ -176,6 +176,7 @@ final class StoreViewController: UIViewController {
         }
         
         let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
     }
 }

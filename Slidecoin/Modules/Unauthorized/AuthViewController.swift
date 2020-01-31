@@ -64,12 +64,14 @@ final class AuthViewController: UIViewController {
     @IBAction private func registrationDidTap() {
         let vc = RegistrationViewController()
         let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
     }
     
     @IBAction func restoreDidTap() {
         let vc = PreRestoreViewController()
         let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
     }
     
@@ -82,7 +84,10 @@ final class AuthViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Авторизация"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
     
     private func setupButtonNavigationHelper() {

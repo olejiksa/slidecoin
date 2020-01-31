@@ -33,6 +33,7 @@ final class MainViewController: UIViewController {
     
     // MARK: Outlets
     
+    @IBOutlet private weak var infoLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var sumLabel: UILabel!
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -107,7 +108,9 @@ final class MainViewController: UIViewController {
         sumLabel.text = "\(balance) \(Global.currencySymbol)"
         
         if let svc = splitViewController {
-            transactionsButton.isHidden = svc.displayMode == .allVisible && !svc.isCollapsed
+            let isHidden = svc.displayMode == .allVisible && !svc.isCollapsed
+            infoLabel.isHidden = isHidden
+            transactionsButton.isHidden = isHidden
         }
     }
     
@@ -123,12 +126,14 @@ final class MainViewController: UIViewController {
                                     refreshToken: refreshToken,
                                     isCurrent: true)
         let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
     }
     
     @objc private func infoDidTap() {
         let vc = AboutViewController()
         let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
     }
     

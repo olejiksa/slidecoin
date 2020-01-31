@@ -81,12 +81,14 @@ final class UserViewController: UIViewController {
                                         currentUser: currentUser,
                                         receiver: user)
         let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
     }
     
     @IBAction private func changePasswordDidTap() {
         let vc = RestoreViewController(accessToken: accessToken)
         let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
     }
     
