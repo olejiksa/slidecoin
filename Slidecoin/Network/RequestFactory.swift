@@ -127,6 +127,14 @@ struct RequestFactory {
     }
     
     
+    static func feedback(body: String, accessToken: String) -> RequestConfig<MessageParser> {
+        let request = FeedbackRequest(body: body, accessToken: accessToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    
     // MARK: Transactions
     
     static func transactions(accessToken: String) -> RequestConfig<TransactionsParser> {

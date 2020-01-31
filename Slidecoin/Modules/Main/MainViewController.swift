@@ -8,7 +8,6 @@
 
 import UIKit
 import Toolkit
-import SafariServices
 
 final class MainViewController: UIViewController {
 
@@ -22,6 +21,14 @@ final class MainViewController: UIViewController {
     
     private var login: Login
     private var user: User
+    
+    private var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.groupingSize = 3
+        return numberFormatter
+    }
     
     
     // MARK: Outlets
@@ -96,7 +103,8 @@ final class MainViewController: UIViewController {
     
     private func setupView() {
         messageLabel.text = "Добро пожаловать, \(user.username)"
-        sumLabel.text = "\(user.balance) \(Global.currencySymbol)"
+        guard let balance = numberFormatter.string(from: user.balance as NSNumber) else { return }
+        sumLabel.text = "\(balance) \(Global.currencySymbol)"
         
         if let svc = splitViewController {
             transactionsButton.isHidden = svc.displayMode == .allVisible && !svc.isCollapsed
@@ -130,9 +138,10 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction private func tasksDidTap() {
-        guard let url = URL(string: RequestFactory.endpointWeb) else { return }
-        let svc = SFSafariViewController(url: url)
-        present(svc, animated: true, completion: nil)
+        guard let accessToken = login.accessToken else { return }
+        
+        let vc = TasksViewController(accessToken: accessToken)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func refresh() {
@@ -165,7 +174,9 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: UISplitViewControllerDelegate {
     
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+    func splitViewController(_ splitViewController: UISplitViewController,
+                             collapseSecondary secondaryViewController: UIViewController,
+                             onto primaryViewController: UIViewController) -> Bool {
         return true
     }
 }

@@ -14,9 +14,19 @@ final class UserCell: UITableViewCell {
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var balanceLabel: UILabel!
     
+    private var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.groupingSize = 3
+        return numberFormatter
+    }
+    
     func setup(user: User) {
         usernameLabel?.text = user.username
         emailLabel?.text = user.email
-        balanceLabel?.text = "\(user.balance) \(Global.currencySymbol)"
+        
+        guard let balance = numberFormatter.string(from: user.balance as NSNumber) else { return }
+        balanceLabel?.text = "\(balance) \(Global.currencySymbol)"
     }
 }

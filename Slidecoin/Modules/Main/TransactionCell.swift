@@ -6,12 +6,22 @@
 //  Copyright © 2020 Oleg Samoylov. All rights reserved.
 //
 
+import Foundation
 import Toolkit
 
 final class TransactionCell: DetailCell {
     
+    private var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.groupingSize = 3
+        return numberFormatter
+    }
+    
     func setup(transaction: Transaction, userIDs: [Int: String], user: User) {
-        textLabel?.text = "\(transaction.amount) \(Global.currencySymbol)"
+        guard let amount = numberFormatter.string(from: transaction.amount as NSNumber) else { return }
+        textLabel?.text = "\(amount) \(Global.currencySymbol)"
         
         let condition = transaction.amount < 0 || user.id == transaction.senderID || transaction.receiverID == 0
         textLabel?.textColor = condition ? .systemRed : .systemGreen

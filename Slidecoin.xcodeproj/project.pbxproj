@@ -17,6 +17,9 @@
 		EB14979E23D4705C00F9AE87 /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14979D23D4705C00F9AE87 /* UserParser.swift */; };
 		EB189C8C23E3916400122157 /* DeleteUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB189C8B23E3916400122157 /* DeleteUserRequest.swift */; };
 		EB189C8E23E3921B00122157 /* DeleteItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB189C8D23E3921B00122157 /* DeleteItemRequest.swift */; };
+		EB189C9123E3A42700122157 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB189C8F23E3A42700122157 /* TasksViewController.swift */; };
+		EB189C9223E3A42700122157 /* TasksView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB189C9023E3A42700122157 /* TasksView.xib */; };
+		EB189C9423E3A8AE00122157 /* FeedbackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB189C9323E3A8AE00122157 /* FeedbackRequest.swift */; };
 		EB1A236323B62B8400E21318 /* KeyboardAdjuster in Frameworks */ = {isa = PBXBuildFile; productRef = EB1A236223B62B8400E21318 /* KeyboardAdjuster */; };
 		EB1A236523B634DE00E21318 /* TabBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1A236423B634DE00E21318 /* TabBarBuilder.swift */; };
 		EB1A236823B636CB00E21318 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1A236623B636CB00E21318 /* StoreViewController.swift */; };
@@ -105,6 +108,9 @@
 		EB14979D23D4705C00F9AE87 /* UserParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserParser.swift; sourceTree = "<group>"; };
 		EB189C8B23E3916400122157 /* DeleteUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserRequest.swift; sourceTree = "<group>"; };
 		EB189C8D23E3921B00122157 /* DeleteItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemRequest.swift; sourceTree = "<group>"; };
+		EB189C8F23E3A42700122157 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
+		EB189C9023E3A42700122157 /* TasksView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TasksView.xib; sourceTree = "<group>"; };
+		EB189C9323E3A8AE00122157 /* FeedbackRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRequest.swift; sourceTree = "<group>"; };
 		EB1A236423B634DE00E21318 /* TabBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBuilder.swift; sourceTree = "<group>"; };
 		EB1A236623B636CB00E21318 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		EB1A236723B636CB00E21318 /* StoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreView.xib; sourceTree = "<group>"; };
@@ -218,6 +224,8 @@
 				EB1CE49B23DB442F00150359 /* TransactionCell.swift */,
 				EB0D35CA23DF2C630079F554 /* AccentColorViewController.swift */,
 				EB0D35CB23DF2C630079F554 /* AccentColorView.xib */,
+				EB189C8F23E3A42700122157 /* TasksViewController.swift */,
+				EB189C9023E3A42700122157 /* TasksView.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -352,6 +360,7 @@
 				EB6AA85223AADD2900938BB6 /* DeleteAllUsersRequest.swift */,
 				EB189C8D23E3921B00122157 /* DeleteItemRequest.swift */,
 				EB189C8B23E3916400122157 /* DeleteUserRequest.swift */,
+				EB189C9323E3A8AE00122157 /* FeedbackRequest.swift */,
 				EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */,
 				EB60C34023B3E30F009CC4EC /* LogoutAccessRequest.swift */,
 				EB60C34223B3E955009CC4EC /* LogoutRefreshRequest.swift */,
@@ -475,6 +484,7 @@
 				EB6AA83E23AA54D300938BB6 /* PreRestoreView.xib in Resources */,
 				EB6AA83823A8C09500938BB6 /* RestoreView.xib in Resources */,
 				EBE4676023D8F415004A9EA5 /* NoUserView.xib in Resources */,
+				EB189C9223E3A42700122157 /* TasksView.xib in Resources */,
 				EB513F3123D2E29C00780EB9 /* ProductCell.xib in Resources */,
 				EBD35035238DBAA9008AACA2 /* AuthView.xib in Resources */,
 				EBD35028238DB91F008AACA2 /* Assets.xcassets in Resources */,
@@ -496,12 +506,14 @@
 				EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */,
 				EB3EF1C823DA6A38000CCA4C /* BuyRequest.swift in Sources */,
 				EB6AA84023AA57E800938BB6 /* UsersRequest.swift in Sources */,
+				EB189C9423E3A8AE00122157 /* FeedbackRequest.swift in Sources */,
 				EB14979C23D46F2800F9AE87 /* UserByIDRequest.swift in Sources */,
 				EB1CE49E23DB736E00150359 /* MyPurchasesRequest.swift in Sources */,
 				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
 				EBCE475F23D175840047F953 /* RestoreRequest.swift in Sources */,
 				EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */,
 				EB14979E23D4705C00F9AE87 /* UserParser.swift in Sources */,
+				EB189C9123E3A42700122157 /* TasksViewController.swift in Sources */,
 				EB24546523D19ABB00C99EFB /* TransferRequest.swift in Sources */,
 				EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */,
 				EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */,

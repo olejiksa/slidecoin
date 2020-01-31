@@ -11,6 +11,8 @@ import UIKit
 
 final class TransferViewController: UIViewController {
     
+    // MARK: Private Properties
+    
     private let accessToken: String
     private let currentUser: User
     private let receiver: User
@@ -18,10 +20,18 @@ final class TransferViewController: UIViewController {
     private let requestSender = Assembly.requestSender
     private var formValidationHelper: FormValidationHelper?
     
+    
+    // MARK: Outlets
+    
     @IBOutlet private weak var amountField: UITextField!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var submitButton: BigButton!
+    
+    
+    
+    
+    // MARK: Lifecycle
     
     init(accessToken: String, currentUser: User, receiver: User) {
         self.accessToken = accessToken
@@ -42,6 +52,9 @@ final class TransferViewController: UIViewController {
         setupFormValidationHelper()
     }
     
+    
+    // MARK: Private
+    
     @IBAction private func submit() {
         guard
             let amount = amountField.text,
@@ -52,11 +65,15 @@ final class TransferViewController: UIViewController {
             return
         }
         
+        self.submitButton.showLoading()
+        
         let config = RequestFactory.transfer(accessToken: accessToken,
                                              receiver: receiver,
                                              amount: sum)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
+            
+            self.submitButton.hideLoading()
             
             DispatchQueue.main.async {
                 switch result {
@@ -64,7 +81,7 @@ final class TransferViewController: UIViewController {
                     let alert = self.alertService.alert(message,
                                                         title: .info,
                                                         isDestructive: false) { _ in
-                        if message.contains("success") {
+                        if message.contains("Transaction") {
                             self.dismiss(animated: true)
                         }
                     }
@@ -78,7 +95,6 @@ final class TransferViewController: UIViewController {
             }
         }
     }
-    
     
     private func setupFormValidationHelper() {
         let textFields: [UITextField] = [amountField]

@@ -80,17 +80,10 @@ final class AddItemViewController: UIViewController {
             
             DispatchQueue.main.async {
                 switch result {
-                case .success(let message):
+                case .success:
                     self.submitButton.hideLoading()
-                    
-                    let alert = self.alertService.alert(message, title: .info, isDestructive: false ) { _ in
-                        if message.contains("success") {
-                            self.dismiss(animated: true)
-                            self.completionHandler?()
-                        }
-                    }
-                    
-                    self.present(alert, animated: true)
+                    self.dismiss(animated: true)
+                    self.completionHandler?()
                     
                 case .failure(let error):
                     switch error {

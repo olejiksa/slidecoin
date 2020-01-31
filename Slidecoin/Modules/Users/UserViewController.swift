@@ -34,6 +34,15 @@ final class UserViewController: UIViewController {
     private let userDefaultsService = Assembly.userDefaultsService
     private let requestSender = Assembly.requestSender
     
+    private var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.groupingSeparator = " "
+        numberFormatter.groupingSize = 3
+        return numberFormatter
+    }
+    
+    
     
     
     // MARK: Lifecycle
@@ -115,7 +124,9 @@ final class UserViewController: UIViewController {
     private func setupUserDescription() {
         nameLabel.text = "\(user.name) \(user.surname)"
         emailLabel.text = user.email
-        balanceLabel.text = "\(user.balance) \(Global.currencySymbol)"
+        
+        guard let balance = numberFormatter.string(from: user.balance as NSNumber) else { return }
+        balanceLabel.text = "\(balance) \(Global.currencySymbol)"
     }
     
     private func setupView() {
