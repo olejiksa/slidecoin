@@ -56,12 +56,12 @@ final class StoreViewController: UIViewController {
         navigationItem.title = "Магазин"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-//        let cartImage = UIImage(systemName: "cart")
-//        let cartButton = UIBarButtonItem(image: cartImage,
-//                                         style: .plain,
-//                                         target: self,
-//                                         action: #selector(navigateToPurchases))
-//        navigationItem.leftBarButtonItem = cartButton
+        let cartImage = UIImage(systemName: "cart")
+        let cartButton = UIBarButtonItem(image: cartImage,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(navigateToPurchases))
+        navigationItem.leftBarButtonItem = cartButton
 
         if user.isAdmin {
             let addButton = UIBarButtonItem(barButtonSystemItem: .add,

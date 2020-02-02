@@ -92,9 +92,11 @@ final class ProductViewController: UIViewController {
     }
     
     @IBAction private func buyDidTap() {
+        guard let id = product.id else { return }
+        
         buyButton.showLoading()
         
-        let config = RequestFactory.buy(id: product.id, accessToken: accessToken)
+        let config = RequestFactory.buy(id: id, accessToken: accessToken)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
@@ -143,13 +145,15 @@ final class ProductViewController: UIViewController {
     }
     
     @objc private func deleteItem() {
+        guard let id = product.id else { return }
+        
         let message = "Удалить данный товар?"
         let alert = alertService.alert(message,
                                        title: .attention,
                                        isDestructive: true) { [weak self] _ in
             guard let self = self else { return }
                                         
-            let config = RequestFactory.deleteItem(by: self.product.id, accessToken: self.accessToken)
+            let config = RequestFactory.deleteItem(by: id, accessToken: self.accessToken)
             self.requestSender.send(config: config) { [weak self] result in
                 guard let self = self else { return }
                 
