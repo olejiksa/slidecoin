@@ -84,10 +84,7 @@ final class AuthViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Авторизация"
-        
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupButtonNavigationHelper() {

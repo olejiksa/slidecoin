@@ -10,6 +10,7 @@ import Toolkit
 
 struct RequestFactory {
     
+    static let endpointHse = "https://www.hse.ru/data_protection_regulation"
     static let endpointRoot = "https://dima.pythonanywhere.com/"
     static let endpointWeb = "https://slide-wallet.web.app"
     

@@ -63,7 +63,7 @@ final class StoreViewController: UIViewController {
 //                                         action: #selector(navigateToPurchases))
 //        navigationItem.leftBarButtonItem = cartButton
 
-        if user.isAdmin == 1 {
+        if user.isAdmin {
             let addButton = UIBarButtonItem(barButtonSystemItem: .add,
                                             target: self,
                                             action: #selector(addItem))

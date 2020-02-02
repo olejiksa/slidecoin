@@ -58,7 +58,7 @@ final class UserDefaultsService: UserDefaultsServiceProtocol {
         
         let balance = defaults.integer(forKey: "balance")
         let userID = defaults.integer(forKey: "user_id")
-        let isAdmin = defaults.integer(forKey: "is_admin")
+        let isAdmin = defaults.bool(forKey: "is_admin")
         
         let login = Login(refreshToken: refreshToken,
                           accessToken: accessToken,

@@ -187,7 +187,7 @@ extension PurchasesViewController: UICollectionViewDelegate {
                                        refreshToken: refreshToken,
                                        accessToken: accessToken,
                                        alreadyPurchased: true,
-                                       isAdmin: 0)
+                                       isAdmin: false)
         
         if let splitVc = splitViewController, !splitVc.isCollapsed {
             let nvc = UINavigationController(rootViewController: vc)

@@ -58,7 +58,7 @@ final class TransactionsViewController: UIViewController {
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         navigationItem.leftItemsSupplementBackButton = true
         
-        if user.isAdmin == 1 {
+        if user.isAdmin {
             let filterIcon = UIImage(systemName: "line.horizontal.3.decrease.circle.fill")
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: filterIcon,
                                                                 style: .plain,

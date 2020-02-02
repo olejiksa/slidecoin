@@ -65,7 +65,7 @@ final class UsersViewController: UIViewController {
         navigationItem.title = "Пользователи"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        if currentUser.isAdmin == 1 {
+        if currentUser.isAdmin {
             let deleteAllUsersButton = UIBarButtonItem(title: "Удалить всех", style: .plain, target: self, action: #selector(allUsersDidDelete))
             navigationItem.rightBarButtonItem = deleteAllUsersButton
         }
@@ -246,6 +246,14 @@ extension UsersViewController: UITableViewDelegate {
                                     accessToken: accessToken,
                                     refreshToken: refreshToken,
                                     isCurrent: user.id == currentUser.id)
+        vc.completionHandler = {
+            if self.searchController.isActive {
+                self.searchedUsers.remove(at: indexPath.row)
+            } else {
+                self.users.remove(at: indexPath.row)
+            }
+            tableView.reloadData()
+        }
         
         if let splitVc = splitViewController, !splitVc.isCollapsed {
             let nvc = UINavigationController(rootViewController: vc)

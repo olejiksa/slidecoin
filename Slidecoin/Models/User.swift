@@ -9,12 +9,12 @@
 struct User: Decodable {
     
     let id: Int
-    let balance: Int
+    var balance: Int
     let username: String
     let email: String
     let name: String
     let surname: String
-    let isAdmin: Int
+    let isAdmin: Bool
 }
 
 struct UserResponse: Decodable {

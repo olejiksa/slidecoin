@@ -21,7 +21,7 @@ final class ProductViewController: UIViewController {
     private let refreshToken: String
     private var accessToken: String
     private let alreadyPurchased: Bool
-    private let isAdmin: Int
+    private let isAdmin: Bool
     
     var completionHandler: (() -> ())?
     
@@ -40,7 +40,7 @@ final class ProductViewController: UIViewController {
          refreshToken: String,
          accessToken: String,
          alreadyPurchased: Bool,
-         isAdmin: Int) {
+         isAdmin: Bool) {
         self.product = product
         self.refreshToken = refreshToken
         self.accessToken = accessToken
@@ -68,7 +68,7 @@ final class ProductViewController: UIViewController {
         navigationItem.title = product.name
         navigationItem.largeTitleDisplayMode = .never
         
-        if isAdmin == 1 {
+        if isAdmin {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash"),
                                                                 style: .plain,
                                                                 target: self,
@@ -176,14 +176,12 @@ final class ProductViewController: UIViewController {
                                     self.deleteItem()
                                     
                                 case .failure(let error):
-                                    self.buyButton.hideLoading()
                                     let alert = self.alertService.alert(error.localizedDescription)
                                     self.present(alert, animated: true)
                                 }
                             }
                             
                         default:
-                            self.buyButton.hideLoading()
                             let alert = self.alertService.alert(error.localizedDescription)
                             self.present(alert, animated: true)
                         }

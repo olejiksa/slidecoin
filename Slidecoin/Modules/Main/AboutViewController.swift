@@ -35,11 +35,21 @@ final class AboutViewController: UIViewController {
         present(svc, animated: true, completion: nil)
     }
     
+    @IBAction private func goPrivacyPolicy() {
+        guard let url = URL(string: RequestFactory.endpointHse) else { return }
+        let svc = SFSafariViewController(url: url)
+        svc.modalPresentationStyle = .currentContext
+        present(svc, animated: true, completion: nil)
+    }
+    
     @IBAction private func email() {
         if MFMailComposeViewController.canSendMail() {
+            guard let version = Bundle.main.releaseVersionNumber else { return }
+            
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["slidecurrence@gmail.com"])
+            mail.setSubject("Слайдовалюта - \(version)")
             
             present(mail, animated: true)
         } else {

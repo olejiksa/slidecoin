@@ -28,6 +28,8 @@ final class TransferViewController: UIViewController {
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var submitButton: BigButton!
     
+    var completionHandler: ((Int) -> ())?
+    
     
     
     
@@ -78,6 +80,8 @@ final class TransferViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let message):
+                    self.completionHandler?(sum)
+                    
                     let alert = self.alertService.alert(message,
                                                         title: .info,
                                                         isDestructive: false) { _ in

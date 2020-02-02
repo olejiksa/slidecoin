@@ -20,13 +20,16 @@ final class UserViewController: UIViewController {
     @IBOutlet private weak var logoutButton: BigButton!
     @IBOutlet private weak var transferButton: BigButton!
     @IBOutlet private weak var changePasswordButton: BigButton!
+    @IBOutlet private weak var addMoneyButton: BigButton!
+    
+    var completionHandler: (() -> ())?
     
     
     // MARK: Private Properties
     
-    private let user: User
+    private var user: User
     private let currentUser: User
-    private let accessToken: String
+    private var accessToken: String
     private let refreshToken: String
     private let isCurrent: Bool
     
@@ -80,6 +83,13 @@ final class UserViewController: UIViewController {
         let vc = TransferViewController(accessToken: accessToken,
                                         currentUser: currentUser,
                                         receiver: user)
+        vc.completionHandler = { [weak self] amount in
+            guard let self = self else { return }
+            
+            self.user.balance += amount
+            self.balanceLabel.text = "\(self.user.balance) \(Global.currencySymbol)"
+        }
+        
         let nvc = UINavigationController(rootViewController: vc)
         nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
@@ -117,6 +127,12 @@ final class UserViewController: UIViewController {
                                               target: self,
                                               action: #selector(close))
             navigationItem.rightBarButtonItem = closeButton
+        } else if currentUser.isAdmin && user.id != currentUser.id {
+            let deleteButton = UIBarButtonItem(image: UIImage(systemName: "trash"),
+                                              style: .plain,
+                                              target: self,
+                                              action: #selector(deleteUser))
+            navigationItem.rightBarButtonItem = deleteButton
         }
         
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -141,6 +157,8 @@ final class UserViewController: UIViewController {
             changePasswordButton.isHidden = true
             logoutButton.isHidden = true
         }
+        
+        addMoneyButton.isHidden = !currentUser.isAdmin
     }
     
     private func requestLogout() {
@@ -210,6 +228,57 @@ final class UserViewController: UIViewController {
     
     @objc private func close() {
         dismiss(animated: true)
+    }
+    
+    @objc private func deleteUser() {
+        let message = "Удалить данного пользователя?"
+        let alert = alertService.alert(message,
+                                       title: .attention,
+                                       isDestructive: true) { [weak self] _ in
+            guard let self = self else { return }
+                                        
+            let config = RequestFactory.deleteUser(by: self.user.id, accessToken: self.accessToken)
+            self.requestSender.send(config: config) { [weak self] result in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let message):
+                        if message.contains("success") {
+                            self.navigationController?.popViewController(animated: true)
+                            self.completionHandler?()
+                        }
+                        
+                    case .failure(let error):
+                        switch error {
+                        case is ResponseError:
+                            let refreshConfig = RequestFactory.tokenRefresh(refreshToken: self.refreshToken)
+                            self.requestSender.send(config: refreshConfig) { [weak self] result in
+                                guard let self = self else { return }
+                                
+                                switch result {
+                                case .success(let accessToken):
+                                    self.accessToken = accessToken
+                                    let login = Login(refreshToken: self.refreshToken, accessToken: self.accessToken, message: "")
+                                    self.userDefaultsService.updateLogin(with: login)
+                                    self.deleteUser()
+                                    
+                                case .failure(let error):
+                                    let alert = self.alertService.alert(error.localizedDescription)
+                                    self.present(alert, animated: true)
+                                }
+                            }
+                            
+                        default:
+                            let alert = self.alertService.alert(error.localizedDescription)
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        
+        present(alert, animated: true)
     }
 }
 

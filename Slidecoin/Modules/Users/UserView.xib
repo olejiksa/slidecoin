@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
+                <outlet property="addMoneyButton" destination="faf-ww-Xbd" id="NQV-79-Hv8"/>
                 <outlet property="balanceLabel" destination="V0A-rV-2Xb" id="7Cb-jm-9Ks"/>
                 <outlet property="changePasswordButton" destination="bX2-pN-sb2" id="WsG-uz-hDC"/>
                 <outlet property="emailLabel" destination="Yuj-rC-ENW" id="a2X-53-p1n"/>
@@ -35,7 +36,7 @@
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cqg-oL-OaU">
-                            <rect key="frame" x="20" y="140" width="374" height="202"/>
+                            <rect key="frame" x="20" y="140" width="374" height="276"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOd-m6-Wfw" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="54"/>
@@ -55,8 +56,26 @@
                                         <action selector="transferMoneyDidTap" destination="-1" eventType="touchUpInside" id="bAf-hX-B1Q"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX2-pN-sb2" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faf-ww-Xbd" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="74" width="374" height="54"/>
+                                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="54" id="5hW-Jt-m3O"/>
+                                    </constraints>
+                                    <state key="normal" title="Пополнить">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="transferMoneyDidTap" destination="-1" eventType="touchUpInside" id="fFE-Dy-ESy"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX2-pN-sb2" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="148" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="J1m-wx-dU3"/>
@@ -74,7 +93,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qV-ac-rio" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="148" width="374" height="54"/>
+                                    <rect key="frame" x="0.0" y="222" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="rnO-rH-xag"/>
