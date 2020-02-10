@@ -11,16 +11,14 @@ import Toolkit
 
 final class ShopRequest: BaseGetRequest {
     
-    private let accessToken: String
-    
-    init(accessToken: String) {
-        self.accessToken = accessToken
+    init() {
         let endpoint = "\(RequestFactory.endpointRoot)shop"
         super.init(endpoint: endpoint)
     }
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

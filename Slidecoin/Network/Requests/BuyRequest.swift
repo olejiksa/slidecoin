@@ -11,18 +11,14 @@ import Toolkit
 
 final class BuyRequest: BasePostRequest {
     
-    private let id: Int
-    private let accessToken: String
-    
-    init(id: Int, accessToken: String) {
-        self.id = id
-        self.accessToken = accessToken
+    init(productID: Int) {
         let endpoint = "\(RequestFactory.endpointRoot)shop/buy"
-        super.init(endpoint: endpoint, parameters: ["id": id])
+        super.init(endpoint: endpoint, parameters: ["id": productID])
     }
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

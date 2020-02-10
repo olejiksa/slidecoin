@@ -11,11 +11,7 @@ import Toolkit
 
 final class UpdateItemRequest: BasePostRequest {
     
-    private let accessToken: String
-    
-    init(productID: Int, name: String, price: Int, description: String, accessToken: String) {
-        self.accessToken = accessToken
-        
+    init(productID: Int, name: String, price: Int, description: String) {
         let endpoint = "\(RequestFactory.endpointRoot)updateitem"
         let parameters = ["id": productID, "name": name, "price": price, "description": description] as [String : Any]
         
@@ -24,6 +20,7 @@ final class UpdateItemRequest: BasePostRequest {
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

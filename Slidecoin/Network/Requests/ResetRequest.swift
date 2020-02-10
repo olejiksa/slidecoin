@@ -11,13 +11,8 @@ import Toolkit
 
 final class ResetRequest: BasePostRequest {
     
-    private let accessToken: String
-    
-    init(accessToken: String,
-         currentPassword: String,
+    init(currentPassword: String,
          newPassword: String) {
-        self.accessToken = accessToken
-        
         let endpoint = "\(RequestFactory.endpointRoot)password/change"
         let parameters = ["current_password": currentPassword,
                           "new_password": newPassword]
@@ -27,6 +22,7 @@ final class ResetRequest: BasePostRequest {
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

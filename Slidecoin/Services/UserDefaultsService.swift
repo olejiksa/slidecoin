@@ -15,6 +15,7 @@ protocol UserDefaultsServiceProtocol: class {
     func getCredentials() -> (Login, User)?
     func removeCredentials()
     
+    func updateToken(access: String)
     func updateLogin(with login: Login)
     func updateUser(_ user: User)
     
@@ -98,6 +99,11 @@ final class UserDefaultsService: UserDefaultsServiceProtocol {
         let defaults = UserDefaults.standard
         defaults.set(accessToken, forKey: "access_token")
         defaults.set(refreshToken, forKey: "refresh_token")
+    }
+    
+    func updateToken(access: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(access, forKey: "access_token")
     }
     
     func updateUser(_ user: User) {

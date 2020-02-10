@@ -13,7 +13,6 @@ final class TransferViewController: UIViewController {
     
     // MARK: Private Properties
     
-    private let accessToken: String
     private let currentUser: User
     private let receiver: User
     private let withdrawMe: Bool
@@ -36,8 +35,7 @@ final class TransferViewController: UIViewController {
     
     // MARK: Lifecycle
     
-    init(accessToken: String, currentUser: User, receiver: User, withdrawMe: Bool) {
-        self.accessToken = accessToken
+    init(currentUser: User, receiver: User, withdrawMe: Bool) {
         self.currentUser = currentUser
         self.receiver = receiver
         self.withdrawMe = withdrawMe
@@ -72,9 +70,7 @@ final class TransferViewController: UIViewController {
         self.submitButton.showLoading()
         
         if withdrawMe {
-            let config = RequestFactory.transfer(accessToken: accessToken,
-                                                 receiver: receiver,
-                                                 amount: sum)
+            let config = RequestFactory.transfer(receiver: receiver, amount: sum)
             requestSender.send(config: config) { [weak self] result in
                 guard let self = self else { return }
                 
@@ -102,7 +98,7 @@ final class TransferViewController: UIViewController {
                 }
             }
         } else {
-            let config = RequestFactory.addMoney(userID: receiver.id, amount: sum, accessToken: accessToken)
+            let config = RequestFactory.addMoney(userID: receiver.id, amount: sum)
             requestSender.send(config: config) { [weak self] result in
                 guard let self = self else { return }
                 

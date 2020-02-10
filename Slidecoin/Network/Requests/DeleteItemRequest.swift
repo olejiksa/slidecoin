@@ -11,19 +11,15 @@ import Toolkit
 
 final class DeleteItemRequest: BaseDeleteRequest {
     
-    private let accessToken: String
-    
-    init(productID: Int, accessToken: String) {
-        self.accessToken = accessToken
-        
+    init(productID: Int) {
         let endpoint = "\(RequestFactory.endpointRoot)deleteitem"
         let parameters = ["id": productID]
-        
         super.init(endpoint: endpoint, parameters: parameters)
     }
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

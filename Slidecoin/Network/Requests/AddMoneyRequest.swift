@@ -11,13 +11,7 @@ import Toolkit
 
 final class AddMoneyRequest: BasePostRequest {
     
-    private let accessToken: String
-    
-    init(userID: Int,
-         amount: Int,
-         accessToken: String) {
-        self.accessToken = accessToken
-        
+    init(userID: Int, amount: Int) {
         let endpoint = "\(RequestFactory.endpointRoot)addmoney"
         super.init(endpoint: endpoint, parameters: ["id": userID,
                                                     "amount": amount])
@@ -25,6 +19,7 @@ final class AddMoneyRequest: BasePostRequest {
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

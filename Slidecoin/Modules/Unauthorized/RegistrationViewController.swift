@@ -70,8 +70,8 @@ final class RegistrationViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(var login):
-                    if let accessToken = login.accessToken, login.refreshToken != nil {
-                        let usersConfig = RequestFactory.users(accessToken: accessToken)
+                    if login.accessToken != nil, login.refreshToken != nil {
+                        let usersConfig = RequestFactory.users()
                         self.requestSender.send(config: usersConfig) { result in
                             switch result {
                             case .success(let users):

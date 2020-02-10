@@ -19,7 +19,6 @@ final class MainViewController: UIViewController {
     
     private let refreshControl = UIRefreshControl()
     
-    private var login: Login
     private var user: User
     
     private var numberFormatter: NumberFormatter {
@@ -42,8 +41,7 @@ final class MainViewController: UIViewController {
     
     // MARK: Lifecycle
     
-    init(login: Login, user: User) {
-        self.login = login
+    init(user: User) {
         self.user = user
         
         super.init(nibName: nil, bundle: nil)
@@ -65,12 +63,7 @@ final class MainViewController: UIViewController {
     // MARK: Actions
     
     @IBAction private func transactionsDidTap() {
-        guard
-            let accessToken = login.accessToken,
-            let refreshToken = login.refreshToken
-        else { return }
-        
-        let vc = TransactionsViewController(user: user, accessToken: accessToken, refreshToken: refreshToken)
+        let vc = TransactionsViewController(user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -122,15 +115,8 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func userDidTap() {
-        guard
-            let accessToken = login.accessToken,
-            let refreshToken = login.refreshToken
-        else { return }
-        
         let vc = UserViewController(user: user,
                                     currentUser: user,
-                                    accessToken: accessToken,
-                                    refreshToken: refreshToken,
                                     isCurrent: true)
         let nvc = UINavigationController(rootViewController: vc)
         nvc.modalPresentationStyle = .formSheet
@@ -152,16 +138,12 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction private func tasksDidTap() {
-        guard let accessToken = login.accessToken else { return }
-        
-        let vc = TasksViewController(accessToken: accessToken)
+        let vc = TasksViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func refresh() {
-        guard let accessToken = login.accessToken else { return }
-        
-        let config = RequestFactory.user(user.id, accessToken: accessToken)
+        let config = RequestFactory.user(by: user.id)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             

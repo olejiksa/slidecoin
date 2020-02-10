@@ -10,14 +10,9 @@ import Foundation
 import Toolkit
 
 final class TransferRequest: BasePostRequest {
-
-    private let accessToken: String
     
-    init(accessToken: String,
-         receiverUsername: String,
+    init(receiverUsername: String,
          amount: Int) {
-        self.accessToken = accessToken
-        
         let endpoint = "\(RequestFactory.endpointRoot)transaction"
         let parameters = ["receiver_username": receiverUsername,
                           "amount": amount] as [String: Any]
@@ -27,6 +22,7 @@ final class TransferRequest: BasePostRequest {
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

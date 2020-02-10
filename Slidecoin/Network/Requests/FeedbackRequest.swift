@@ -11,19 +11,15 @@ import Toolkit
 
 final class FeedbackRequest: BasePostRequest {
     
-    private let accessToken: String
-    
-    init(body: String, accessToken: String) {
-        self.accessToken = accessToken
-        
+    init(body: String) {
         let endpoint = "\(RequestFactory.endpointRoot)support"
         let parameters = ["body": body]
-        
         super.init(endpoint: endpoint, parameters: parameters)
     }
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

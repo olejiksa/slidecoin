@@ -29,15 +29,11 @@ final class AddItemViewController: UIViewController {
     @IBOutlet private weak var priceField: UITextField!
     @IBOutlet private weak var descriptionField: UITextField!
     
-    private var accessToken: String
-    private let refreshToken: String
     private let isAdd: Mode
     
     var completionHandler: (() -> ())?
     
-    init(accessToken: String, refreshToken: String, isAdd: Mode) {
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
+    init(isAdd: Mode) {
         self.isAdd = isAdd
         
         super.init(nibName: nil, bundle: nil)
@@ -94,9 +90,9 @@ final class AddItemViewController: UIViewController {
         
         switch isAdd {
         case .add:
-            config = RequestFactory.addItem(name: name, price: price, description: description, accessToken: accessToken)
+            config = RequestFactory.addItem(name: name, price: price, description: description)
         case .edit(let id, _, _, _):
-            config = RequestFactory.updateItem(by: id, name: name, price: price, description: description, accessToken: accessToken)
+            config = RequestFactory.updateItem(by: id, name: name, price: price, description: description)
         }
         
         requestSender.send(config: config) { [weak self] result in
@@ -113,15 +109,14 @@ final class AddItemViewController: UIViewController {
                 case .failure(let error):
                     switch error {
                     case is ResponseError:
-                        let refreshConfig = RequestFactory.tokenRefresh(refreshToken: self.refreshToken)
+                        let refreshConfig = RequestFactory.tokenRefresh()
                         self.requestSender.send(config: refreshConfig) { [weak self] result in
                             guard let self = self else { return }
                             
                             switch result {
                             case .success(let accessToken):
-                                self.accessToken = accessToken
-                                let login = Login(refreshToken: self.refreshToken, accessToken: self.accessToken, message: "")
-                                self.userDefaultsService.updateLogin(with: login)
+                                Global.accessToken = accessToken
+                                self.userDefaultsService.updateToken(access: accessToken)
                                 self.didTapSubmit()
                                 
                             case .failure(let error):

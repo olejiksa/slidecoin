@@ -11,15 +11,9 @@ import Toolkit
 
 final class AddItemRequest: BasePostRequest {
     
-    
-    private let accessToken: String
-    
     init(name: String,
          price: Int,
-         description: String,
-         accessToken: String) {
-        self.accessToken = accessToken
-        
+         description: String) {
         let endpoint = "\(RequestFactory.endpointRoot)shop/additem"
         super.init(endpoint: endpoint, parameters: ["name": name,
                                                     "price": price,
@@ -28,6 +22,7 @@ final class AddItemRequest: BasePostRequest {
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

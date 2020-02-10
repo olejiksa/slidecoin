@@ -11,9 +11,12 @@ import UIKit
 final class TabBarBuilder: UISplitViewControllerDelegate {
     
     static func build(login: Login, user: User) -> UITabBarController {
-        let mainSvc = self.mainSvc(login: login, user: user)
-        let usersSvc = self.usersSvc(login: login, user: user)
-        let storeSvc = self.storeSvc(login: login, user: user)
+        Global.accessToken = login.accessToken
+        Global.refreshToken = login.refreshToken
+        
+        let mainSvc = self.mainSvc(user: user)
+        let usersSvc = self.usersSvc(user: user)
+        let storeSvc = self.storeSvc(user: user)
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [mainSvc, usersSvc, storeSvc]
@@ -24,12 +27,11 @@ final class TabBarBuilder: UISplitViewControllerDelegate {
     
     // MARK: Private
     
-    private static func mainSvc(login: Login, user: User) -> UISplitViewController {
-        let mainVc = MainViewController(login: login, user: user)
+    private static func mainSvc(user: User) -> UISplitViewController {
+        let mainVc = MainViewController(user: user)
         let mainNvc = UINavigationController(rootViewController: mainVc)
         
-        let transactionsVc = TransactionsViewController(user: user, accessToken: login.accessToken ?? "",
-                                                        refreshToken: login.refreshToken ?? "")
+        let transactionsVc = TransactionsViewController(user: user)
         let transactionsNvc = UINavigationController(rootViewController: transactionsVc)
         
         let mainSvc = UISplitViewController()
@@ -46,8 +48,8 @@ final class TabBarBuilder: UISplitViewControllerDelegate {
         return mainSvc
     }
     
-    private static func usersSvc(login: Login, user: User) -> UISplitViewController {
-        let usersVc = UsersViewController(login: login, currentUser: user)
+    private static func usersSvc(user: User) -> UISplitViewController {
+        let usersVc = UsersViewController(currentUser: user)
         let usersNvc = UINavigationController(rootViewController: usersVc)
         
         let userVc = NoUserViewController("пользовател")
@@ -66,8 +68,8 @@ final class TabBarBuilder: UISplitViewControllerDelegate {
         return usersSvc
     }
     
-    private static func storeSvc(login: Login, user: User) -> UISplitViewController {
-        let storeVc = StoreViewController(login: login, user: user)
+    private static func storeSvc(user: User) -> UISplitViewController {
+        let storeVc = StoreViewController(user: user)
         let storeNvc = UINavigationController(rootViewController: storeVc)
         
         let userVc = NoUserViewController("товар")

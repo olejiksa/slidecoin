@@ -17,8 +17,6 @@ final class RestoreViewController: UIViewController {
     private let requestSender = Assembly.requestSender
     private var formValidationHelper: FormValidationHelper?
     
-    private let accessToken: String
-    
     
     // MARK: Outlets
     
@@ -31,16 +29,6 @@ final class RestoreViewController: UIViewController {
     
     
     // MARK: Lifecycle
-    
-    init(accessToken: String) {
-        self.accessToken = accessToken
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,8 +71,7 @@ final class RestoreViewController: UIViewController {
         
         doneButton.showLoading()
             
-        let config = RequestFactory.reset(accessToken: accessToken,
-                                          currentPassword: currentPassword,
+        let config = RequestFactory.reset(currentPassword: currentPassword,
                                           newPassword: newPassword)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }

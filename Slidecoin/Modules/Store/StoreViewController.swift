@@ -23,15 +23,13 @@ final class StoreViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     private let refreshControl = UIRefreshControl()
     
-    private var login: Login
     private var user: User
     
     @IBOutlet private weak var noItemsLabel: UILabel!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    init(login: Login, user: User) {
-        self.login = login
+    init(user: User) {
         self.user = user
         
         super.init(nibName: nil, bundle: nil)
@@ -102,17 +100,12 @@ final class StoreViewController: UIViewController {
     }
     
     private func obtainProducts() {
-        guard
-            let accessToken = login.accessToken,
-            let refreshToken = login.refreshToken
-        else { return }
-        
         if products.isEmpty {
             spinner.startAnimating()
             noItemsLabel.isHidden = true
         }
         
-        let config = RequestFactory.shop(accessToken: accessToken)
+        let config = RequestFactory.shop()
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
@@ -128,14 +121,14 @@ final class StoreViewController: UIViewController {
                 case .failure(let error):
                     switch error {
                     case is ResponseError:
-                        let refreshConfig = RequestFactory.tokenRefresh(refreshToken: refreshToken)
+                        let refreshConfig = RequestFactory.tokenRefresh()
                         self.requestSender.send(config: refreshConfig) { [weak self] result in
                             guard let self = self else { return }
                             
                             switch result {
                             case .success(let accessToken):
-                                self.login.accessToken = accessToken
-                                self.userDefaultsService.updateLogin(with: self.login)
+                                Global.accessToken = accessToken
+                                self.userDefaultsService.updateToken(access: accessToken)
                                 self.refreshControl.beginRefreshing()
                                 self.obtainProducts()
                                 
@@ -163,17 +156,12 @@ final class StoreViewController: UIViewController {
     }
     
     @objc private func navigateToPurchases() {
-        let vc = PurchasesViewController(login: login, user: user)
+        let vc = PurchasesViewController(user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func addItem() {
-        guard
-            let accessToken = login.accessToken,
-            let refreshToken = login.refreshToken
-        else { return }
-        
-        let vc = AddItemViewController(accessToken: accessToken, refreshToken: refreshToken, isAdd: .add)
+        let vc = AddItemViewController(isAdd: .add)
         vc.completionHandler = { [weak self] in
             self?.refresh()
         }
@@ -213,16 +201,9 @@ extension StoreViewController: UICollectionViewDataSource {
 extension StoreViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard
-            let accessToken = login.accessToken,
-            let refreshToken = login.refreshToken
-        else { return }
-        
         let index = indexPath.row
         let product = searchController.isActive ? searchedProducts[index] : products[index]
         let vc = ProductViewController(product: product,
-                                       refreshToken: refreshToken,
-                                       accessToken: accessToken,
                                        alreadyPurchased: false,
                                        isAdmin: user.isAdmin)
         

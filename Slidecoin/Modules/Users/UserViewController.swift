@@ -31,8 +31,6 @@ final class UserViewController: UIViewController {
     
     private var user: User
     private let currentUser: User
-    private var accessToken: String
-    private let refreshToken: String
     private let isCurrent: Bool
     
     private let alertService = Assembly.alertService
@@ -54,13 +52,9 @@ final class UserViewController: UIViewController {
     
     init(user: User,
          currentUser: User,
-         accessToken: String,
-         refreshToken: String,
          isCurrent: Bool) {
         self.user = user
         self.currentUser = currentUser
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
         self.isCurrent = isCurrent
         
         super.init(nibName: nil, bundle: nil)
@@ -82,9 +76,7 @@ final class UserViewController: UIViewController {
     // MARK: Actions
     
     @IBAction private func transferMoneyDidTap() {
-        let vc = TransferViewController(accessToken: accessToken,
-                                        currentUser: currentUser,
-                                        receiver: user, withdrawMe: true)
+        let vc = TransferViewController(currentUser: currentUser, receiver: user, withdrawMe: true)
         vc.completionHandler = { [weak self] amount in
             guard let self = self else { return }
             
@@ -98,7 +90,7 @@ final class UserViewController: UIViewController {
     }
     
     @IBAction private func changePasswordDidTap() {
-        let vc = RestoreViewController(accessToken: accessToken)
+        let vc = RestoreViewController()
         let nvc = UINavigationController(rootViewController: vc)
         nvc.modalPresentationStyle = .formSheet
         present(nvc, animated: true)
@@ -171,13 +163,13 @@ final class UserViewController: UIViewController {
     private func requestLogout() {
         logoutButton.showLoading()
         
-        let accessConfig = RequestFactory.logoutAccess(accessToken: accessToken)
+        let accessConfig = RequestFactory.logoutAccess()
         requestSender.send(config: accessConfig) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success:
-                let refreshConfig = RequestFactory.logoutRefresh(refreshToken: self.refreshToken)
+                let refreshConfig = RequestFactory.logoutRefresh()
                 self.requestSender.send(config: refreshConfig) { [weak self] result in
                     guard let self = self else { return }
                     
@@ -196,7 +188,7 @@ final class UserViewController: UIViewController {
             case .failure(let error):
                 switch error {
                 case is ResponseError:
-                    let refreshConfig = RequestFactory.logoutRefresh(refreshToken: self.refreshToken)
+                    let refreshConfig = RequestFactory.logoutRefresh()
                     self.requestSender.send(config: refreshConfig) { [weak self] result in
                         guard let self = self else { return }
                         
@@ -238,8 +230,7 @@ final class UserViewController: UIViewController {
     }
     
     @IBAction private func incomeDidTap() {
-        let vc = TransferViewController(accessToken: accessToken,
-                                        currentUser: currentUser,
+        let vc = TransferViewController(currentUser: currentUser,
                                         receiver: user, withdrawMe: false)
         vc.completionHandler = { [weak self] amount in
             guard let self = self else { return }
@@ -260,7 +251,7 @@ final class UserViewController: UIViewController {
                                        isDestructive: true) { [weak self] _ in
             guard let self = self else { return }
                                         
-            let config = RequestFactory.deleteUser(by: self.user.id, accessToken: self.accessToken)
+            let config = RequestFactory.deleteUser(by: self.user.id)
             self.requestSender.send(config: config) { [weak self] result in
                 guard let self = self else { return }
                 
@@ -278,15 +269,14 @@ final class UserViewController: UIViewController {
                     case .failure(let error):
                         switch error {
                         case is ResponseError:
-                            let refreshConfig = RequestFactory.tokenRefresh(refreshToken: self.refreshToken)
+                            let refreshConfig = RequestFactory.tokenRefresh()
                             self.requestSender.send(config: refreshConfig) { [weak self] result in
                                 guard let self = self else { return }
                                 
                                 switch result {
                                 case .success(let accessToken):
-                                    self.accessToken = accessToken
-                                    let login = Login(refreshToken: self.refreshToken, accessToken: self.accessToken, message: "")
-                                    self.userDefaultsService.updateLogin(with: login)
+                                    Global.accessToken = accessToken
+                                    self.userDefaultsService.updateToken(access: accessToken)
                                     self.deleteUser()
                                     
                                 case .failure(let error):
@@ -310,7 +300,7 @@ final class UserViewController: UIViewController {
     @IBAction private func addAdmin() {
         addAdminButton.showLoading()
         
-        let config = RequestFactory.addAdmin(email: user.email, accessToken: accessToken)
+        let config = RequestFactory.addAdmin(email: user.email)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             

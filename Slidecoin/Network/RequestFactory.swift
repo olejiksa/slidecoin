@@ -10,6 +10,8 @@ import Toolkit
 
 struct RequestFactory {
     
+    // MARK: Endpoints
+    
     static let endpointHse = "https://www.hse.ru/data_protection_regulation"
     static let endpointRoot = "https://dima.pythonanywhere.com/"
     static let endpointWeb = "https://slide-wallet.web.app"
@@ -46,11 +48,9 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func reset(accessToken: String,
-                      currentPassword: String,
+    static func reset(currentPassword: String,
                       newPassword: String) -> RequestConfig<MessageParser> {
-        let request = ResetRequest(accessToken: accessToken,
-                                   currentPassword: currentPassword,
+        let request = ResetRequest(currentPassword: currentPassword,
                                    newPassword: newPassword)
         let parser = MessageParser()
         
@@ -64,22 +64,22 @@ struct RequestFactory {
         return .init(request: request, parser: parser)
     }
     
-    static func tokenRefresh(refreshToken: String) -> RequestConfig<AccessTokenParser> {
-        let request = TokenRefreshRequest(refreshToken: refreshToken)
+    static func tokenRefresh() -> RequestConfig<AccessTokenParser> {
+        let request = TokenRefreshRequest()
         let parser = AccessTokenParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func logoutAccess(accessToken: String) -> RequestConfig<MessageParser> {
-        let request = LogoutAccessRequest(accessToken: accessToken)
+    static func logoutAccess() -> RequestConfig<MessageParser> {
+        let request = LogoutAccessRequest()
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func logoutRefresh(refreshToken: String) -> RequestConfig<MessageParser> {
-        let request = LogoutRefreshRequest(refreshToken: refreshToken)
+    static func logoutRefresh() -> RequestConfig<MessageParser> {
+        let request = LogoutRefreshRequest()
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
@@ -88,33 +88,31 @@ struct RequestFactory {
     
     // MARK: Users
     
-    static func transfer(accessToken: String,
-                         receiver: User,
+    static func transfer(receiver: User,
                          amount: Int) -> RequestConfig<MessageParser> {
-        let request = TransferRequest(accessToken: accessToken,
-                                      receiverUsername: receiver.username,
+        let request = TransferRequest(receiverUsername: receiver.username,
                                       amount: amount)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func users(accessToken: String) -> RequestConfig<UsersParser> {
-        let request = UsersRequest(accessToken: accessToken)
+    static func users() -> RequestConfig<UsersParser> {
+        let request = UsersRequest()
         let parser = UsersParser()
     
         return .init(request: request, parser: parser)
     }
     
-    static func user(_ identifier: Int, accessToken: String) -> RequestConfig<UserParser> {
-        let request = UserByIDRequest(accessToken: accessToken, identifier: identifier)
+    static func user(by userID: Int) -> RequestConfig<UserParser> {
+        let request = UserByIDRequest(userID: userID)
         let parser = UserParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func deleteUser(by userID: Int, accessToken: String) -> RequestConfig<MessageParser> {
-        let request = DeleteUserRequest(userID: userID, accessToken: accessToken)
+    static func deleteUser(by userID: Int) -> RequestConfig<MessageParser> {
+        let request = DeleteUserRequest(userID: userID)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
@@ -128,8 +126,8 @@ struct RequestFactory {
     }
     
     
-    static func feedback(body: String, accessToken: String) -> RequestConfig<MessageParser> {
-        let request = FeedbackRequest(body: body, accessToken: accessToken)
+    static func feedback(body: String) -> RequestConfig<MessageParser> {
+        let request = FeedbackRequest(body: body)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
@@ -138,17 +136,15 @@ struct RequestFactory {
     
     // MARK: Transactions
     
-    static func transactions(accessToken: String) -> RequestConfig<TransactionsParser> {
-        let request = TransactionsRequest(accessToken: accessToken)
+    static func transactions() -> RequestConfig<TransactionsParser> {
+        let request = TransactionsRequest()
         let parser = TransactionsParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func addMoney(userID: Int,
-                         amount: Int,
-                         accessToken: String) -> RequestConfig<MessageParser> {
-        let request = AddMoneyRequest(userID: userID, amount: amount, accessToken: accessToken)
+    static func addMoney(userID: Int, amount: Int) -> RequestConfig<MessageParser> {
+        let request = AddMoneyRequest(userID: userID, amount: amount)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
@@ -157,22 +153,22 @@ struct RequestFactory {
     
     // MARK: Store
     
-    static func shop(accessToken: String) -> RequestConfig<ShopParser> {
-        let request = ShopRequest(accessToken: accessToken)
+    static func shop() -> RequestConfig<ShopParser> {
+        let request = ShopRequest()
         let parser = ShopParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func myPurchases(accessToken: String) -> RequestConfig<ShopParser> {
-        let request = MyPurchasesRequest(accessToken: accessToken)
+    static func myPurchases() -> RequestConfig<ShopParser> {
+        let request = MyPurchasesRequest()
         let parser = ShopParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func buy(id: Int, accessToken: String) -> RequestConfig<MessageParser> {
-        let request = BuyRequest(id: id, accessToken: accessToken)
+    static func buy(by productID: Int) -> RequestConfig<MessageParser> {
+        let request = BuyRequest(productID: productID)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
@@ -180,33 +176,37 @@ struct RequestFactory {
     
     static func addItem(name: String,
                         price: Int,
-                        description: String,
-                        accessToken: String) -> RequestConfig<MessageParser> {
+                        description: String) -> RequestConfig<MessageParser> {
         let request = AddItemRequest(name: name,
                                      price: price,
-                                     description: description,
-                                     accessToken: accessToken)
+                                     description: description)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func deleteItem(by productID: Int, accessToken: String) -> RequestConfig<MessageParser> {
-        let request = DeleteItemRequest(productID: productID, accessToken: accessToken)
+    static func deleteItem(by productID: Int) -> RequestConfig<MessageParser> {
+        let request = DeleteItemRequest(productID: productID)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func updateItem(by productID: Int, name: String, price: Int, description: String, accessToken: String) -> RequestConfig<MessageParser> {
-        let request = UpdateItemRequest(productID: productID, name: name, price: price, description: description, accessToken: accessToken)
+    static func updateItem(by productID: Int,
+                           name: String,
+                           price: Int,
+                           description: String) -> RequestConfig<MessageParser> {
+        let request = UpdateItemRequest(productID: productID,
+                                        name: name,
+                                        price: price,
+                                        description: description)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)
     }
     
-    static func addAdmin(email: String, accessToken: String) -> RequestConfig<MessageParser> {
-        let request = AddAdminRequest(email: email, accessToken: accessToken)
+    static func addAdmin(email: String) -> RequestConfig<MessageParser> {
+        let request = AddAdminRequest(email: email)
         let parser = MessageParser()
         
         return .init(request: request, parser: parser)

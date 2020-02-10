@@ -18,18 +18,6 @@ final class TasksViewController: UIViewController {
     @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var submitButton: BigButton!
     
-    private let accessToken: String
-    
-    init(accessToken: String) {
-        self.accessToken = accessToken
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,7 +34,7 @@ final class TasksViewController: UIViewController {
         
         submitButton.showLoading()
             
-        let config = RequestFactory.feedback(body: text, accessToken: accessToken)
+        let config = RequestFactory.feedback(body: text)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
 

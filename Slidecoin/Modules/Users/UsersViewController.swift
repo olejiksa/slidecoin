@@ -25,7 +25,6 @@ final class UsersViewController: UIViewController {
     private let currentUser: User
     private var users: [User] = []
     private var searchedUsers: [User] = []
-    private var login: Login
     
     
     // MARK: Outlets
@@ -36,8 +35,7 @@ final class UsersViewController: UIViewController {
     
     // MARK: Lifecycle
     
-    init(login: Login, currentUser: User) {
-        self.login = login
+    init(currentUser: User) {
         self.currentUser = currentUser
         
         super.init(nibName: nil, bundle: nil)
@@ -90,16 +88,11 @@ final class UsersViewController: UIViewController {
     }
     
     private func obtainUsers() {
-        guard
-            let accessToken = login.accessToken,
-            let refreshToken = login.refreshToken
-        else { return }
-        
         if users.isEmpty {
             spinner.startAnimating()
         }
         
-        let config = RequestFactory.users(accessToken: accessToken)
+        let config = RequestFactory.users()
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
@@ -115,14 +108,14 @@ final class UsersViewController: UIViewController {
                 case .failure(let error):
                     switch error {
                     case is ResponseError:
-                        let refreshConfig = RequestFactory.tokenRefresh(refreshToken: refreshToken)
+                        let refreshConfig = RequestFactory.tokenRefresh()
                         self.requestSender.send(config: refreshConfig) { [weak self] result in
                             guard let self = self else { return }
                             
                             switch result {
                             case .success(let accessToken):
-                                self.login.accessToken = accessToken
-                                self.userDefaultsService.updateLogin(with: self.login)
+                                Global.accessToken = accessToken
+                                self.userDefaultsService.updateToken(access: accessToken)
                                 self.refreshControl.beginRefreshing()
                                 self.obtainUsers()
                                 
@@ -234,17 +227,10 @@ extension UsersViewController: UITableViewDataSource {
 extension UsersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard
-            let accessToken = login.accessToken,
-            let refreshToken = login.refreshToken
-        else { return }
-        
         let user = searchController.isActive ? searchedUsers[indexPath.row] : users[indexPath.row]
         
         let vc = UserViewController(user: user,
                                     currentUser: currentUser,
-                                    accessToken: accessToken,
-                                    refreshToken: refreshToken,
                                     isCurrent: user.id == currentUser.id)
         vc.completionHandler = {
             if self.searchController.isActive {

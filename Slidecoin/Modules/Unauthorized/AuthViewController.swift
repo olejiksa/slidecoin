@@ -108,6 +108,9 @@ final class AuthViewController: UIViewController {
                         let refreshToken = login.refreshToken,
                         let jwtAccess = try? decode(jwt: accessToken) {
                         
+                        Global.accessToken = accessToken
+                        Global.refreshToken = refreshToken
+                        
                         guard
                             let accessBody = try? JSONSerialization.data(withJSONObject: jwtAccess.body, options: []),
                             let access = try? JSONDecoder().decode(Token.self, from: accessBody)

@@ -11,16 +11,14 @@ import Toolkit
 
 final class UserByIDRequest: BaseGetRequest {
     
-    private let accessToken: String
-    
-    init(accessToken: String, identifier: Int) {
-        self.accessToken = accessToken
-        let endpoint = "\(RequestFactory.endpointRoot)user/\(identifier)"
+    init(userID: Int) {
+        let endpoint = "\(RequestFactory.endpointRoot)user/\(userID)"
         super.init(endpoint: endpoint)
     }
     
     override public var urlRequest: URLRequest? {
         var request = super.urlRequest
+        guard let accessToken = Global.accessToken else { return request }
         request?.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }

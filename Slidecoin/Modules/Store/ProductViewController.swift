@@ -18,8 +18,6 @@ final class ProductViewController: UIViewController {
     private let requestSender = Assembly.requestSender
     
     private let product: Product
-    private let refreshToken: String
-    private var accessToken: String
     private let alreadyPurchased: Bool
     private let isAdmin: Bool
     
@@ -37,13 +35,9 @@ final class ProductViewController: UIViewController {
     // MARK: Lifecycle
     
     init(product: Product,
-         refreshToken: String,
-         accessToken: String,
          alreadyPurchased: Bool,
          isAdmin: Bool) {
         self.product = product
-        self.refreshToken = refreshToken
-        self.accessToken = accessToken
         self.alreadyPurchased = alreadyPurchased
         self.isAdmin = isAdmin
         
@@ -102,7 +96,7 @@ final class ProductViewController: UIViewController {
         
         buyButton.showLoading()
         
-        let config = RequestFactory.buy(id: id, accessToken: accessToken)
+        let config = RequestFactory.buy(by: id)
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
@@ -122,15 +116,14 @@ final class ProductViewController: UIViewController {
                 case .failure(let error):
                     switch error {
                     case is ResponseError:
-                        let refreshConfig = RequestFactory.tokenRefresh(refreshToken: self.refreshToken)
+                        let refreshConfig = RequestFactory.tokenRefresh()
                         self.requestSender.send(config: refreshConfig) { [weak self] result in
                             guard let self = self else { return }
                             
                             switch result {
                             case .success(let accessToken):
-                                self.accessToken = accessToken
-                                let login = Login(refreshToken: self.refreshToken, accessToken: self.accessToken, message: "")
-                                self.userDefaultsService.updateLogin(with: login)
+                                Global.accessToken = accessToken
+                                self.userDefaultsService.updateToken(access: accessToken)
                                 self.buyDidTap()
                                 
                             case .failure(let error):
@@ -159,7 +152,7 @@ final class ProductViewController: UIViewController {
                                        isDestructive: true) { [weak self] _ in
             guard let self = self else { return }
                                         
-            let config = RequestFactory.deleteItem(by: id, accessToken: self.accessToken)
+            let config = RequestFactory.deleteItem(by: id)
             self.requestSender.send(config: config) { [weak self] result in
                 guard let self = self else { return }
                 
@@ -176,15 +169,14 @@ final class ProductViewController: UIViewController {
                     case .failure(let error):
                         switch error {
                         case is ResponseError:
-                            let refreshConfig = RequestFactory.tokenRefresh(refreshToken: self.refreshToken)
+                            let refreshConfig = RequestFactory.tokenRefresh()
                             self.requestSender.send(config: refreshConfig) { [weak self] result in
                                 guard let self = self else { return }
                                 
                                 switch result {
                                 case .success(let accessToken):
-                                    self.accessToken = accessToken
-                                    let login = Login(refreshToken: self.refreshToken, accessToken: self.accessToken, message: "")
-                                    self.userDefaultsService.updateLogin(with: login)
+                                    Global.accessToken = accessToken
+                                    self.userDefaultsService.updateToken(access: accessToken)
                                     self.deleteItem()
                                     
                                 case .failure(let error):
@@ -206,7 +198,7 @@ final class ProductViewController: UIViewController {
     }
     
     @objc private func editItem() {
-        let vc = AddItemViewController(accessToken: accessToken, refreshToken: refreshToken, isAdd: .edit(product.id!, product.name, product.price, product.description))
+        let vc = AddItemViewController(isAdd: .edit(product.id!, product.name, product.price, product.description))
 //        vc.completionHandler = { [weak self] in
 //            // self?.refresh()
 //        }

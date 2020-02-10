@@ -17,8 +17,6 @@ final class TransactionsViewController: UIViewController {
     private let cellID = "\(TransactionCell.self)"
     
     private let user: User
-    private let refreshToken: String
-    private var accessToken: String
     
     private let refreshControl = UIRefreshControl()
     private var isFilterEnabled = false
@@ -30,10 +28,8 @@ final class TransactionsViewController: UIViewController {
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
     
-    init(user: User, accessToken: String, refreshToken: String) {
+    init(user: User) {
         self.user = user
-        self.accessToken = accessToken
-        self.refreshToken = refreshToken
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -82,7 +78,7 @@ final class TransactionsViewController: UIViewController {
             spinner.startAnimating()
         }
         
-        let config = RequestFactory.transactions(accessToken: accessToken)
+        let config = RequestFactory.transactions()
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
@@ -91,7 +87,7 @@ final class TransactionsViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let transactions):
-                    let usersConfig = RequestFactory.users(accessToken: self.accessToken)
+                    let usersConfig = RequestFactory.users()
                     self.requestSender.send(config: usersConfig) { [weak self] result in
                         guard let self = self else { return }
                         
@@ -123,15 +119,16 @@ final class TransactionsViewController: UIViewController {
                 case .failure(let error):
                     switch error {
                     case is ResponseError:
-                        let refreshConfig = RequestFactory.tokenRefresh(refreshToken: self.refreshToken)
+                        let refreshConfig = RequestFactory.tokenRefresh()
                         self.requestSender.send(config: refreshConfig) { [weak self] result in
                             guard let self = self else { return }
                             
                             switch result {
                             case .success(let accessToken):
-                                self.accessToken = accessToken
+                                Global.accessToken = accessToken
                                 
-                                let login = Login(refreshToken: self.refreshToken, accessToken: self.accessToken, message: "")
+                                let login = Login(refreshToken: Global.refreshToken,
+                                                  accessToken: accessToken, message: "")
                                 self.userDefaultsService.updateLogin(with: login)
                                 self.refreshControl.beginRefreshing()
                                 self.obtainTransactions(filter: filter)
