@@ -34,9 +34,11 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = nvc
         }
         
+        Global.color = userDefaultsService.getColor()
+        
+        window?.tintColor = userDefaultsService.getColor()
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
-        window?.tintColor = userDefaultsService.getColor()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

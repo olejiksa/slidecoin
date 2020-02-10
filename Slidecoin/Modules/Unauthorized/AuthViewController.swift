@@ -6,7 +6,7 @@
 //  Copyright © 2019 Oleg Samoylov. All rights reserved.
 //
 
-import AuthenticationServices
+import JWTDecode
 import KeyboardAdjuster
 import Toolkit
 import UIKit
@@ -45,6 +45,7 @@ final class AuthViewController: UIViewController {
         setupKeyboard()
         setupNavigationBar()
         setupButtonNavigationHelper()
+        rememberSwitch.onTintColor = Global.color
     }
     
     
@@ -103,36 +104,26 @@ final class AuthViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(var login):
-                    if let accessToken = login.accessToken, login.refreshToken != nil {
-                        let usersConfig = RequestFactory.users(accessToken: accessToken)
-                        self.requestSender.send(config: usersConfig) { result in
-                            switch result {
-                            case .success(let users):
-                                guard let user = users.first(where: { $0.username == username }) else {
-                                    let alert = self.alertService.alert("User \(username) doesn't exist")
-                                    self.present(alert, animated: true)
-                                    return
-                                }
-                                
-                                let scene = UIApplication.shared.connectedScenes.first
-                                if let mySceneDelegate = scene?.delegate as? SceneDelegate {
-                                    login.message = username
-                                    
-                                    if self.rememberSwitch.isOn {
-                                        self.userDefaultsService.updateLogin(with: login)
-                                        self.userDefaultsService.updateUser(user)
-                                    }
-                                    
-                                    let tabBarController = TabBarBuilder.build(login: login, user: user)
-                                    mySceneDelegate.window?.rootViewController = tabBarController
-                                }
-                                
-                            case .failure(let error):
-                                self.loginButton.hideLoading()
-                                
-                                let alert = self.alertService.alert(error.localizedDescription)
-                                self.present(alert, animated: true)
+                    if let accessToken = login.accessToken,
+                        let refreshToken = login.refreshToken,
+                        let jwtAccess = try? decode(jwt: accessToken) {
+                        
+                        guard
+                            let accessBody = try? JSONSerialization.data(withJSONObject: jwtAccess.body, options: []),
+                            let access = try? JSONDecoder().decode(Token.self, from: accessBody)
+                        else { return }
+                        
+                        let scene = UIApplication.shared.connectedScenes.first
+                        if let mySceneDelegate = scene?.delegate as? SceneDelegate {
+                            login.message = username
+                            
+                            if self.rememberSwitch.isOn {
+                                self.userDefaultsService.updateLogin(with: login)
+                                self.userDefaultsService.updateUser(access.identity)
                             }
+                            
+                            let tabBarController = TabBarBuilder.build(login: login, user: access.identity)
+                            mySceneDelegate.window?.rootViewController = tabBarController
                         }
                     } else {
                         self.loginButton.hideLoading()

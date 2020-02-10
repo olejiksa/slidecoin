@@ -11,6 +11,12 @@ import UIKit
 
 final class AddItemViewController: UIViewController {
 
+    enum Mode {
+        
+        case add
+        case edit(Int, String, Int, String)
+    }
+    
     private let alertService = Assembly.alertService
     private let userDefaultsService = Assembly.userDefaultsService
     private let requestSender = Assembly.requestSender
@@ -25,12 +31,14 @@ final class AddItemViewController: UIViewController {
     
     private var accessToken: String
     private let refreshToken: String
+    private let isAdd: Mode
     
     var completionHandler: (() -> ())?
     
-    init(accessToken: String, refreshToken: String) {
+    init(accessToken: String, refreshToken: String, isAdd: Mode) {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
+        self.isAdd = isAdd
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,7 +55,15 @@ final class AddItemViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Добавление товара"
+        switch isAdd {
+        case .add:
+            navigationItem.title = "Добавление товара"
+        case .edit(_, let title, let price, let description):
+            navigationItem.title = "Изменение товара"
+            nameField.text = title
+            priceField.text = String(price)
+            descriptionField.text = description
+        }
         
         if presentingViewController != nil {
             let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
@@ -74,7 +90,15 @@ final class AddItemViewController: UIViewController {
         
         submitButton.showLoading()
         
-        let config = RequestFactory.addItem(name: name, price: price, description: description, accessToken: accessToken)
+        let config: RequestConfig<MessageParser>
+        
+        switch isAdd {
+        case .add:
+            config = RequestFactory.addItem(name: name, price: price, description: description, accessToken: accessToken)
+        case .edit(let id, _, _, _):
+            config = RequestFactory.updateItem(by: id, name: name, price: price, description: description, accessToken: accessToken)
+        }
+        
         requestSender.send(config: config) { [weak self] result in
             guard let self = self else { return }
             
@@ -82,6 +106,7 @@ final class AddItemViewController: UIViewController {
                 switch result {
                 case .success:
                     self.submitButton.hideLoading()
+                    
                     self.dismiss(animated: true)
                     self.completionHandler?()
                     

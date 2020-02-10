@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		EB09B47C23ABADC200680ABC /* TokenRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */; };
 		EB09B47E23ABAE6200680ABC /* AccessTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */; };
-		EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09B47F23ABAEEA00680ABC /* AccessToken.swift */; };
+		EB0BB17923F0BFF8006A3EA4 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0BB17723F0BFF8006A3EA4 /* TransactionViewController.swift */; };
+		EB0BB17A23F0BFF8006A3EA4 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0BB17823F0BFF8006A3EA4 /* TransactionView.xib */; };
 		EB0D35CC23DF2C630079F554 /* AccentColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0D35CA23DF2C630079F554 /* AccentColorViewController.swift */; };
 		EB0D35CD23DF2C630079F554 /* AccentColorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0D35CB23DF2C630079F554 /* AccentColorView.xib */; };
 		EB0D35CF23DF31DA0079F554 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0D35CE23DF31D90079F554 /* BigButton.swift */; };
+		EB10542723EDF78600A876AA /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB10542623EDF78600A876AA /* RequestSender.swift */; };
 		EB14979C23D46F2800F9AE87 /* UserByIDRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */; };
 		EB14979E23D4705C00F9AE87 /* UserParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14979D23D4705C00F9AE87 /* UserParser.swift */; };
 		EB189C8C23E3916400122157 /* DeleteUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB189C8B23E3916400122157 /* DeleteUserRequest.swift */; };
@@ -54,6 +56,7 @@
 		EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34423B3EE9E009CC4EC /* MessageParser.swift */; };
 		EB60C34723B3F024009CC4EC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB60C34623B3F024009CC4EC /* Message.swift */; };
 		EB61FB5323ABDBC500DC8E21 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61FB5223ABDBC500DC8E21 /* Assembly.swift */; };
+		EB63ED5F23E76DEF00881AF5 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = EB63ED5E23E76DEF00881AF5 /* JWTDecode */; };
 		EB6803BE23B00DA1003456AC /* AccessCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6803BC23B00DA1003456AC /* AccessCodeViewController.swift */; };
 		EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6803BD23B00DA1003456AC /* AccessCodeView.xib */; };
 		EB6803C223B02685003456AC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6803C023B02685003456AC /* UserViewController.swift */; };
@@ -88,9 +91,12 @@
 		EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */; };
 		EBD35052238DC317008AACA2 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35051238DC317008AACA2 /* RegistrationRequest.swift */; };
 		EBD35055238DC422008AACA2 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD35054238DC422008AACA2 /* Login.swift */; };
+		EBD4F69423E79034008E9991 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD4F69323E79034008E9991 /* Token.swift */; };
+		EBD4F69623E7AB26008E9991 /* AddAdminRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD4F69523E7AB26008E9991 /* AddAdminRequest.swift */; };
 		EBD5D94A23DE1D9000D9BD64 /* AddItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5D94923DE1D9000D9BD64 /* AddItemRequest.swift */; };
 		EBD5D94D23DE1EA000D9BD64 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5D94B23DE1EA000D9BD64 /* AddItemViewController.swift */; };
 		EBD5D94E23DE1EA000D9BD64 /* AddItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBD5D94C23DE1EA000D9BD64 /* AddItemView.xib */; };
+		EBDAF45223F0558900B8F93A /* UpdateItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDAF45123F0558900B8F93A /* UpdateItemRequest.swift */; };
 		EBE4675F23D8F415004A9EA5 /* NoUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4675D23D8F415004A9EA5 /* NoUserViewController.swift */; };
 		EBE4676023D8F415004A9EA5 /* NoUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBE4675E23D8F415004A9EA5 /* NoUserView.xib */; };
 		EBEA953C23E33B4E0030C54A /* AddMoneyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA953B23E33B4E0030C54A /* AddMoneyRequest.swift */; };
@@ -100,10 +106,12 @@
 /* Begin PBXFileReference section */
 		EB09B47B23ABADC200680ABC /* TokenRefreshRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshRequest.swift; sourceTree = "<group>"; };
 		EB09B47D23ABAE6200680ABC /* AccessTokenParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenParser.swift; sourceTree = "<group>"; };
-		EB09B47F23ABAEEA00680ABC /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		EB0BB17723F0BFF8006A3EA4 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		EB0BB17823F0BFF8006A3EA4 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
 		EB0D35CA23DF2C630079F554 /* AccentColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorViewController.swift; sourceTree = "<group>"; };
 		EB0D35CB23DF2C630079F554 /* AccentColorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccentColorView.xib; sourceTree = "<group>"; };
 		EB0D35CE23DF31D90079F554 /* BigButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
+		EB10542623EDF78600A876AA /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByIDRequest.swift; sourceTree = "<group>"; };
 		EB14979D23D4705C00F9AE87 /* UserParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserParser.swift; sourceTree = "<group>"; };
 		EB189C8B23E3916400122157 /* DeleteUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserRequest.swift; sourceTree = "<group>"; };
@@ -181,9 +189,12 @@
 		EBD3504D238DC2DA008AACA2 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		EBD35051238DC317008AACA2 /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		EBD35054238DC422008AACA2 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		EBD4F69323E79034008E9991 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		EBD4F69523E7AB26008E9991 /* AddAdminRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAdminRequest.swift; sourceTree = "<group>"; };
 		EBD5D94923DE1D9000D9BD64 /* AddItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemRequest.swift; sourceTree = "<group>"; };
 		EBD5D94B23DE1EA000D9BD64 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		EBD5D94C23DE1EA000D9BD64 /* AddItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddItemView.xib; sourceTree = "<group>"; };
+		EBDAF45123F0558900B8F93A /* UpdateItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateItemRequest.swift; sourceTree = "<group>"; };
 		EBE4675D23D8F415004A9EA5 /* NoUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoUserViewController.swift; sourceTree = "<group>"; };
 		EBE4675E23D8F415004A9EA5 /* NoUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoUserView.xib; sourceTree = "<group>"; };
 		EBEA953B23E33B4E0030C54A /* AddMoneyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyRequest.swift; sourceTree = "<group>"; };
@@ -197,6 +208,7 @@
 			files = (
 				EB1A236323B62B8400E21318 /* KeyboardAdjuster in Frameworks */,
 				EB3D037D238E956000E5BAE9 /* AuthenticationServices.framework in Frameworks */,
+				EB63ED5F23E76DEF00881AF5 /* JWTDecode in Frameworks */,
 				EBEF6A5B238EF36A008FD4F6 /* Toolkit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +238,8 @@
 				EB0D35CB23DF2C630079F554 /* AccentColorView.xib */,
 				EB189C8F23E3A42700122157 /* TasksViewController.swift */,
 				EB189C9023E3A42700122157 /* TasksView.xib */,
+				EB0BB17723F0BFF8006A3EA4 /* TransactionViewController.swift */,
+				EB0BB17823F0BFF8006A3EA4 /* TransactionView.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -333,6 +347,7 @@
 				EBD35037238DBF6D008AACA2 /* Parsers */,
 				EBD3503C238DBF6D008AACA2 /* Requests */,
 				EBD35041238DBF6D008AACA2 /* RequestFactory.swift */,
+				EB10542623EDF78600A876AA /* RequestSender.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -354,6 +369,7 @@
 		EBD3503C238DBF6D008AACA2 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				EBD4F69523E7AB26008E9991 /* AddAdminRequest.swift */,
 				EBD5D94923DE1D9000D9BD64 /* AddItemRequest.swift */,
 				EBEA953B23E33B4E0030C54A /* AddMoneyRequest.swift */,
 				EB3EF1C723DA6A38000CCA4C /* BuyRequest.swift */,
@@ -375,6 +391,7 @@
 				EB24546423D19ABB00C99EFB /* TransferRequest.swift */,
 				EB14979B23D46F2800F9AE87 /* UserByIDRequest.swift */,
 				EB6AA83F23AA57E800938BB6 /* UsersRequest.swift */,
+				EBDAF45123F0558900B8F93A /* UpdateItemRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -382,12 +399,12 @@
 		EBD35053238DC419008AACA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EB09B47F23ABAEEA00680ABC /* AccessToken.swift */,
 				EBD35054238DC422008AACA2 /* Login.swift */,
-				EB6AA84323AA589500938BB6 /* User.swift */,
 				EB60C34623B3F024009CC4EC /* Message.swift */,
 				EB513F3623D2EDFC00780EB9 /* Product.swift */,
+				EBD4F69323E79034008E9991 /* Token.swift */,
 				EB513F3C23D4458900780EB9 /* Transaction.swift */,
+				EB6AA84323AA589500938BB6 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -423,6 +440,7 @@
 			packageProductDependencies = (
 				EBEF6A5A238EF36A008FD4F6 /* Toolkit */,
 				EB1A236223B62B8400E21318 /* KeyboardAdjuster */,
+				EB63ED5E23E76DEF00881AF5 /* JWTDecode */,
 			);
 			productName = Slidecur;
 			productReference = EBD3501B238DB91B008AACA2 /* Slidecoin.app */;
@@ -454,6 +472,7 @@
 			mainGroup = EBD35012238DB91B008AACA2;
 			packageReferences = (
 				EB1A236123B62B8400E21318 /* XCRemoteSwiftPackageReference "KeyboardAdjuster" */,
+				EB63ED5D23E76DEF00881AF5 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
 			);
 			productRefGroup = EBD3501C238DB91B008AACA2 /* Products */;
 			projectDirPath = "";
@@ -474,6 +493,7 @@
 				EB6AA84823AA5F6600938BB6 /* UsersView.xib in Resources */,
 				EB8E9EB223D5AA2100438338 /* UserCell.xib in Resources */,
 				EB219952238DD2E1008A8772 /* RegistrationView.xib in Resources */,
+				EB0BB17A23F0BFF8006A3EA4 /* TransactionView.xib in Resources */,
 				EB513F3523D2ED8D00780EB9 /* ProductView.xib in Resources */,
 				EB3EF1C223DA584A000CCA4C /* PurchasesView.xib in Resources */,
 				EB6803BF23B00DA1003456AC /* AccessCodeView.xib in Resources */,
@@ -512,9 +532,11 @@
 				EB6AA83723A8C09500938BB6 /* RestoreViewController.swift in Sources */,
 				EBCE475F23D175840047F953 /* RestoreRequest.swift in Sources */,
 				EB60C34523B3EE9E009CC4EC /* MessageParser.swift in Sources */,
+				EBD4F69623E7AB26008E9991 /* AddAdminRequest.swift in Sources */,
 				EB14979E23D4705C00F9AE87 /* UserParser.swift in Sources */,
 				EB189C9123E3A42700122157 /* TasksViewController.swift in Sources */,
 				EB24546523D19ABB00C99EFB /* TransferRequest.swift in Sources */,
+				EBDAF45223F0558900B8F93A /* UpdateItemRequest.swift in Sources */,
 				EB60C34323B3E955009CC4EC /* LogoutRefreshRequest.swift in Sources */,
 				EB6AA85323AADD2900938BB6 /* DeleteAllUsersRequest.swift in Sources */,
 				EB6AA84423AA589500938BB6 /* User.swift in Sources */,
@@ -529,6 +551,7 @@
 				EBD3504A238DBF6D008AACA2 /* RequestFactory.swift in Sources */,
 				EBD35055238DC422008AACA2 /* Login.swift in Sources */,
 				EBEA953C23E33B4E0030C54A /* AddMoneyRequest.swift in Sources */,
+				EB0BB17923F0BFF8006A3EA4 /* TransactionViewController.swift in Sources */,
 				EB513F4023D4475900780EB9 /* TransactionsViewController.swift in Sources */,
 				EB0D35CC23DF2C630079F554 /* AccentColorViewController.swift in Sources */,
 				EB60C34723B3F024009CC4EC /* Message.swift in Sources */,
@@ -547,6 +570,7 @@
 				EB513F3423D2ED8D00780EB9 /* ProductViewController.swift in Sources */,
 				EBD5D94D23DE1EA000D9BD64 /* AddItemViewController.swift in Sources */,
 				EB219951238DD2E1008A8772 /* RegistrationViewController.swift in Sources */,
+				EB10542723EDF78600A876AA /* RequestSender.swift in Sources */,
 				EB6AA84723AA5F6600938BB6 /* UsersViewController.swift in Sources */,
 				EBB3361823B54CF1007923F9 /* AboutViewController.swift in Sources */,
 				EBD35021238DB91B008AACA2 /* SceneDelegate.swift in Sources */,
@@ -560,8 +584,8 @@
 				EB513F3023D2E29C00780EB9 /* ProductCell.swift in Sources */,
 				EBD3504E238DC2DA008AACA2 /* LoginRequest.swift in Sources */,
 				EB189C8E23E3921B00122157 /* DeleteItemRequest.swift in Sources */,
-				EB09B48023ABAEEA00680ABC /* AccessToken.swift in Sources */,
 				EB513F3723D2EDFC00780EB9 /* Product.swift in Sources */,
+				EBD4F69423E79034008E9991 /* Token.swift in Sources */,
 				EBD5D94A23DE1D9000D9BD64 /* AddItemRequest.swift in Sources */,
 				EB513F3D23D4458900780EB9 /* Transaction.swift in Sources */,
 			);
@@ -702,7 +726,7 @@
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -710,7 +734,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecurrency;
 				PRODUCT_NAME = Slidecoin;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -726,7 +750,7 @@
 				CODE_SIGN_ENTITLEMENTS = Slidecoin/Slidecoin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = B2FMGUSH44;
 				INFOPLIST_FILE = Slidecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -734,7 +758,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.olejiksa.slidecurrency;
 				PRODUCT_NAME = Slidecoin;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -775,6 +799,14 @@
 				kind = branch;
 			};
 		};
+		EB63ED5D23E76DEF00881AF5 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/JWTDecode.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -782,6 +814,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB1A236123B62B8400E21318 /* XCRemoteSwiftPackageReference "KeyboardAdjuster" */;
 			productName = KeyboardAdjuster;
+		};
+		EB63ED5E23E76DEF00881AF5 /* JWTDecode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB63ED5D23E76DEF00881AF5 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
+			productName = JWTDecode;
 		};
 		EBEF6A5A238EF36A008FD4F6 /* Toolkit */ = {
 			isa = XCSwiftPackageProductDependency;

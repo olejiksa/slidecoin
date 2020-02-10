@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Чтобы посмотреть информацию о пользователе, нажмите на него в левой части экрана" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xs-iV-Jde">
-                    <rect key="frame" x="69" y="421" width="276" height="64.5"/>
+                    <rect key="frame" x="69" y="416" width="276" height="64.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -28,8 +28,8 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="5Xs-iV-Jde" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="2:3" id="0vb-Gg-1He"/>
-                <constraint firstItem="5Xs-iV-Jde" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="4cI-n9-2YG"/>
-                <constraint firstItem="5Xs-iV-Jde" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="KXq-Qc-W9U"/>
+                <constraint firstItem="5Xs-iV-Jde" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="4cI-n9-2YG"/>
+                <constraint firstItem="5Xs-iV-Jde" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KXq-Qc-W9U"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="108"/>

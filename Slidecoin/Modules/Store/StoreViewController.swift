@@ -26,6 +26,7 @@ final class StoreViewController: UIViewController {
     private var login: Login
     private var user: User
     
+    @IBOutlet private weak var noItemsLabel: UILabel!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var collectionView: UICollectionView!
     
@@ -108,6 +109,7 @@ final class StoreViewController: UIViewController {
         
         if products.isEmpty {
             spinner.startAnimating()
+            noItemsLabel.isHidden = true
         }
         
         let config = RequestFactory.shop(accessToken: accessToken)
@@ -121,6 +123,7 @@ final class StoreViewController: UIViewController {
                     self.refreshControl.endRefreshing()
                     self.products = products
                     self.collectionView.reloadData()
+                    self.noItemsLabel.isHidden = !products.isEmpty
                     
                 case .failure(let error):
                     switch error {
@@ -170,7 +173,7 @@ final class StoreViewController: UIViewController {
             let refreshToken = login.refreshToken
         else { return }
         
-        let vc = AddItemViewController(accessToken: accessToken, refreshToken: refreshToken)
+        let vc = AddItemViewController(accessToken: accessToken, refreshToken: refreshToken, isAdd: .add)
         vc.completionHandler = { [weak self] in
             self?.refresh()
         }

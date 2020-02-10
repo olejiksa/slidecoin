@@ -23,37 +23,22 @@ final class TransactionCell: DetailCell {
         guard let amount = numberFormatter.string(from: transaction.amount as NSNumber) else { return }
         textLabel?.text = "\(amount) \(Global.currencySymbol)"
         
-        let condition = transaction.amount < 0 || user.id == transaction.senderID || transaction.receiverID == 0
-        textLabel?.textColor = condition ? .systemRed : .systemGreen
+        switch transaction.type {
+        case .purchase:
+            textLabel?.textColor = .label
+            detailTextLabel?.text = "Покупка"
+        
+        case .moneyAdding:
+            textLabel?.textColor = .label
+            detailTextLabel?.text = "Пополнение"
+            
+        case .transfer:
+            textLabel?.textColor = .label
+            detailTextLabel?.text = "Перевод"
+        }
         
         if transaction.amount == 0 {
-            textLabel?.textColor = nil
-        }
-        
-        if transaction.receiverID == 0 {
-            if user.id == transaction.senderID {
-                detailTextLabel?.text = "Покупка"
-            } else {
-                let username = userIDs[transaction.senderID]
-                detailTextLabel?.text = username != nil ? "Покупка \(username!)" : "Покупка"
-            }
-            
-            return
-        }
-        
-        switch user.id {
-        case transaction.receiverID:
-            let username = userIDs[transaction.senderID]!
-            detailTextLabel?.text = "Пополнение от \(username)"
-            
-        case transaction.senderID:
-            let username = userIDs[transaction.receiverID]
-            detailTextLabel?.text = username != nil ? "Перевод \(username!)" : "Перевод"
-            
-        default:
-            let senderUsername = userIDs[transaction.senderID]!
-            let receiverUsername = userIDs[transaction.receiverID]!
-            detailTextLabel?.text = "От \(senderUsername) к \(receiverUsername)"
+            textLabel?.textColor = .label
         }
     }
 }

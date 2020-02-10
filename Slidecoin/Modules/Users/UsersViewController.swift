@@ -157,7 +157,7 @@ final class UsersViewController: UIViewController {
     }
     
     @objc private func allUsersDidDelete() {
-        let message = "Вы действительно хотите удалить всех пользователей \"Сладовалюты\"?"
+        let message = "Вы действительно хотите удалить всех пользователей?"
         let alert = alertService.alert(message,
                                        title: .attention,
                                        isDestructive: true) { [weak self] _ in

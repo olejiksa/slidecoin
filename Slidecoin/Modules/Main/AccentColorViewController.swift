@@ -13,19 +13,28 @@ final class AccentColorViewController: UIViewController {
     private let alertService = Assembly.alertService
     private let userDefaultsService = Assembly.userDefaultsService
     
-    private let colors: [(UIColor, String)] = [(.systemRed, "Red"),
-                                               (.systemBlue, "Blue"),
-                                               (.systemPink, "Pink"),
-                                               (.systemTeal, "Teal"),
-                                               (.systemGreen, "Green"),
-                                               (.systemIndigo, "Indigo"),
-                                               (.systemOrange, "Orange"),
-                                               (.systemPurple, "Purple"),
-                                               (.systemYellow, "Yellow")]
+    private let colors: [(UIColor, String)] = [(.systemRed, "Красный"),
+                                               (.systemBlue, "Синий"),
+                                               (.systemPink, "Розовый"),
+                                               (.systemTeal, "Бирюзовый"),
+                                               (.systemGreen, "Зеленый"),
+                                               (.systemIndigo, "Фиолетовый"),
+                                               (.systemOrange, "Оранжевый"),
+                                               (.systemPurple, "Пурпурный"),
+                                               (.systemYellow, "Желтый")]
     
     private let cellID = "\(UITableViewCell.self)"
     
+    private var lastSelectedIndexPath: IndexPath?
+    
     @IBOutlet private weak var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let row = colors.firstIndex { userDefaultsService.getColor() == $0.0 } ?? 1
+        lastSelectedIndexPath = IndexPath(row: row, section: 0)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +42,17 @@ final class AccentColorViewController: UIViewController {
         navigationItem.title = "Акцентный цвет"
         navigationItem.largeTitleDisplayMode = .never
         
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                          target: self,
+                                          action: #selector(close))
+                
+        navigationItem.rightBarButtonItem = closeButton
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+    }
+    
+    @objc private func close() {
+        dismiss(animated: true)
     }
 }
 
@@ -56,6 +75,7 @@ extension AccentColorViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         cell.textLabel?.text = colors[indexPath.row].1
         cell.textLabel?.textColor = colors[indexPath.row].0
+        cell.accessoryType = (lastSelectedIndexPath?.row == indexPath.row) ? .checkmark : .none
         return cell
     }
 }
@@ -70,9 +90,18 @@ extension AccentColorViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userDefaultsService.setColor(colors[indexPath.row].0)
         
-        let alert = alertService.alert("Изменения вступят в силу после перезапуска приложения", title: .attention)
-        present(alert, animated: true)
-        
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.row != lastSelectedIndexPath?.row {
+            if let lastSelectedIndexPath = lastSelectedIndexPath {
+                let oldCell = tableView.cellForRow(at: lastSelectedIndexPath)
+                oldCell?.accessoryType = .none
+            }
+
+            let newCell = tableView.cellForRow(at: indexPath)
+            newCell?.accessoryType = .checkmark
+
+            lastSelectedIndexPath = indexPath
+        }
     }
 }

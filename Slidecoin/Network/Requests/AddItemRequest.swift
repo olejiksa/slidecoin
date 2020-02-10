@@ -11,18 +11,13 @@ import Toolkit
 
 final class AddItemRequest: BasePostRequest {
     
-    private let name: String
-    private let price: Int
-    private let description: String
+    
     private let accessToken: String
     
     init(name: String,
          price: Int,
          description: String,
          accessToken: String) {
-        self.name = name
-        self.price = price
-        self.description = description
         self.accessToken = accessToken
         
         let endpoint = "\(RequestFactory.endpointRoot)shop/additem"

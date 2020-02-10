@@ -16,11 +16,13 @@ final class UserViewController: UIViewController {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var balanceLabel: UILabel!
+    @IBOutlet private weak var accountTypeLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var logoutButton: BigButton!
     @IBOutlet private weak var transferButton: BigButton!
     @IBOutlet private weak var changePasswordButton: BigButton!
     @IBOutlet private weak var addMoneyButton: BigButton!
+    @IBOutlet private weak var addAdminButton: BigButton!
     
     var completionHandler: (() -> ())?
     
@@ -82,7 +84,7 @@ final class UserViewController: UIViewController {
     @IBAction private func transferMoneyDidTap() {
         let vc = TransferViewController(accessToken: accessToken,
                                         currentUser: currentUser,
-                                        receiver: user)
+                                        receiver: user, withdrawMe: true)
         vc.completionHandler = { [weak self] amount in
             guard let self = self else { return }
             
@@ -142,6 +144,7 @@ final class UserViewController: UIViewController {
     private func setupUserDescription() {
         nameLabel.text = "\(user.name) \(user.surname)"
         emailLabel.text = user.email
+        accountTypeLabel.text = user.isAdmin ? "Учетная запись администратора" : "Обычная учетная запись"
         
         guard let balance = numberFormatter.string(from: user.balance as NSNumber) else { return }
         balanceLabel.text = "\(balance) \(Global.currencySymbol)"
@@ -156,6 +159,10 @@ final class UserViewController: UIViewController {
         } else {
             changePasswordButton.isHidden = true
             logoutButton.isHidden = true
+        }
+        
+        if !user.isAdmin && currentUser.isAdmin {
+            addAdminButton.isHidden = false
         }
         
         addMoneyButton.isHidden = !currentUser.isAdmin
@@ -230,6 +237,22 @@ final class UserViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @IBAction private func incomeDidTap() {
+        let vc = TransferViewController(accessToken: accessToken,
+                                        currentUser: currentUser,
+                                        receiver: user, withdrawMe: false)
+        vc.completionHandler = { [weak self] amount in
+            guard let self = self else { return }
+            
+            self.user.balance += amount
+            self.balanceLabel.text = "\(self.user.balance) \(Global.currencySymbol)"
+        }
+        
+        let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
+        present(nvc, animated: true)
+    }
+    
     @objc private func deleteUser() {
         let message = "Удалить данного пользователя?"
         let alert = alertService.alert(message,
@@ -247,6 +270,9 @@ final class UserViewController: UIViewController {
                         if message.contains("success") {
                             self.navigationController?.popViewController(animated: true)
                             self.completionHandler?()
+                            
+                            let nvc = UINavigationController(rootViewController: NoUserViewController("пользовател"))
+                            self.showDetailViewController(nvc, sender: self)
                         }
                         
                     case .failure(let error):
@@ -279,6 +305,39 @@ final class UserViewController: UIViewController {
         }
         
         present(alert, animated: true)
+    }
+    
+    @IBAction private func addAdmin() {
+        addAdminButton.showLoading()
+        
+        let config = RequestFactory.addAdmin(email: user.email, accessToken: accessToken)
+        requestSender.send(config: config) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.addAdminButton.hideLoading()
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let message):
+                    self.accountTypeLabel.text = "Учетная запись администратора"
+                    self.addAdminButton.isHidden = true
+                    
+                    let alert = self.alertService.alert(message,
+                                                        title: .info,
+                                                        isDestructive: false) { _ in
+                        if message.contains("has been added") {
+                            self.dismiss(animated: true)
+                        }
+                    }
+                    
+                    self.present(alert, animated: true)
+                    
+                case .failure(let error):
+                    let alert = self.alertService.alert(error.localizedDescription)
+                    self.present(alert, animated: true)
+                }
+            }
+        }
     }
 }
 

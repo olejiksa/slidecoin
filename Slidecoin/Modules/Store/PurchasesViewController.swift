@@ -26,6 +26,7 @@ final class PurchasesViewController: UIViewController {
     private var login: Login
     private var user: User
     
+    @IBOutlet private weak var noItemsLabel: UILabel!
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var collectionView: UICollectionView!
     
@@ -94,6 +95,7 @@ final class PurchasesViewController: UIViewController {
         
         if products.isEmpty {
             spinner.startAnimating()
+            noItemsLabel.isHidden = true
         }
         
         let config = RequestFactory.myPurchases(accessToken: accessToken)
@@ -107,6 +109,7 @@ final class PurchasesViewController: UIViewController {
                     self.refreshControl.endRefreshing()
                     self.products = products
                     self.collectionView.reloadData()
+                    self.noItemsLabel.isHidden = !products.isEmpty
                     
                 case .failure(let error):
                     switch error {

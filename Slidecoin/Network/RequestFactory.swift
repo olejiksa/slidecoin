@@ -197,4 +197,18 @@ struct RequestFactory {
         
         return .init(request: request, parser: parser)
     }
+    
+    static func updateItem(by productID: Int, name: String, price: Int, description: String, accessToken: String) -> RequestConfig<MessageParser> {
+        let request = UpdateItemRequest(productID: productID, name: name, price: price, description: description, accessToken: accessToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
+    
+    static func addAdmin(email: String, accessToken: String) -> RequestConfig<MessageParser> {
+        let request = AddAdminRequest(email: email, accessToken: accessToken)
+        let parser = MessageParser()
+        
+        return .init(request: request, parser: parser)
+    }
 }

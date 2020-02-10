@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
+                <outlet property="accountTypeLabel" destination="ZTv-9m-taw" id="9E2-UG-6OX"/>
+                <outlet property="addAdminButton" destination="BTB-MU-yZa" id="DFg-ru-sx0"/>
                 <outlet property="addMoneyButton" destination="faf-ww-Xbd" id="NQV-79-Hv8"/>
                 <outlet property="balanceLabel" destination="V0A-rV-2Xb" id="7Cb-jm-9Ks"/>
                 <outlet property="changePasswordButton" destination="bX2-pN-sb2" id="WsG-uz-hDC"/>
@@ -29,17 +31,34 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3Wm-nX-Qj7">
-                            <rect key="frame" x="20" y="20.5" width="100" height="99"/>
+                            <rect key="frame" x="20" y="15.5" width="100" height="99"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="3Wm-nX-Qj7" secondAttribute="height" multiplier="1:1" id="C7u-Ru-9jH"/>
                                 <constraint firstAttribute="height" constant="100" id="J3s-cU-O1U"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cqg-oL-OaU">
-                            <rect key="frame" x="20" y="140" width="374" height="276"/>
+                            <rect key="frame" x="20" y="125" width="374" height="347"/>
                             <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="S8Q-vj-cMG">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Адрес электронной почты" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yuj-rC-ENW">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Учетная запись" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTv-9m-taw">
+                                            <rect key="frame" x="0.0" y="30.5" width="374" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOd-m6-Wfw" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="54"/>
+                                    <rect key="frame" x="0.0" y="71" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="k4O-O3-rIi"/>
@@ -57,7 +76,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faf-ww-Xbd" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="74" width="374" height="54"/>
+                                    <rect key="frame" x="0.0" y="145" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="5hW-Jt-m3O"/>
@@ -71,11 +90,29 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="transferMoneyDidTap" destination="-1" eventType="touchUpInside" id="fFE-Dy-ESy"/>
+                                        <action selector="incomeDidTap" destination="-1" eventType="touchUpInside" id="GJM-Xb-9Yy"/>
+                                    </connections>
+                                </button>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTB-MU-yZa" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="209" width="374" height="54"/>
+                                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="54" id="Fv9-46-nUI"/>
+                                    </constraints>
+                                    <state key="normal" title="Повысить права">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="addAdmin" destination="-1" eventType="touchUpInside" id="uvd-6e-ozt"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX2-pN-sb2" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="148" width="374" height="54"/>
+                                    <rect key="frame" x="0.0" y="219" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="J1m-wx-dU3"/>
@@ -93,7 +130,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qV-ac-rio" customClass="BigButton" customModule="Slidecoin" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="222" width="374" height="54"/>
+                                    <rect key="frame" x="0.0" y="293" width="374" height="54"/>
                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="rnO-rH-xag"/>
@@ -112,24 +149,18 @@
                                 </button>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7wV-nk-Uy2">
-                            <rect key="frame" x="140" y="34.5" width="244" height="71.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="7wV-nk-Uy2">
+                            <rect key="frame" x="135" y="39.5" width="259" height="51.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя и фамилия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuW-UA-hB6">
-                                    <rect key="frame" x="0.0" y="0.0" width="244" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Адрес электронной почты" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yuj-rC-ENW">
-                                    <rect key="frame" x="0.0" y="25.5" width="244" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="259" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Баланс" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0A-rV-2Xb">
-                                    <rect key="frame" x="0.0" y="51" width="244" height="20.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="0.0" y="27.5" width="259" height="24"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -137,17 +168,17 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="3Wm-nX-Qj7" firstAttribute="top" secondItem="T2o-xc-HTH" secondAttribute="top" constant="20" id="C6p-AF-fQf"/>
+                        <constraint firstItem="3Wm-nX-Qj7" firstAttribute="top" secondItem="T2o-xc-HTH" secondAttribute="top" constant="15" id="C6p-AF-fQf"/>
                         <constraint firstItem="7wV-nk-Uy2" firstAttribute="centerY" secondItem="3Wm-nX-Qj7" secondAttribute="centerY" id="C99-4e-xc1"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3Wm-nX-Qj7" secondAttribute="trailing" constant="20" id="DPi-gX-p9e"/>
-                        <constraint firstItem="7wV-nk-Uy2" firstAttribute="leading" secondItem="3Wm-nX-Qj7" secondAttribute="trailing" constant="20" id="HuI-Ui-8RU"/>
+                        <constraint firstItem="7wV-nk-Uy2" firstAttribute="leading" secondItem="3Wm-nX-Qj7" secondAttribute="trailing" constant="15" id="HuI-Ui-8RU"/>
                         <constraint firstAttribute="bottom" secondItem="Cqg-oL-OaU" secondAttribute="bottom" constant="20" id="VJY-he-hjI"/>
                         <constraint firstItem="Cqg-oL-OaU" firstAttribute="leading" secondItem="T2o-xc-HTH" secondAttribute="leading" constant="20" id="ZV5-Nf-bgG"/>
                         <constraint firstAttribute="trailing" secondItem="Cqg-oL-OaU" secondAttribute="trailing" constant="20" id="j7U-yd-7r2"/>
                         <constraint firstItem="Cqg-oL-OaU" firstAttribute="centerX" secondItem="T2o-xc-HTH" secondAttribute="centerX" id="lvu-hg-OKO"/>
                         <constraint firstItem="3Wm-nX-Qj7" firstAttribute="leading" secondItem="T2o-xc-HTH" secondAttribute="leading" constant="20" id="nHt-Q5-fro"/>
-                        <constraint firstItem="Cqg-oL-OaU" firstAttribute="top" secondItem="3Wm-nX-Qj7" secondAttribute="bottom" constant="20" id="raP-5b-mBU"/>
-                        <constraint firstAttribute="trailing" secondItem="7wV-nk-Uy2" secondAttribute="trailing" constant="30" id="sud-O3-rob"/>
+                        <constraint firstItem="Cqg-oL-OaU" firstAttribute="top" secondItem="3Wm-nX-Qj7" secondAttribute="bottom" constant="10" id="raP-5b-mBU"/>
+                        <constraint firstAttribute="trailing" secondItem="7wV-nk-Uy2" secondAttribute="trailing" constant="20" id="sud-O3-rob"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="zgd-XH-4y4"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="avs-bP-D6D"/>

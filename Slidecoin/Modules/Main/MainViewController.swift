@@ -86,7 +86,14 @@ final class MainViewController: UIViewController {
                                          style: .plain,
                                          target: self,
                                          action: #selector(infoDidTap))
-        navigationItem.leftBarButtonItem = infoButton
+        
+        let gearImage = UIImage(systemName: "gear")
+        let gearButton = UIBarButtonItem(image: gearImage,
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(accentColorDidTap))
+        
+        navigationItem.leftBarButtonItems = [infoButton, gearButton]
         
         let userImage = UIImage(systemName: "person.crop.circle")
         let userButton = UIBarButtonItem(image: userImage,
@@ -139,7 +146,9 @@ final class MainViewController: UIViewController {
     
     @IBAction private func accentColorDidTap() {
         let vc = AccentColorViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
+        present(nvc, animated: true)
     }
     
     @IBAction private func tasksDidTap() {
@@ -157,6 +166,7 @@ final class MainViewController: UIViewController {
             guard let self = self else { return }
             
             self.refreshControl.endRefreshing()
+            self.scrollView.contentOffset.x = 0
 
             switch result {
             case .success(let user):

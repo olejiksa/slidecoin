@@ -28,8 +28,8 @@ final class TabBarBuilder: UISplitViewControllerDelegate {
         let mainVc = MainViewController(login: login, user: user)
         let mainNvc = UINavigationController(rootViewController: mainVc)
         
-        let transactionsVc = TransactionsViewController(user: user, accessToken: login.accessToken!,
-                                                        refreshToken: login.refreshToken!)
+        let transactionsVc = TransactionsViewController(user: user, accessToken: login.accessToken ?? "",
+                                                        refreshToken: login.refreshToken ?? "")
         let transactionsNvc = UINavigationController(rootViewController: transactionsVc)
         
         let mainSvc = UISplitViewController()

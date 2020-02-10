@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="ZAB-VK-muO" id="yRv-qL-ekb"/>
+                <outlet property="noItemsLabel" destination="SSH-Zs-fTr" id="O0N-v7-3fB"/>
                 <outlet property="spinner" destination="bz9-qm-iSX" id="RPf-Ku-G68"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -36,11 +37,19 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="bz9-qm-iSX">
                     <rect key="frame" x="197" y="438" width="20" height="20"/>
                 </activityIndicatorView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Товаров еще нет" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSH-Zs-fTr">
+                    <rect key="frame" x="139.5" y="437.5" width="135" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="bz9-qm-iSX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2Rx-hx-ric"/>
+                <constraint firstItem="SSH-Zs-fTr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="20D-TJ-ENf"/>
+                <constraint firstItem="bz9-qm-iSX" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="2Rx-hx-ric"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZAB-VK-muO" secondAttribute="trailing" id="5NO-CL-GtM"/>
+                <constraint firstItem="SSH-Zs-fTr" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="9jb-jP-KKZ"/>
                 <constraint firstAttribute="bottom" secondItem="ZAB-VK-muO" secondAttribute="bottom" id="W26-9W-4Fz"/>
                 <constraint firstItem="bz9-qm-iSX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="d3o-fQ-SMs"/>
                 <constraint firstItem="ZAB-VK-muO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gig-5k-daM"/>

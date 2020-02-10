@@ -16,6 +16,7 @@ final class TransferViewController: UIViewController {
     private let accessToken: String
     private let currentUser: User
     private let receiver: User
+    private let withdrawMe: Bool
     private let alertService = Assembly.alertService
     private let requestSender = Assembly.requestSender
     private var formValidationHelper: FormValidationHelper?
@@ -35,10 +36,11 @@ final class TransferViewController: UIViewController {
     
     // MARK: Lifecycle
     
-    init(accessToken: String, currentUser: User, receiver: User) {
+    init(accessToken: String, currentUser: User, receiver: User, withdrawMe: Bool) {
         self.accessToken = accessToken
         self.currentUser = currentUser
         self.receiver = receiver
+        self.withdrawMe = withdrawMe
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -69,32 +71,62 @@ final class TransferViewController: UIViewController {
         
         self.submitButton.showLoading()
         
-        let config = RequestFactory.transfer(accessToken: accessToken,
-                                             receiver: receiver,
-                                             amount: sum)
-        requestSender.send(config: config) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.submitButton.hideLoading()
-            
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let message):
-                    self.completionHandler?(sum)
-                    
-                    let alert = self.alertService.alert(message,
-                                                        title: .info,
-                                                        isDestructive: false) { _ in
-                        if message.contains("Transaction") {
-                            self.dismiss(animated: true)
+        if withdrawMe {
+            let config = RequestFactory.transfer(accessToken: accessToken,
+                                                 receiver: receiver,
+                                                 amount: sum)
+            requestSender.send(config: config) { [weak self] result in
+                guard let self = self else { return }
+                
+                self.submitButton.hideLoading()
+                
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let message):
+                        self.completionHandler?(sum)
+                        
+                        let alert = self.alertService.alert(message,
+                                                            title: .info,
+                                                            isDestructive: false) { _ in
+                            if message.contains("Transaction") {
+                                self.dismiss(animated: true)
+                            }
                         }
+                        
+                        self.present(alert, animated: true)
+                        
+                    case .failure(let error):
+                        let alert = self.alertService.alert(error.localizedDescription)
+                        self.present(alert, animated: true)
                     }
-                    
-                    self.present(alert, animated: true)
-                    
-                case .failure(let error):
-                    let alert = self.alertService.alert(error.localizedDescription)
-                    self.present(alert, animated: true)
+                }
+            }
+        } else {
+            let config = RequestFactory.addMoney(userID: receiver.id, amount: sum, accessToken: accessToken)
+            requestSender.send(config: config) { [weak self] result in
+                guard let self = self else { return }
+                
+                self.submitButton.hideLoading()
+                
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let message):
+                        self.completionHandler?(sum)
+                        
+                        let alert = self.alertService.alert(message,
+                                                            title: .info,
+                                                            isDestructive: false) { _ in
+                            if message.contains("success") {
+                                self.dismiss(animated: true)
+                            }
+                        }
+                        
+                        self.present(alert, animated: true)
+                        
+                    case .failure(let error):
+                        let alert = self.alertService.alert(error.localizedDescription)
+                        self.present(alert, animated: true)
+                    }
                 }
             }
         }
@@ -108,7 +140,7 @@ final class TransferViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Перевод"
+        navigationItem.title = withdrawMe ? "Перевод" : "Пополнение"
         
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
                                           target: self,

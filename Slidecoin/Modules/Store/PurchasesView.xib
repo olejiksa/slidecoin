@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PurchasesViewController" customModule="Slidecoin" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="SBP-bU-l3J" id="DCp-8E-Bdq"/>
+                <outlet property="noItemsLabel" destination="aK9-im-5dk" id="JYI-BL-kRD"/>
                 <outlet property="spinner" destination="z8S-yD-DSf" id="PC0-2i-Mze"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -36,15 +37,23 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="z8S-yD-DSf">
                     <rect key="frame" x="197" y="438" width="20" height="20"/>
                 </activityIndicatorView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Покупок еще нет" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-im-5dk">
+                    <rect key="frame" x="138.5" y="437.5" width="137" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="SBP-bU-l3J" secondAttribute="bottom" id="4qR-O0-dU1"/>
                 <constraint firstItem="z8S-yD-DSf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JV2-f4-jiP"/>
+                <constraint firstItem="aK9-im-5dk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vre-IB-JJ6"/>
                 <constraint firstItem="SBP-bU-l3J" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ZpL-bY-VMt"/>
                 <constraint firstItem="SBP-bU-l3J" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="apm-xs-AVF"/>
                 <constraint firstItem="z8S-yD-DSf" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cvp-98-rBg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SBP-bU-l3J" secondAttribute="trailing" id="jrv-2o-ALe"/>
+                <constraint firstItem="aK9-im-5dk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="lVO-7I-0yr"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="125"/>

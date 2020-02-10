@@ -20,10 +20,10 @@ public final class BigButton: UIButton {
     
     override public var backgroundColor: UIColor? {
         get {
-            return isEnabled ? Assembly.userDefaultsService.getColor() : .systemFill
+            return isEnabled ? Global.color : .systemFill
         }
         set {
-            super.backgroundColor = isEnabled ? Assembly.userDefaultsService.getColor() : .systemFill
+            super.backgroundColor = isEnabled ? Global.color : .systemFill
         }
     }
     
@@ -31,7 +31,7 @@ public final class BigButton: UIButton {
         didSet {
             if isEnabled {
                 UIView.animate(withDuration: 0) {
-                    super.backgroundColor = Assembly.userDefaultsService.getColor()
+                    super.backgroundColor = Global.color
                 }
             } else {
                 UIView.animate(withDuration: 0) {

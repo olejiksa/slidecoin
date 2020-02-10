@@ -69,10 +69,16 @@ final class ProductViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         
         if isAdmin {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash"),
-                                                                style: .plain,
-                                                                target: self,
-                                                                action: #selector(deleteItem))
+            let deleteButton = UIBarButtonItem(image: UIImage(systemName: "trash"),
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(deleteItem))
+            
+            let editButton = UIBarButtonItem(barButtonSystemItem: .edit,
+                                             target: self,
+                                             action: #selector(editItem))
+            
+            navigationItem.rightBarButtonItems = [deleteButton, editButton]
         }
         
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -162,6 +168,8 @@ final class ProductViewController: UIViewController {
                     case .success(let message):
                         if message.contains("success") {
                             self.navigationController?.popViewController(animated: true)
+                            let nvc = UINavigationController(rootViewController: NoUserViewController("товар"))
+                            self.showDetailViewController(nvc, sender: self)
                             self.completionHandler?()
                         }
                         
@@ -195,5 +203,16 @@ final class ProductViewController: UIViewController {
         }
         
         present(alert, animated: true)
+    }
+    
+    @objc private func editItem() {
+        let vc = AddItemViewController(accessToken: accessToken, refreshToken: refreshToken, isAdd: .edit(product.id!, product.name, product.price, product.description))
+//        vc.completionHandler = { [weak self] in
+//            // self?.refresh()
+//        }
+        
+        let nvc = UINavigationController(rootViewController: vc)
+        nvc.modalPresentationStyle = .formSheet
+        present(nvc, animated: true)
     }
 }

@@ -17,5 +17,15 @@ struct Product: Decodable {
 
 struct ShopResponse: Decodable {
     
+    private enum CodingKeys: String, CodingKey {
+        case items
+    }
+    
     let items: [Product]
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let array = try? values.decode([Product].self, forKey: .items)
+        items = array ?? []
+    }
 }

@@ -24,8 +24,8 @@ final class TransactionsViewController: UIViewController {
     private var isFilterEnabled = false
     
     private var userIDs: [Int: String] = [:]
-    private var transactions: [Transaction] = []
-    private var filteredTransactions: [Transaction] = []
+    private var transactions: [[Transaction]] = []
+    private var filteredTransactions: [[Transaction]] = []
     
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
@@ -49,7 +49,7 @@ final class TransactionsViewController: UIViewController {
         setupTableView()
         setupRefreshControl()
         
-        obtainTransactions()
+        obtainTransactions(filter: true)
     }
     
     private func setupNavigationBar() {
@@ -77,7 +77,7 @@ final class TransactionsViewController: UIViewController {
         tableView.refreshControl = refreshControl
     }
     
-    private func obtainTransactions() {
+    private func obtainTransactions(filter: Bool) {
         if transactions.isEmpty {
             spinner.startAnimating()
         }
@@ -104,9 +104,12 @@ final class TransactionsViewController: UIViewController {
                             self.spinner.stopAnimating()
                             self.tableView.separatorStyle = .singleLine
                             self.refreshControl.endRefreshing()
-                            self.transactions = transactions.reversed()
+                            self.transactions = self.dated(transactions: transactions.reversed())
                             self.tableView.reloadData()
-                            self.filter()
+                            
+                            if filter {
+                                self.filter()
+                            }
                             
                         case .failure(let error):
                             self.spinner.stopAnimating()
@@ -131,7 +134,7 @@ final class TransactionsViewController: UIViewController {
                                 let login = Login(refreshToken: self.refreshToken, accessToken: self.accessToken, message: "")
                                 self.userDefaultsService.updateLogin(with: login)
                                 self.refreshControl.beginRefreshing()
-                                self.obtainTransactions()
+                                self.obtainTransactions(filter: filter)
                                 
                             case .failure(let error):
                                 self.spinner.stopAnimating()
@@ -155,7 +158,7 @@ final class TransactionsViewController: UIViewController {
     }
     
     @objc private func refresh() {
-        obtainTransactions()
+        obtainTransactions(filter: false)
     }
     
     @objc private func filter() {
@@ -165,8 +168,24 @@ final class TransactionsViewController: UIViewController {
         let icon = isFilterEnabled ? UIImage(systemName: "\(iconName).fill") : UIImage(systemName: iconName)
         navigationItem.rightBarButtonItem?.image = icon
         
-        filteredTransactions = transactions.filter { $0.senderID == user.id || $0.receiverID == user.id }
+        filteredTransactions = dated(transactions: transactions.joined().filter { $0.senderID == user.id || $0.receiverID == user.id })
         tableView.reloadData()
+    }
+    
+    private func dated(transactions: [Transaction]) -> [[Transaction]] {
+        let dict = Dictionary(grouping: transactions, by: { transaction -> Date in
+            let components = Calendar.current.dateComponents([.day, .month, .year], from: transaction.date)
+            return Calendar.current.date(from: components)!
+        })
+        
+        var array = [[Transaction]]()
+        for (_, value) in dict {
+            array.append(value)
+        }
+        
+        array.sort(by: { $0.first!.date > $1.first!.date })
+        
+        return array
     }
 }
 
@@ -184,20 +203,20 @@ extension TransactionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let transaction = transactions[section]
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy, HH:mm"
+        dateFormatter.dateFormat = "dd MMM yyyy"
         
-        let offsetTime = TimeInterval(TimeZone.current.secondsFromGMT())
-        let date = transaction.date.addingTimeInterval(offsetTime)
-        return dateFormatter.string(from: date)
+        // let offsetTime = TimeInterval(TimeZone.current.secondsFromGMT())
+        // let date = transaction.first!.date.addingTimeInterval(offsetTime)
+        return dateFormatter.string(from: transaction.first!.date)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return !isFilterEnabled ? transactions[section].count : filteredTransactions[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TransactionCell
-        let transaction = !isFilterEnabled ? transactions[indexPath.section] : filteredTransactions[indexPath.section]
+        let transaction = !isFilterEnabled ? transactions[indexPath.section][indexPath.row] : filteredTransactions[indexPath.section][indexPath.row]
         cell?.setup(transaction: transaction, userIDs: userIDs, user: user)
         return cell ?? UITableViewCell(frame: .zero)
     }
@@ -211,6 +230,13 @@ extension TransactionsViewController: UITableViewDataSource {
 extension TransactionsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let transaction = !isFilterEnabled ? transactions[indexPath.section][indexPath.row] : filteredTransactions[indexPath.section][indexPath.row]
+        let sender = userIDs[transaction.senderID]
+        let receiver = userIDs[transaction.receiverID]
+        
+        let vc = TransactionViewController(transaction: transaction, senderName: sender, receiverName: receiver)
+        navigationController?.pushViewController(vc, animated: true)
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
